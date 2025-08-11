@@ -3,298 +3,372 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AIRES - Научная команда</title>
-    <meta name="description" content="AIRES - инновационная научная команда, специализирующаяся на передовых исследованиях и разработках">
+    <title>AIRES - Инновационная научная команда</title>
+    <meta name="description" content="AIRES - команда молодых учёных, специализирующаяся в решении задач с применением современных информационных технологий и искусственного интеллекта">
+    <meta name="keywords" content="AIRES, искусственный интеллект, машинное обучение, робототехника, научные исследования">
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="shortcut icon" type="image/png" href="favicon.png">
+    <link rel="apple-touch-icon" href="favicon.png">
 </head>
 <body>
-    <!-- Header -->
     <header class="header">
-        <nav class="navbar">
-            <div class="nav-container">
-                <div class="nav-logo">
-                    <h1>AIRES</h1>
-                    <span class="logo-subtitle">Advanced Research & Innovation</span>
-                </div>
-                <ul class="nav-menu">
+        <div class="container">
+            <div class="logo">
+                <img src="logohead.png" alt="AIRES Logo" class="logo-img">
+            </div>
+            <nav class="nav">
+                <ul class="nav-list">
                     <li><a href="#home" class="nav-link">Главная</a></li>
                     <li><a href="#about" class="nav-link">О нас</a></li>
                     <li><a href="#research" class="nav-link">Исследования</a></li>
-                    <li><a href="#team" class="nav-link">Команда</a></li>
-                    <li><a href="#publications" class="nav-link">Публикации</a></li>
                     <li><a href="#contact" class="nav-link">Контакты</a></li>
                 </ul>
-                <div class="hamburger">
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                </div>
+            </nav>
+            <div class="nav-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
             </div>
-        </nav>
+        </div>
     </header>
 
-    <!-- Hero Section -->
+    <section class="promo">
+        <video class="promo-video" autoplay muted loop playsinline>
+            <source src="robotfone.mp4" type="video/mp4">
+        </video>
+        <div class="promo-overlay">
+            <h2 class="promo-title fade-in">Наши проекты</h2>
+            <p class="promo-text fade-in">Робототехника, анализ сейсмобезопасности с ИИ, медицинские нейросети, климатическое моделирование, реальная детекция объектов и индустриальная автоматизация.</p>
+            <a href="#projects" class="btn btn-primary promo-btn fade-in">Смотреть проекты</a>
+        </div>
+    </section>
+
     <section id="home" class="hero">
-        <div class="hero-container">
+        <div class="hero-background">
+            <div class="floating-element"></div>
+            <div class="floating-element"></div>
+            <div class="floating-element"></div>
+        </div>
+        <div class="container">
             <div class="hero-content">
                 <h1 class="hero-title">AIRES</h1>
-                <p class="hero-subtitle">Передовые исследования и инновации</p>
-                <p class="hero-description">
-                    Мы - команда ученых и исследователей, работающих на стыке науки и технологий. 
-                    Наша миссия - создавать инновационные решения для будущего.
-                </p>
+                <p class="hero-subtitle">Инновационная научная команда</p>
+                <p class="hero-description">Специализируемся в решении задач с применением современных информационных технологий и искусственного интеллекта</p>
                 <div class="hero-buttons">
-                    <a href="#research" class="btn btn-primary">Наши исследования</a>
-                    <a href="#team" class="btn btn-secondary">Познакомиться с командой</a>
+                    <a href="#about" class="btn btn-primary">Узнать больше</a>
+                    <a href="#contact" class="btn btn-secondary">Связаться с нами</a>
                 </div>
             </div>
-            <div class="hero-visual">
-                <div class="hero-graphic">
-                    <div class="floating-element element-1"></div>
-                    <div class="floating-element element-2"></div>
-                    <div class="floating-element element-3"></div>
-                </div>
+            <div class="hero-video">
+                <video autoplay muted loop playsinline class="hero-video-element">
+                    <source src="draft_01.mp4" type="video/mp4">
+                    Ваш браузер не поддерживает видео.
+                </video>
             </div>
         </div>
     </section>
 
-    <!-- About Section -->
     <section id="about" class="about">
         <div class="container">
-            <div class="section-header">
-                <h2>О команде AIRES</h2>
-                <p>Мы объединяем экспертизу в различных областях науки для решения сложных задач</p>
-            </div>
+            <h2 class="section-title">О нас</h2>
             <div class="about-content">
                 <div class="about-text">
-                    <h3>Наша миссия</h3>
-                    <p>
-                        Команда AIRES специализируется на междисциплинарных исследованиях, 
-                        объединяя знания из различных научных областей для создания инновационных решений. 
-                        Мы верим в силу сотрудничества и открытости в науке.
-                    </p>
-                    <h3>Наши ценности</h3>
-                    <ul class="values-list">
-                        <li><i class="fas fa-lightbulb"></i> Инновационность и креативность</li>
-                        <li><i class="fas fa-users"></i> Сотрудничество и командная работа</li>
-                        <li><i class="fas fa-search"></i> Научная строгость и качество</li>
-                        <li><i class="fas fa-globe"></i> Социальная ответственность</li>
-                    </ul>
+                    <p>Мы - команда молодых учёных, специализирующаяся в решении задач с применением современных информационных технологий и искусственного интеллекта.</p>
+                    <p>Имеем профессиональный опыт в разработке приложений (web, mobile, desktop), обучении, внедрении и поддержке моделей искусственного интеллекта, применении методов компьютерного моделирования и интеллектуального анализа данных.</p>
+                    <p>Предлагаем сотрудничество с целью развития, оптимизации и автоматизации бизнес-процессов для выхода вашей компании на новый техно-функциональный уровень.</p>
                 </div>
-                <div class="about-stats">
-                    <div class="stat-item">
-                        <div class="stat-number">15+</div>
-                        <div class="stat-label">Лет опыта</div>
+            </div>
+
+            <div class="values">
+                <h3>Наши ценности</h3>
+                <div class="values-grid">
+                    <div class="value-item">
+                        <i class="fas fa-lightbulb"></i>
+                        <h4>Инновации</h4>
+                        <p>Постоянный поиск новых решений и технологий</p>
                     </div>
-                    <div class="stat-item">
-                        <div class="stat-number">50+</div>
-                        <div class="stat-label">Публикаций</div>
+                    <div class="value-item">
+                        <i class="fas fa-users"></i>
+                        <h4>Команда</h4>
+                        <p>Совместная работа над сложными проектами</p>
                     </div>
-                    <div class="stat-item">
-                        <div class="stat-number">20+</div>
-                        <div class="stat-label">Проектов</div>
+                    <div class="value-item">
+                        <i class="fas fa-chart-line"></i>
+                        <h4>Результат</h4>
+                        <p>Достижение измеримых результатов</p>
                     </div>
-                    <div class="stat-item">
-                        <div class="stat-number">10+</div>
-                        <div class="stat-label">Патентов</div>
+                    <div class="value-item">
+                        <i class="fas fa-globe"></i>
+                        <h4>Глобальность</h4>
+                        <p>Решение задач мирового масштаба</p>
                     </div>
+                </div>
+            </div>
+
+            <div class="stats">
+                <div class="stat-item">
+                    <div class="stat-number" data-target="8">0</div>
+                    <div class="stat-label">Завершённых проектов</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-target="5">0</div>
+                    <div class="stat-label">Лет опыта</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-target="15">0</div>
+                    <div class="stat-label">Научных публикаций</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-target="100">0</div>
+                    <div class="stat-label">% Успешность проектов</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Research Areas Section -->
     <section id="research" class="research">
         <div class="container">
-            <div class="section-header">
-                <h2>Направления исследований</h2>
-                <p>Мы работаем в ключевых областях современной науки</p>
-            </div>
+            <h2 class="section-title">Направления исследований</h2>
             <div class="research-grid">
                 <div class="research-card">
-                    <div class="research-icon">
-                        <i class="fas fa-brain"></i>
-                    </div>
+                    <i class="fas fa-robot"></i>
+                    <h3>Робототехника</h3>
+                    <p>Разработка и внедрение роботизированных систем для автоматизации производственных процессов</p>
+                </div>
+                <div class="research-card">
+                    <i class="fas fa-brain"></i>
                     <h3>Искусственный интеллект</h3>
-                    <p>Разработка алгоритмов машинного обучения и нейронных сетей для решения сложных задач</p>
+                    <p>Создание и обучение нейронных сетей для решения сложных аналитических задач</p>
                 </div>
                 <div class="research-card">
-                    <div class="research-icon">
-                        <i class="fas fa-dna"></i>
-                    </div>
-                    <h3>Биотехнологии</h3>
-                    <p>Исследования в области генетики, молекулярной биологии и медицинских технологий</p>
+                    <i class="fas fa-building"></i>
+                    <h3>Аналитика строительства</h3>
+                    <p>Применение ИИ для анализа состояния зданий и прогнозирования их поведения</p>
                 </div>
                 <div class="research-card">
-                    <div class="research-icon">
-                        <i class="fas fa-atom"></i>
-                    </div>
-                    <h3>Нанотехнологии</h3>
-                    <p>Создание и изучение материалов на атомном и молекулярном уровне</p>
+                    <i class="fas fa-heartbeat"></i>
+                    <h3>Медицинская диагностика</h3>
+                    <p>Разработка алгоритмов для раннего выявления заболеваний</p>
                 </div>
                 <div class="research-card">
-                    <div class="research-icon">
-                        <i class="fas fa-leaf"></i>
-                    </div>
-                    <h3>Устойчивое развитие</h3>
-                    <p>Разработка экологически чистых технологий и решений для будущего</p>
+                    <i class="fas fa-rocket"></i>
+                    <h3>Космические исследования</h3>
+                    <p>Моделирование космических миссий и анализ космических данных</p>
                 </div>
                 <div class="research-card">
-                    <div class="research-icon">
-                        <i class="fas fa-rocket"></i>
-                    </div>
-                    <h3>Космические технологии</h3>
-                    <p>Исследования в области астрофизики и космических систем</p>
-                </div>
-                <div class="research-card">
-                    <div class="research-icon">
-                        <i class="fas fa-network-wired"></i>
-                    </div>
-                    <h3>Квантовые вычисления</h3>
-                    <p>Разработка квантовых алгоритмов и квантовых систем</p>
+                    <i class="fas fa-cloud-sun"></i>
+                    <h3>Климатические исследования</h3>
+                    <p>Прогнозирование погодных условий с использованием машинного обучения</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Team Section -->
-    <section id="team" class="team">
+    <section id="projects" class="projects">
         <div class="container">
-            <div class="section-header">
-                <h2>Наша команда</h2>
-                <p>Встречайте экспертов, которые делают науку возможной</p>
-            </div>
-            <div class="team-grid">
-                <div class="team-member">
-                    <div class="member-photo">
-                        <i class="fas fa-user"></i>
-                    </div>
-                    <h3>Др. Анна Петрова</h3>
-                    <p class="member-role">Руководитель команды</p>
-                    <p class="member-specialty">Специалист по ИИ и машинному обучению</p>
-                    <div class="member-social">
-                        <a href="#"><i class="fab fa-linkedin"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fas fa-envelope"></i></a>
-                    </div>
+            <h2 class="section-title">Завершённые проекты</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-number">1</div>
+                    <p>Робот-манипулятор для сортировки овощей по заданным критериям</p>
                 </div>
-                <div class="team-member">
-                    <div class="member-photo">
-                        <i class="fas fa-user"></i>
-                    </div>
-                    <h3>Др. Михаил Сидоров</h3>
-                    <p class="member-role">Ведущий исследователь</p>
-                    <p class="member-specialty">Эксперт по биотехнологиям</p>
-                    <div class="member-social">
-                        <a href="#"><i class="fab fa-linkedin"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fas fa-envelope"></i></a>
-                    </div>
+                <div class="project-card">
+                    <div class="project-number">2</div>
+                    <p>Всероссийский проект от Сбера: разработка модели машинного обучения для анализа состояния аварийных зданий после землетрясений</p>
                 </div>
-                <div class="team-member">
-                    <div class="member-photo">
-                        <i class="fas fa-user"></i>
-                    </div>
-                    <h3>Др. Елена Козлова</h3>
-                    <p class="member-role">Старший научный сотрудник</p>
-                    <p class="member-specialty">Специалист по нанотехнологиям</p>
-                    <div class="member-social">
-                        <a href="#"><i class="fab fa-linkedin"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fas fa-envelope"></i></a>
-                    </div>
+                <div class="project-card">
+                    <div class="project-number">3</div>
+                    <p>Проект здравоохранения: нейросетевой алгоритм по выявлению онкологических заболеваний</p>
                 </div>
-                <div class="team-member">
-                    <div class="member-photo">
-                        <i class="fas fa-user"></i>
-                    </div>
-                    <h3>Др. Александр Волков</h3>
-                    <p class="member-role">Исследователь</p>
-                    <p class="member-specialty">Эксперт по квантовым вычислениям</p>
-                    <div class="member-social">
-                        <a href="#"><i class="fab fa-linkedin"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fas fa-envelope"></i></a>
-                    </div>
+                <div class="project-card">
+                    <div class="project-number">4</div>
+                    <p>Исследование эволюции тетраэдральной формации спутников для выявления следов тёмной материи</p>
+                </div>
+                <div class="project-card">
+                    <div class="project-number">5</div>
+                    <p>Сетевая модель предсказания погодных условий в климатических исследованиях</p>
+                </div>
+                <div class="project-card">
+                    <div class="project-number">6</div>
+                    <p>Создание и продвижение криптовалютной системы</p>
+                </div>
+                <div class="project-card">
+                    <div class="project-number">7</div>
+                    <p>Нейросетевая модель детекции объектов и ведения объектов в реальном времени</p>
+                </div>
+                <div class="project-card">
+                    <div class="project-number">8</div>
+                    <p>Разработка и калибровка робота-сварщика для автоматизации сварочного процесса</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Publications Section -->
-    <section id="publications" class="publications">
+    <section id="article" class="article">
         <div class="container">
-            <div class="section-header">
-                <h2>Публикации</h2>
-                <p>Наши последние научные работы и достижения</p>
+            <h2 class="section-title">Наши исследования</h2>
+            
+            <!-- Превью статьи -->
+            <div class="article-preview" id="article-preview">
+                <div class="article-preview-content">
+                    <div class="article-preview-image">
+                        <img src="dom1.jpg" alt="Сейсмический анализ зданий" class="article-preview-img">
+                    </div>
+                    <div class="article-preview-text">
+                        <h3>Анализ сейсмической устойчивости зданий с применением машинного обучения</h3>
+                        <p>Современные подходы к проектированию и оценке безопасности зданий всё чаще включают в себя технологии машинного обучения и компьютерного моделирования. Наш проект представляет собой комплексную систему, способную автоматически определять и классифицировать повреждения в конструктивных элементах зданий, а также прогнозировать их поведение при сейсмических воздействиях.</p>
+                        <button class="btn btn-primary read-more-btn" onclick="showFullArticle()">Читать полностью</button>
+                    </div>
+                </div>
             </div>
-            <div class="publications-grid">
-                <div class="publication-card">
-                    <div class="publication-date">2024</div>
-                    <h3>Новые алгоритмы машинного обучения для анализа больших данных</h3>
-                    <p class="publication-authors">Петрова А., Сидоров М., Козлова Е.</p>
-                    <p class="publication-journal">Nature Machine Intelligence</p>
-                    <a href="#" class="publication-link">Читать статью</a>
-                </div>
-                <div class="publication-card">
-                    <div class="publication-date">2024</div>
-                    <h3>Биосовместимые наноматериалы для медицинских применений</h3>
-                    <p class="publication-authors">Козлова Е., Волков А.</p>
-                    <p class="publication-journal">Advanced Materials</p>
-                    <a href="#" class="publication-link">Читать статью</a>
-                </div>
-                <div class="publication-card">
-                    <div class="publication-date">2023</div>
-                    <h3>Квантовые алгоритмы для оптимизации сложных систем</h3>
-                    <p class="publication-authors">Волков А., Петрова А.</p>
-                    <p class="publication-journal">Quantum Information Processing</p>
-                    <a href="#" class="publication-link">Читать статью</a>
+
+            <!-- Полная статья (скрыта по умолчанию) -->
+            <div class="article-full" id="article-full" style="display: none;">
+                <button class="btn btn-secondary back-to-preview-btn" onclick="showPreview()">← Вернуться к превью</button>
+                
+                <div class="article-content">
+                    <div class="article-intro">
+                        <h3>Анализ сейсмической устойчивости зданий с применением машинного обучения</h3>
+                        <p>Современные подходы к проектированию и оценке безопасности зданий всё чаще включают в себя технологии машинного обучения и компьютерного моделирования. Наш проект представляет собой комплексную систему, способную автоматически определять и классифицировать повреждения в конструктивных элементах зданий, а также прогнозировать их поведение при сейсмических воздействиях.</p>
+                        <p>Мы выбрали в качестве тестового объекта типовую пятиэтажную панельную застройку советского образца — дом, аналогичный тысячам реальных построек, всё ещё эксплуатируемых в сейсмоопасных районах. Такой объект удобен тем, что он имеет стандартную модульную конструкцию, но в то же время подвержен целому спектру дефектов, накопленных за десятилетия эксплуатации.</p>
+                    </div>
+
+                    <div class="article-stage">
+                        <div class="stage-content">
+                            <div class="stage-text">
+                                <h4>Этап 1. Моделирование и процедурная генерация дефектов</h4>
+                                <p>В среде FreeCAD была воссоздана детализированная 3D-модель пятиэтажки, включая несущие стены, перекрытия, лестничные пролёты и плитные панели. Модель имела полный конструктивный разбор — каждая плита была представлена как отдельный объект, что позволило индивидуально накладывать на неё дефекты.</p>
+                                <p>В проекте мы сосредоточились на четырёх типах повреждений:</p>
+                                <ul>
+                                    <li>Трещины — с варьируемой длиной, толщиной и формой (прямые, разветвлённые, сетчатые).</li>
+                                    <li>Открепления — дефекты в местах крепления плит, моделировавшиеся с помощью смещения и ослабления материала в CAD.</li>
+                                    <li>Царапины — поверхностные повреждения бетона, моделировались с шумовыми картами.</li>
+                                    <li>Разрушения материала — выкрашивания и обломы с реальным снятием фрагментов в геометрии модели.</li>
+                                </ul>
+                                <p>Для генерации дефектов был разработан алгоритм, интегрированный в FreeCAD, который случайным образом выбирал набор плит, типы дефектов и их параметры. При этом учитывались правила совместимости — например, два крупных разрушения не могли находиться в одной плите рядом с несущей стеной, а трещины часто сопровождались зонами мелких царапин.</p>
+                                <p>Результат — десятки тысяч уникальных виртуальных сценариев повреждений, каждый из которых можно было использовать для дальнейшего анализа.</p>
+                            </div>
+                            <div class="stage-image">
+                                <img src="dom1.jpg" alt="Этап 1: Моделирование дефектов" class="article-img">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="article-stage">
+                        <div class="stage-content">
+                            <div class="stage-text">
+                                <h4>Этап 2. Моделирование сейсмических воздействий</h4>
+                                <p>Чтобы оценить, как здание поведёт себя при землетрясении, мы разработали плагин для FreeCAD, интегрированный с расчётным модулем метода конечных элементов (FEM). Этот модуль позволял рассчитывать:</p>
+                                <ul>
+                                    <li>Распределение напряжений и деформаций в каждой плите.</li>
+                                    <li>Временную эволюцию колебаний конструкции.</li>
+                                    <li>Волновые карты, отображающие распространение сейсмических волн через элементы здания.</li>
+                                </ul>
+                                <p>При моделировании использовалась модель Рэлея для затухания, позволяющая учитывать потери энергии в материале, и трёхкомпонентная запись сейсмограммы, приближенная к реальным землетрясениям средней магнитуды.</p>
+                                <p>Выходные данные включали:</p>
+                                <ul>
+                                    <li>Тензорные поля напряжений для каждой точки сетки.</li>
+                                    <li>Цветовые карты визуализации волн — они и стали основой для обучения нейросети YOLOv5.</li>
+                                    <li>Анимированные ролики распространения колебаний (использовались для верификации расчётов).</li>
+                                </ul>
+                            </div>
+                            <div class="stage-image">
+                                <img src="dom2.png" alt="Этап 2: Сейсмические воздействия" class="article-img">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="article-stage">
+                        <div class="stage-content">
+                            <div class="stage-text">
+                                <h4>Этап 3. Обработка данных и машинное обучение</h4>
+                                <p>Собранные данные анализировались двумя взаимосвязанными подсистемами:</p>
+                                <h5>1. Обнаружение дефектов на визуализациях волн (YOLOv5)</h5>
+                                <ul>
+                                    <li>Архитектура YOLOv5 (самая новая, на момент реализации проекта) была выбрана за баланс между скоростью и точностью.</li>
+                                    <li>Для обучения использовались 40 000 сгенерированных изображений с аннотированными зонами дефектов.</li>
+                                    <li>Итоговые показатели: mAP@0.5 = 94.7%, Recall = 92.3%, Precision = 96.1%, Accuracy = 83.2%.</li>
+                                </ul>
+                                <h5>2. Прогнозирование критичности дефектов (полносвязная сеть)</h5>
+                                <ul>
+                                    <li>На вход подавались нормализованные тензоры напряжений.</li>
+                                    <li>Выход сети — вероятность принадлежности элемента к конкретному классу повреждений.</li>
+                                    <li>Итоговые показатели: Recall = 94.8%, Precision = 97.5%, Accuracy = 89.4%.</li>
+                                </ul>
+                            </div>
+                            <div class="stage-image">
+                                <img src="dom3.png" alt="Этап 3: Машинное обучение" class="article-img">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="article-stage">
+                        <div class="stage-content">
+                            <div class="stage-text">
+                                <h4>Этап 4. Интеграция и презентация системы</h4>
+                                <p>Результаты работы двух моделей объединялись в интерфейсе, где пользователь мог:</p>
+                                <ul>
+                                    <li>Загрузить CAD-модель здания.</li>
+                                    <li>Выполнить расчёт сейсмических волн.</li>
+                                    <li>Получить автоматическую разметку дефектов и прогноз их опасности.</li>
+                                </ul>
+                                <p>Для демонстрации возможностей проекта была проведена серия реальных экспериментов на современной модели здания.</p>
+                            </div>
+                            <div class="stage-image">
+                                <img src="dom4.png" alt="Этап 4: Интеграция системы" class="article-img">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="article-stage">
+                        <div class="stage-content">
+                            <div class="stage-text">
+                                <h4>Выводы</h4>
+                                <p>Разработанная система демонстрирует, как можно объединить CAD-моделирование, FEM-расчёты и машинное обучение в единую платформу для анализа сейсмостойкости. Такой подход не только сокращает время оценки состояния зданий, но и позволяет выявлять опасные дефекты ещё на этапе проектирования или реконструкции.</p>
+                            </div>
+                            <div class="stage-image">
+                                <img src="dom5.png" alt="Заключение проекта" class="article-img">
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Contact Section -->
+
+
     <section id="contact" class="contact">
         <div class="container">
-            <div class="section-header">
-                <h2>Свяжитесь с нами</h2>
-                <p>Готовы к сотрудничеству? Давайте обсудим возможности</p>
-            </div>
+            <h2 class="section-title">Связаться с нами</h2>
             <div class="contact-content">
                 <div class="contact-info">
                     <div class="contact-item">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <div>
-                            <h3>Адрес</h3>
-                            <p>ул. Научная, 123<br>Москва, Россия</p>
-                        </div>
-                    </div>
-                    <div class="contact-item">
                         <i class="fas fa-envelope"></i>
                         <div>
-                            <h3>Email</h3>
-                            <p>info@aires-research.ru</p>
+                            <h4>Email</h4>
+                            <p>info@aires-team.ru</p>
                         </div>
                     </div>
                     <div class="contact-item">
                         <i class="fas fa-phone"></i>
                         <div>
-                            <h3>Телефон</h3>
-                            <p>+7 (495) 123-45-67</p>
+                            <h4>Телефон</h4>
+                            <p>+7 (XXX) XXX-XX-XX</p>
                         </div>
                     </div>
                     <div class="contact-item">
-                        <i class="fas fa-clock"></i>
+                        <i class="fas fa-map-marker-alt"></i>
                         <div>
-                            <h3>Рабочие часы</h3>
-                            <p>Пн-Пт: 9:00 - 18:00</p>
+                            <h4>Адрес</h4>
+                            <p>Россия, Москва</p>
                         </div>
                     </div>
                 </div>
-                <form class="contact-form">
+                <form class="contact-form" id="contactForm">
                     <div class="form-group">
                         <input type="text" id="name" name="name" placeholder="Ваше имя" required>
                     </div>
@@ -313,46 +387,61 @@
         </div>
     </section>
 
-    <!-- Footer -->
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h3>AIRES</h3>
-                    <p>Передовые исследования и инновации для будущего</p>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-linkedin"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-facebook"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    <div class="footer-logo">
+                        <img src="logo.png" alt="AIRES Logo" class="footer-logo-img">
+                    </div>
+                    <p class="footer-description">
+                        Команда молодых учёных, специализирующаяся в решении задач с применением современных информационных технологий и искусственного интеллекта.
+                    </p>
+                    <div class="footer-social">
+                        <a href="#" class="social-link" title="Telegram"><i class="fab fa-telegram"></i></a>
+                        <a href="#" class="social-link" title="VKontakte"><i class="fab fa-vk"></i></a>
+                        <a href="#" class="social-link" title="GitHub"><i class="fab fa-github"></i></a>
                     </div>
                 </div>
+                
                 <div class="footer-section">
-                    <h4>Быстрые ссылки</h4>
-                    <ul>
+                    <h4>Навигация</h4>
+                    <ul class="footer-links">
                         <li><a href="#home">Главная</a></li>
                         <li><a href="#about">О нас</a></li>
                         <li><a href="#research">Исследования</a></li>
-                        <li><a href="#team">Команда</a></li>
+                        <li><a href="#contact">Контакты</a></li>
                     </ul>
                 </div>
+                
                 <div class="footer-section">
-                    <h4>Исследования</h4>
-                    <ul>
-                        <li><a href="#research">ИИ и машинное обучение</a></li>
-                        <li><a href="#research">Биотехнологии</a></li>
-                        <li><a href="#research">Нанотехнологии</a></li>
-                        <li><a href="#research">Квантовые вычисления</a></li>
+                    <h4>Услуги</h4>
+                    <ul class="footer-links">
+                        <li><a href="#research">Машинное обучение</a></li>
+                        <li><a href="#research">Компьютерное моделирование</a></li>
+                        <li><a href="#research">Анализ данных</a></li>
+                        <li><a href="#research">Разработка приложений</a></li>
                     </ul>
                 </div>
+                
                 <div class="footer-section">
                     <h4>Контакты</h4>
-                    <p>info@aires-research.ru</p>
-                    <p>+7 (495) 123-45-67</p>
+                    <div class="footer-contact-info">
+                        <p><i class="fas fa-envelope"></i> info@aires-team.ru</p>
+                        <p><i class="fas fa-phone"></i> +7 (XXX) XXX-XX-XX</p>
+                        <p><i class="fas fa-map-marker-alt"></i> Россия, Москва</p>
+                    </div>
                 </div>
             </div>
+            
             <div class="footer-bottom">
-                <p>&copy; 2024 AIRES. Все права защищены.</p>
+                <div class="footer-bottom-content">
+                    <p>&copy; 2024 AIRES. Все права защищены.</p>
+                    <div class="footer-bottom-links">
+                        <a href="#">Политика конфиденциальности</a>
+                        <a href="#">Условия использования</a>
+                    </div>
+                </div>
             </div>
         </div>
     </footer>
