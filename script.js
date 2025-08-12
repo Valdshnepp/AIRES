@@ -1,3 +1,51 @@
+// Video and overlay management
+let videoActive = true;
+
+function closeVideo() {
+    const promo = document.querySelector('.promo');
+    const body = document.body;
+    const header = document.querySelector('.header');
+    
+    promo.classList.add('minimized');
+    body.classList.remove('video-active');
+    header.classList.remove('video-active');
+    videoActive = false;
+}
+
+// Header scroll effect
+const header = document.querySelector('.header');
+
+window.addEventListener('scroll', () => {
+    if (window.scrollY > 50) {
+        header.classList.add('scrolled');
+    } else {
+        header.classList.remove('scrolled');
+    }
+
+    // Close/minimize video when scrolling down
+    if (videoActive && window.scrollY > 100) {
+        closeVideo();
+    }
+});
+
+// Initialize video state
+document.addEventListener('DOMContentLoaded', () => {
+    const body = document.body;
+    const header = document.querySelector('.header');
+    
+    body.classList.add('video-active');
+    header.classList.add('video-active');
+    
+    // Show overlay text after 3 seconds
+    setTimeout(() => {
+        const overlay = document.querySelector('.promo-overlay');
+        if (overlay) {
+            overlay.style.opacity = '1';
+            overlay.style.transform = 'translateY(0)';
+        }
+    }, 3000);
+});
+
 // Mobile navigation toggle
 const navToggle = document.querySelector('.nav-toggle');
 const navList = document.querySelector('.nav-list');

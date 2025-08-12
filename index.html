@@ -35,18 +35,19 @@
         </div>
     </header>
 
-    <section class="promo">
-        <video class="promo-video" autoplay muted loop playsinline>
-            <source src="robotfone.mp4" type="video/mp4">
-        </video>
-        <div class="promo-overlay">
-            <h2 class="promo-title fade-in">Наши проекты</h2>
-            <p class="promo-text fade-in">Робототехника, анализ сейсмобезопасности с ИИ, медицинские нейросети, климатическое моделирование, реальная детекция объектов и индустриальная автоматизация.</p>
-            <a href="#projects" class="btn btn-primary promo-btn fade-in">Смотреть проекты</a>
-        </div>
-    </section>
+            <section class="promo">
+            <button class="close-video-btn" onclick="closeVideo()">×</button>
+            <video class="promo-video" autoplay muted loop playsinline>
+                <source src="robotfone.mp4" type="video/mp4">
+            </video>
+            <div class="promo-overlay">
+                <h2 class="promo-title">Наши проекты</h2>
+                <p class="promo-text">Робототехника, анализ сейсмобезопасности с ИИ, медицинские нейросети, климатическое моделирование, реальная детекция объектов и индустриальная автоматизация.</p>
+                <a href="#projects" class="btn btn-primary promo-btn">Смотреть проекты</a>
+            </div>
+        </section>
 
-    <section id="home" class="hero">
+    <section id="home" class="hero no-video">
         <div class="hero-background">
             <div class="floating-element"></div>
             <div class="floating-element"></div>
@@ -62,12 +63,7 @@
                     <a href="#contact" class="btn btn-secondary">Связаться с нами</a>
                 </div>
             </div>
-            <div class="hero-video">
-                <video autoplay muted loop playsinline class="hero-video-element">
-                    <source src="draft_01.mp4" type="video/mp4">
-                    Ваш браузер не поддерживает видео.
-                </video>
-            </div>
+            
         </div>
     </section>
 
@@ -414,15 +410,7 @@
                     </ul>
                 </div>
                 
-                <div class="footer-section">
-                    <h4>Услуги</h4>
-                    <ul class="footer-links">
-                        <li><a href="#research">Машинное обучение</a></li>
-                        <li><a href="#research">Компьютерное моделирование</a></li>
-                        <li><a href="#research">Анализ данных</a></li>
-                        <li><a href="#research">Разработка приложений</a></li>
-                    </ul>
-                </div>
+                
                 
                 <div class="footer-section">
                     <h4>Контакты</h4>
