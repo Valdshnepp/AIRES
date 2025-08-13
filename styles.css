@@ -516,7 +516,7 @@ p {
     background: #0a0a0a;
 }
 
-/* Article video section */
+/* Article video section - no animations */
 .article-video-section {
     position: relative;
     height: 100vh;
@@ -525,6 +525,8 @@ p {
     display: flex;
     align-items: center;
     justify-content: center;
+    opacity: 1 !important;
+    transform: none !important;
 }
 
 .article-video {
@@ -544,6 +546,8 @@ p {
     color: #fff;
     max-width: 800px;
     padding: 0 2rem;
+    opacity: 1 !important;
+    transform: none !important;
 }
 
 .article-video-title {
@@ -551,6 +555,8 @@ p {
     font-weight: 700;
     margin-bottom: 1rem;
     text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+    opacity: 1 !important;
+    transform: none !important;
 }
 
 .article-video-subtitle {
@@ -558,6 +564,8 @@ p {
     margin-bottom: 2rem;
     opacity: 0.9;
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+    opacity: 1 !important;
+    transform: none !important;
 }
 
 .article-video-btn {
@@ -569,9 +577,10 @@ p {
     border-radius: 50px;
     font-weight: 500;
     font-size: 1.1rem;
-    transition: all 0.3s ease;
     box-shadow: 0 8px 24px rgba(0, 212, 255, 0.35);
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+    opacity: 1 !important;
+    transform: none !important;
 }
 
 .article-video-btn:hover {
@@ -1175,6 +1184,22 @@ section {
     transition: all 0.8s ease;
 }
 
+section.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Video sections should not have initial opacity 0 */
+.promo, .article-video-section {
+    opacity: 1;
+    transform: none;
+}
+
+.promo.visible, .article-video-section.visible {
+    opacity: 1;
+    transform: none;
+}
+
 /* Smooth scroll behavior */
 html {
     scroll-behavior: smooth;
@@ -1202,6 +1227,171 @@ html {
     opacity: 1;
 }
 
+/* Smooth section transitions */
+.section-transition {
+    transition: all 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Fade in animations for content */
+.fade-in-up {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.fade-in-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Staggered animations for grid items */
+.research-card, .project-card, .value-item, .stat-item {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.research-card.visible, .project-card.visible, .value-item.visible, .stat-item.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Smooth video transitions */
+.promo {
+    transition: all 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Smooth header transitions */
+.header {
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Smooth button transitions */
+.btn, .article-video-btn {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Smooth card hover effects */
+.research-card:hover, .project-card:hover, .value-item:hover {
+    transform: translateY(-10px);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Smooth text animations */
+.section-title, .hero-title, .hero-subtitle, .hero-description {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.section-title.visible, .hero-title.visible, .hero-subtitle.visible, .hero-description.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Smooth image transitions */
+.article-img, .article-preview-img {
+    opacity: 0;
+    transform: scale(0.95);
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.article-img.visible, .article-preview-img.visible {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* Smooth form transitions */
+.form-group input, .form-group textarea {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Smooth navigation transitions */
+.nav-link {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Smooth logo transitions */
+.logo-img {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.logo-img:hover {
+    transform: scale(1.05);
+}
+
+/* Smooth social link transitions */
+.social-link {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Smooth footer transitions */
+.footer {
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Smooth article transitions */
+.article-stage {
+    opacity: 0;
+    transform: translateX(-20px);
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.article-stage.visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Smooth contact item transitions */
+.contact-item {
+    opacity: 0;
+    transform: translateX(20px);
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.contact-item.visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Smooth stats counter animation */
+.stat-number {
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Smooth video overlay transitions */
+.promo-overlay, .article-video-overlay {
+    transition: all 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+    opacity: 1;
+    transform: none;
+}
+
+.promo-overlay.visible, .article-video-overlay.visible {
+    opacity: 1;
+    transform: none;
+}
+
+/* Video overlay elements should always be visible */
+.article-video-title, .article-video-subtitle, .article-video-btn {
+    opacity: 1 !important;
+    transform: none !important;
+}
+
+.article-video-title.visible, .article-video-subtitle.visible, .article-video-btn.visible {
+    opacity: 1 !important;
+    transform: none !important;
+}
+
+/* Smooth mobile menu transitions */
+.nav-list.active {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Smooth toggle button transitions */
+.nav-toggle span {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
 @media (max-width: 768px) {
     .article-video-section {
         height: 80vh;
@@ -1209,4 +1399,33 @@ html {
     .article-video-title {
         font-size: 2rem;
     }
+}
+
+/* Completely disable animations for article video section */
+.article-video-section,
+.article-video-section *,
+.article-video-overlay,
+.article-video-overlay *,
+.article-video-title,
+.article-video-subtitle,
+.article-video-btn {
+    animation: none !important;
+    transition: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    visibility: visible !important;
+}
+
+.article-video-section.visible,
+.article-video-section *.visible,
+.article-video-overlay.visible,
+.article-video-overlay *.visible,
+.article-video-title.visible,
+.article-video-subtitle.visible,
+.article-video-btn.visible {
+    animation: none !important;
+    transition: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    visibility: visible !important;
 }

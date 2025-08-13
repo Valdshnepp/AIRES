@@ -12,23 +12,7 @@ function closeVideo() {
     videoActive = false;
 }
 
-// Header scroll effect
-const header = document.querySelector('.header');
-
-window.addEventListener('scroll', () => {
-    if (window.scrollY > 50) {
-        header.classList.add('scrolled');
-    } else {
-        header.classList.remove('scrolled');
-    }
-
-    // Close/minimize video when scrolling down
-    if (videoActive && window.scrollY > 100) {
-        closeVideo();
-    }
-});
-
-// Initialize video state
+// Enhanced smooth transitions and animations
 document.addEventListener('DOMContentLoaded', () => {
     const body = document.body;
     const header = document.querySelector('.header');
@@ -44,9 +28,141 @@ document.addEventListener('DOMContentLoaded', () => {
             overlay.style.transform = 'translateY(0)';
         }
     }, 1500);
+
+    // Initialize all animations
+    initializeAnimations();
+    
+    // Smooth scroll for navigation
+    initializeSmoothScroll();
+    
+    // Parallax effects
+    initializeParallax();
 });
 
-// Mobile navigation toggle
+// Initialize all animations with Intersection Observer
+function initializeAnimations() {
+    // Observer for sections (excluding video sections)
+    const sectionObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                
+                // Animate child elements with delay (excluding video overlays)
+                const animatedElements = entry.target.querySelectorAll('.fade-in-up, .research-card, .project-card, .value-item, .stat-item, .contact-item, .article-stage');
+                animatedElements.forEach((el, index) => {
+                    setTimeout(() => {
+                        el.classList.add('visible');
+                    }, index * 100);
+                });
+            }
+        });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+    // Observe all sections except video sections and article video section
+    document.querySelectorAll('section:not(.promo):not(.article-video-section)').forEach(section => {
+        sectionObserver.observe(section);
+    });
+
+    // Observer for individual elements (excluding article video elements)
+    const elementObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, { threshold: 0.3 });
+
+    // Observe text elements (excluding video overlay elements)
+    document.querySelectorAll('.section-title:not(.article-video-title), .hero-title, .hero-subtitle, .hero-description').forEach(el => {
+        elementObserver.observe(el);
+    });
+
+    // Observe images (excluding article video)
+    document.querySelectorAll('.article-img').forEach(el => {
+        elementObserver.observe(el);
+    });
+
+    // Observer for stats with counter animation
+    const statsObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const statNumbers = entry.target.querySelectorAll('.stat-number');
+                statNumbers.forEach((stat, index) => {
+                    setTimeout(() => {
+                        const target = parseInt(stat.getAttribute('data-target'));
+                        animateCounter(stat, target);
+                    }, index * 200);
+                });
+                statsObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.5 });
+
+    const statsSection = document.querySelector('.stats');
+    if (statsSection) {
+        statsObserver.observe(statsSection);
+    }
+}
+
+// Enhanced smooth scrolling
+function initializeSmoothScroll() {
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                const headerHeight = document.querySelector('.header').offsetHeight;
+                const targetPosition = target.offsetTop - headerHeight;
+                
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+}
+
+// Enhanced parallax effects
+function initializeParallax() {
+    window.addEventListener('scroll', () => {
+        const scrolled = window.pageYOffset;
+        const parallaxElements = document.querySelectorAll('.floating-element');
+        
+        parallaxElements.forEach((element, index) => {
+            const speed = 0.5 + (index * 0.1);
+            element.style.transform = `translateY(${scrolled * speed}px) rotate(${scrolled * 0.1}deg)`;
+        });
+
+        // Parallax for video sections
+        const videoSections = document.querySelectorAll('.promo, .article-video-section');
+        videoSections.forEach(section => {
+            const speed = 0.3;
+            const yPos = -(scrolled * speed);
+            section.style.transform = `translateY(${yPos}px)`;
+        });
+    });
+}
+
+// Enhanced counter animation
+function animateCounter(element, target, duration = 2000) {
+    let start = 0;
+    const increment = target / (duration / 16);
+    
+    function updateCounter() {
+        start += increment;
+        if (start < target) {
+            element.textContent = Math.floor(start);
+            requestAnimationFrame(updateCounter);
+        } else {
+            element.textContent = target;
+        }
+    }
+    
+    updateCounter();
+}
+
+// Enhanced mobile navigation
 const navToggle = document.querySelector('.nav-toggle');
 const navList = document.querySelector('.nav-list');
 
@@ -71,79 +187,34 @@ window.addEventListener('resize', () => {
     }
 });
 
-// Smooth scrolling for navigation links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            target.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
-        }
-    });
-});
+// Enhanced header scroll effect
+const header = document.querySelector('.header');
 
-// Set smooth scrolling behavior
-document.documentElement.style.scrollBehavior = 'smooth';
-
-// Intersection Observer for animations
-const observerOptions = {
-    threshold: 0.1,
-};
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-        }
-    });
-}, observerOptions);
-
-// Observe elements for animation
-document.querySelectorAll('.research-card, .project-card, .publication-card, .stat-item, .value-item, .article-stage, .article-preview').forEach(el => {
-    el.classList.add('fade-in');
-    observer.observe(el);
-});
-
-// Counter animation for statistics
-function animateCounter(element, target, duration = 2000) {
-    let start = 0;
-    const increment = target / (duration / 16);
-    
-    function updateCounter() {
-        start += increment;
-        if (start < target) {
-            element.textContent = Math.floor(start);
-            requestAnimationFrame(updateCounter);
-        } else {
-            element.textContent = target;
-        }
+window.addEventListener('scroll', () => {
+    if (window.scrollY > 50) {
+        header.classList.add('scrolled');
+    } else {
+        header.classList.remove('scrolled');
     }
+
+    // Close/minimize video when scrolling down
+    if (videoActive && window.scrollY > 100) {
+        closeVideo();
+    }
+});
+
+function closeVideo() {
+    const promo = document.querySelector('.promo');
+    const body = document.body;
+    const header = document.querySelector('.header');
     
-    updateCounter();
+    promo.classList.add('minimized');
+    body.classList.remove('video-active');
+    header.classList.remove('video-active');
+    videoActive = false;
 }
 
-// Trigger counter animation when stats section is visible
-const statsObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            const statNumbers = entry.target.querySelectorAll('.stat-number');
-            statNumbers.forEach(stat => {
-                const target = parseInt(stat.getAttribute('data-target'));
-                animateCounter(stat, target);
-            });
-            statsObserver.unobserve(entry.target);
-        }
-    });
-}, { threshold: 0.5 });
-
-const statsSection = document.querySelector('.stats');
-if (statsSection) {
-    statsObserver.observe(statsSection);
-}
-
-// Project card click effects
+// Enhanced project card effects
 document.querySelectorAll('.project-card').forEach(card => {
     card.addEventListener('click', function() {
         this.style.transform = 'scale(0.98)';
@@ -153,59 +224,29 @@ document.querySelectorAll('.project-card').forEach(card => {
     });
 });
 
-// Article preview/full view toggle functions
-function showFullArticle() {
-    document.getElementById('article-full').style.display = 'block';
-    
-    // Scroll to top of article
-    document.getElementById('article').scrollIntoView({ behavior: 'smooth' });
-}
-
-function showPreview() {
-    document.getElementById('article-full').style.display = 'none';
-    
-    // Scroll to top of article section
-    document.getElementById('article').scrollIntoView({ behavior: 'smooth' });
-}
-
-// Parallax effect for floating elements
-window.addEventListener('scroll', () => {
-    const scrolled = window.pageYOffset;
-    const parallaxElements = document.querySelectorAll('.floating-element');
-    
-    parallaxElements.forEach((element, index) => {
-        const speed = 0.5 + (index * 0.1);
-        element.style.transform = `translateY(${scrolled * speed}px)`;
-    });
-});
-
-// Form submission handling
+// Enhanced form handling
 const contactForm = document.getElementById('contactForm');
 if (contactForm) {
     contactForm.addEventListener('submit', function(e) {
         e.preventDefault();
         
-        // Get form data
         const formData = new FormData(this);
         const name = formData.get('name');
         const email = formData.get('email');
         const subject = formData.get('subject');
         const message = formData.get('message');
         
-        // Simple validation
         if (!name || !email || !subject || !message) {
             alert('Пожалуйста, заполните все поля формы');
             return;
         }
         
-        // Email validation
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailRegex.test(email)) {
             alert('Пожалуйста, введите корректный email адрес');
             return;
         }
         
-        // Simulate form submission
         const submitBtn = this.querySelector('button[type="submit"]');
         const originalText = submitBtn.textContent;
         
@@ -221,24 +262,35 @@ if (contactForm) {
     });
 }
 
-// Add fade-in animation class
-const fadeInElements = document.querySelectorAll('.fade-in');
-fadeInElements.forEach(element => {
-    element.style.opacity = '0';
-    element.style.transform = 'translateY(30px)';
-    element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-});
+// Article functions
+function showFullArticle() {
+    document.getElementById('article-full').style.display = 'block';
+    
+    // Smooth scroll to article
+    setTimeout(() => {
+        document.getElementById('article').scrollIntoView({ behavior: 'smooth' });
+    }, 100);
+}
 
-// Intersection Observer for fade-in animations
-const fadeInObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
-        }
-    });
-}, { threshold: 0.1 });
+function showPreview() {
+    document.getElementById('article-full').style.display = 'none';
+    
+    setTimeout(() => {
+        document.getElementById('article').scrollIntoView({ behavior: 'smooth' });
+    }, 100);
+}
 
-fadeInElements.forEach(element => {
-    fadeInObserver.observe(element);
+// Enhanced page load animation
+window.addEventListener('load', () => {
+    document.body.style.opacity = '1';
+    
+    // Animate hero section on load
+    setTimeout(() => {
+        const heroElements = document.querySelectorAll('.hero-title, .hero-subtitle, .hero-description, .hero-buttons');
+        heroElements.forEach((el, index) => {
+            setTimeout(() => {
+                el.classList.add('visible');
+            }, index * 200);
+        });
+    }, 500);
 });
