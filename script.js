@@ -36,14 +36,14 @@ document.addEventListener('DOMContentLoaded', () => {
     body.classList.add('video-active');
     header.classList.add('video-active');
     
-    // Show overlay text after 3 seconds
+    // Show overlay text after 1.5 seconds
     setTimeout(() => {
         const overlay = document.querySelector('.promo-overlay');
         if (overlay) {
             overlay.style.opacity = '1';
             overlay.style.transform = 'translateY(0)';
         }
-    }, 3000);
+    }, 1500);
 });
 
 // Mobile navigation toggle
@@ -155,7 +155,6 @@ document.querySelectorAll('.project-card').forEach(card => {
 
 // Article preview/full view toggle functions
 function showFullArticle() {
-    document.getElementById('article-preview').style.display = 'none';
     document.getElementById('article-full').style.display = 'block';
     
     // Scroll to top of article
@@ -164,7 +163,6 @@ function showFullArticle() {
 
 function showPreview() {
     document.getElementById('article-full').style.display = 'none';
-    document.getElementById('article-preview').style.display = 'block';
     
     // Scroll to top of article section
     document.getElementById('article').scrollIntoView({ behavior: 'smooth' });

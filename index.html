@@ -17,7 +17,7 @@
     <header class="header">
         <div class="container">
             <div class="logo">
-                <img src="logohead.png" alt="AIRES Logo" class="logo-img">
+                <img src="logo.png" alt="AIRES Logo" class="logo-img">
             </div>
             <nav class="nav">
                 <ul class="nav-list">
@@ -207,20 +207,18 @@
         <div class="container">
             <h2 class="section-title">Наши исследования</h2>
             
-            <!-- Превью статьи -->
-            <div class="article-preview" id="article-preview">
-                <div class="article-preview-content">
-                    <div class="article-preview-image">
-                        <img src="dom1.jpg" alt="Сейсмический анализ зданий" class="article-preview-img">
-                    </div>
-                    <div class="article-preview-text">
-                        <h3>Анализ сейсмической устойчивости зданий с применением машинного обучения</h3>
-                        <p>Современные подходы к проектированию и оценке безопасности зданий всё чаще включают в себя технологии машинного обучения и компьютерного моделирования. Наш проект представляет собой комплексную систему, способную автоматически определять и классифицировать повреждения в конструктивных элементах зданий, а также прогнозировать их поведение при сейсмических воздействиях.</p>
-                        <button class="btn btn-primary read-more-btn" onclick="showFullArticle()">Читать полностью</button>
-                    </div>
+            <!-- Video section -->
+            <div class="article-video-section">
+                <video class="article-video" autoplay muted loop playsinline>
+                    <source src="seysmik.mp4" type="video/mp4">
+                </video>
+                <div class="article-video-overlay">
+                    <h3 class="article-video-title">Анализ сейсмической устойчивости зданий</h3>
+                    <p class="article-video-subtitle">Современные подходы к проектированию и оценке безопасности зданий с применением машинного обучения</p>
+                    <a href="#article-full" class="article-video-btn" onclick="showFullArticle()">Читать полностью</a>
                 </div>
             </div>
-
+            
             <!-- Полная статья (скрыта по умолчанию) -->
             <div class="article-full" id="article-full" style="display: none;">
                 <button class="btn btn-secondary back-to-preview-btn" onclick="showPreview()">← Вернуться к превью</button>
@@ -409,8 +407,6 @@
                         <li><a href="#contact">Контакты</a></li>
                     </ul>
                 </div>
-                
-                
                 
                 <div class="footer-section">
                     <h4>Контакты</h4>
