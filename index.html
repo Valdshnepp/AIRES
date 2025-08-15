@@ -38,7 +38,7 @@
 
             <section class="promo">
             <button class="close-video-btn" onclick="closeVideo()">×</button>
-            <video class="promo-video" autoplay muted loop playsinline>
+            <video class="promo-video" autoplay muted loop playsinline preload="metadata" poster="logo.png">
                 <source src="robotfone.mp4" type="video/mp4">
             </video>
             <div class="promo-overlay">
@@ -210,14 +210,14 @@
             <h2 class="section-title fade-in-up">Наши исследования</h2>
             
             <!-- Video section: Seismic -->
-            <div class="article-video-section">
-                <video class="article-video" autoplay muted loop playsinline>
+            <div class="article-video-section seismic-section">
+                <video class="article-video" autoplay muted loop playsinline preload="metadata" poster="dom1.jpg">
                     <source src="seysmik.mp4" type="video/mp4">
                 </video>
                 <div class="article-video-overlay">
                     <h3 class="article-video-title">Анализ сейсмической устойчивости зданий</h3>
                     <p class="article-video-subtitle">Современные подходы к проектированию и оценке безопасности зданий с применением машинного обучения</p>
-                    <a href="#article-seismic-full" class="article-video-btn" onclick="showFullArticle('article-seismic-full')">Читать полностью</a>
+                    <button class="article-video-btn" onclick="showFullArticle('article-seismic-full')">Читать полностью</button>
                 </div>
             </div>
             
@@ -333,15 +333,18 @@
                 </div>
             </div>
 
+            <!-- Разделитель между статьями -->
+            <div class="article-separator"></div>
+
             <!-- Oncology preview video section -->
-            <div class="article-video-section">
-                <video class="article-video" autoplay muted loop playsinline>
+            <div class="article-video-section oncology-section">
+                <video class="article-video" autoplay muted loop playsinline preload="metadata" poster="onko1.png">
                     <source src="seysmik.mp4" type="video/mp4">
                 </video>
                 <div class="article-video-overlay">
                     <h3 class="article-video-title">Диагностика рака с помощью нейронных сетей</h3>
                     <p class="article-video-subtitle">Обнаружение и пояснение признаков заболевания на биопсийных изображениях с помощью ИИ</p>
-                    <a href="#article-oncology-full" class="article-video-btn" onclick="showFullArticle('article-oncology-full')">Читать полностью</a>
+                    <button class="article-video-btn" onclick="showFullArticle('article-oncology-full')">Читать полностью</button>
                 </div>
             </div>
 
@@ -437,7 +440,7 @@
                         </div>
                     </div>
                 </div>
-                <form class="contact-form fade-in-up" id="contactForm">
+                <form class="contact-form fade-in-up" id="contactForm" action="https://formspree.io/f/xayzqjvj" method="POST">
                     <div class="form-group">
                         <input type="text" id="name" name="name" placeholder="Ваше имя" required>
                     </div>
@@ -450,6 +453,10 @@
                     <div class="form-group">
                         <textarea id="message" name="message" placeholder="Ваше сообщение" rows="5" required></textarea>
                     </div>
+                    <!-- Скрытые поля для Formspree -->
+                    <input type="hidden" name="_next" value="https://ivan170403-dev.github.io/AIRES/#contact">
+                    <input type="hidden" name="_subject" value="Новое сообщение с сайта AIRES">
+                    <input type="hidden" name="_captcha" value="false">
                     <button type="submit" class="btn btn-primary">Отправить сообщение</button>
                 </form>
             </div>

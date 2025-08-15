@@ -541,6 +541,51 @@ p {
     background: #0a0a0a;
 }
 
+/* Разделитель между статьями */
+.article-separator {
+    height: 4px;
+    background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.6), transparent);
+    margin: 3rem 0;
+    border-radius: 2px;
+    opacity: 0.8;
+}
+
+/* Стили для разных секций статей */
+.seismic-section {
+    margin-bottom: 2rem;
+    position: relative;
+}
+
+.oncology-section {
+    margin-top: 2rem;
+    position: relative;
+}
+
+/* Добавляем визуальное разделение между секциями */
+.seismic-section::after {
+    content: '';
+    position: absolute;
+    bottom: -1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.8), transparent);
+    border-radius: 1px;
+}
+
+.oncology-section::before {
+    content: '';
+    position: absolute;
+    top: -1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.8), transparent);
+    border-radius: 1px;
+}
+
 /* Article video section - no animations */
 .article-video-section {
     position: relative;
@@ -552,6 +597,43 @@ p {
     justify-content: center;
     opacity: 1 !important;
     transform: none !important;
+}
+
+/* Оптимизация видео для мобильных устройств */
+@media (max-width: 768px) {
+    .article-video-section {
+        height: 80vh;
+        min-height: 400px;
+    }
+    
+    .promo {
+        height: 80vh;
+        min-height: 300px;
+    }
+    
+    .promo.minimized {
+        height: 50vh;
+        min-height: 200px;
+    }
+    
+    /* Уменьшаем размер видео на мобильных для экономии трафика */
+    .article-video, .promo-video {
+        object-fit: cover;
+        object-position: center;
+    }
+    
+    /* Дополнительные оптимизации для медленных соединений */
+    .article-video, .promo-video {
+        will-change: transform;
+        backface-visibility: hidden;
+        transform: translateZ(0);
+    }
+    
+    /* Улучшенная производительность для видео */
+    .article-video-section, .promo {
+        will-change: transform;
+        backface-visibility: hidden;
+    }
 }
 
 .article-video {
@@ -606,6 +688,10 @@ p {
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
     opacity: 1 !important;
     transform: none !important;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+    transition: all 0.3s ease;
 }
 
 .article-video-btn:hover {
@@ -619,6 +705,13 @@ p {
     border-radius: 20px;
     padding: 3rem;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.back-to-preview-btn {
+    margin-bottom: 2rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
 }
 
 .article-content {
@@ -805,6 +898,47 @@ p {
     min-height: 120px;
 }
 
+/* Стили для ошибок валидации */
+.form-group input.error,
+.form-group textarea.error {
+    border-color: #f44336;
+    background: rgba(244, 67, 54, 0.1);
+}
+
+.field-error {
+    color: #f44336;
+    font-size: 0.85rem;
+    margin-top: 0.5rem;
+    padding: 0.5rem;
+    background: rgba(244, 67, 54, 0.1);
+    border-radius: 5px;
+    border-left: 3px solid #f44336;
+    animation: slideInError 0.3s ease;
+}
+
+@keyframes slideInError {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Анимация для полей с ошибками */
+.form-group input.error,
+.form-group textarea.error {
+    animation: shake 0.5s ease;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}
+
 /* Footer */
 .footer {
     background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
@@ -957,7 +1091,7 @@ p {
         backdrop-filter: blur(8px);
         box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
         transform: translateX(100%);
-        transition: transform 0.35s ease-in-out;
+        transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         z-index: 1001;
         gap: 1.2rem;
     }
@@ -1384,6 +1518,89 @@ html {
     transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+/* Стили для уведомлений */
+.notification {
+    position: fixed;
+    top: 100px;
+    right: 20px;
+    z-index: 10000;
+    max-width: 400px;
+    background: #2a2a2a;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    border-left: 4px solid #00d4ff;
+    transform: translateX(100%);
+    opacity: 0;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.notification.show {
+    transform: translateX(0);
+    opacity: 1;
+}
+
+.notification-content {
+    padding: 1rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.notification-message {
+    color: #ffffff;
+    font-size: 0.95rem;
+    line-height: 1.4;
+}
+
+.notification-close {
+    background: none;
+    border: none;
+    color: #b0b0b0;
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 0;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.2s ease;
+}
+
+.notification-close:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+}
+
+/* Типы уведомлений */
+.notification-success {
+    border-left-color: #4caf50;
+}
+
+.notification-error {
+    border-left-color: #f44336;
+}
+
+.notification-info {
+    border-left-color: #00d4ff;
+}
+
+/* Адаптивность для уведомлений */
+@media (max-width: 768px) {
+    .notification {
+        top: 80px;
+        right: 10px;
+        left: 10px;
+        max-width: none;
+    }
+    
+    .notification-content {
+        padding: 1rem;
+    }
+}
+
 /* Smooth article transitions */
 .article-stage {
     opacity: 0;
@@ -1570,6 +1787,29 @@ html {
     .article-video-title {
         font-size: 2rem;
     }
+    
+    /* Улучшенные стили для мобильных устройств */
+    .article-separator {
+        margin: 2rem 0;
+        height: 3px;
+    }
+    
+    .seismic-section::after,
+    .oncology-section::before {
+        width: 40px;
+        height: 1px;
+    }
+    
+    .article-full {
+        padding: 2rem;
+        margin: 1rem;
+    }
+    
+    .back-to-preview-btn {
+        margin-bottom: 1.5rem;
+        padding: 0.8rem 1.5rem;
+        font-size: 0.9rem;
+    }
 }
 
 /* Completely disable animations for article video section */
@@ -1587,6 +1827,41 @@ html {
     visibility: visible !important;
 }
 
+/* Дополнительные оптимизации производительности */
+@media (max-width: 768px) {
+    /* Отключаем сложные эффекты на мобильных */
+    .floating-element {
+        animation: none !important;
+        opacity: 0.3;
+    }
+    
+    /* Упрощаем тени для лучшей производительности */
+    .research-card, .project-card, .value-item {
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    }
+    
+    /* Уменьшаем количество анимаций на мобильных */
+    .fade-in-up {
+        transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+}
+
+/* Класс для мобильной оптимизации */
+body.mobile-optimized {
+    /* Отключаем сложные эффекты */
+    --animation-duration: 0.3s;
+    --transition-duration: 0.2s;
+}
+
+body.mobile-optimized .floating-element {
+    animation: none !important;
+    opacity: 0.2;
+}
+
+body.mobile-optimized .fade-in-up {
+    transition: opacity var(--transition-duration) ease, transform var(--transition-duration) ease;
+}
+
 .article-video-section.visible,
 .article-video-section *.visible,
 .article-video-overlay.visible,
@@ -1599,4 +1874,38 @@ html {
     opacity: 1 !important;
     transform: none !important;
     visibility: visible !important;
+}
+
+/* Анимации для мобильного меню */
+@keyframes slideInRight {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideOutRight {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+}
+
+/* Улучшенная анимация для мобильного меню */
+@media (max-width: 768px) {
+    .nav-list.active {
+        animation: slideInRight 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .nav-list:not(.active) {
+        animation: slideOutRight 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
 }

@@ -37,6 +37,9 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Parallax effects
     initializeParallax();
+    
+    // Оптимизация видео для мобильных устройств
+    optimizeVideosForMobile();
 });
 
 // Initialize all animations with Intersection Observer
@@ -167,6 +170,40 @@ const navToggle = document.querySelector('.nav-toggle');
 const navList = document.querySelector('.nav-list');
 const navOverlay = document.getElementById('navOverlay');
 
+// Оптимизация видео для мобильных устройств
+function optimizeVideosForMobile() {
+    const isMobile = window.innerWidth <= 768;
+    const videos = document.querySelectorAll('video');
+    
+    videos.forEach(video => {
+        if (isMobile) {
+            // На мобильных устройствах используем более низкое качество
+            video.setAttribute('preload', 'metadata');
+            video.setAttribute('poster', video.getAttribute('poster') || 'logo.png');
+            
+            // Добавляем lazy loading для видео
+            if ('IntersectionObserver' in window) {
+                const videoObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            video.play().catch(() => {
+                                // Игнорируем ошибки автовоспроизведения
+                            });
+                        } else {
+                            video.pause();
+                        }
+                    });
+                }, { threshold: 0.1 });
+                
+                videoObserver.observe(video);
+            }
+        } else {
+            // На десктопе используем полную загрузку
+            video.setAttribute('preload', 'auto');
+        }
+    });
+}
+
 function openMobileMenu() {
     navList.classList.add('active');
     navToggle.classList.add('active');
@@ -211,6 +248,9 @@ window.addEventListener('resize', () => {
     if (window.innerWidth > 768) {
         closeMobileMenu();
     }
+    
+    // Переоптимизация видео при изменении размера окна
+    optimizeVideosForMobile();
 });
 
 // Enhanced header scroll effect
@@ -253,23 +293,56 @@ document.querySelectorAll('.project-card').forEach(card => {
 // Enhanced form handling
 const contactForm = document.getElementById('contactForm');
 if (contactForm) {
+    // Валидация в реальном времени
+    const inputs = contactForm.querySelectorAll('input, textarea');
+    inputs.forEach(input => {
+        input.addEventListener('blur', validateField);
+        input.addEventListener('input', clearFieldError);
+    });
+    
     contactForm.addEventListener('submit', function(e) {
         e.preventDefault();
         
-        const formData = new FormData(this);
-        const name = formData.get('name');
-        const email = formData.get('email');
-        const subject = formData.get('subject');
-        const message = formData.get('message');
+        // Очищаем предыдущие ошибки
+        clearAllErrors();
         
-        if (!name || !email || !subject || !message) {
-            alert('Пожалуйста, заполните все поля формы');
-            return;
+        const formData = new FormData(this);
+        const name = formData.get('name').trim();
+        const email = formData.get('email').trim();
+        const subject = formData.get('subject').trim();
+        const message = formData.get('message').trim();
+        
+        let hasErrors = false;
+        
+        // Валидация имени
+        if (!name || name.length < 2) {
+            showFieldError('name', 'Имя должно содержать минимум 2 символа');
+            hasErrors = true;
         }
         
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailRegex.test(email)) {
-            alert('Пожалуйста, введите корректный email адрес');
+        // Валидация email
+        if (!email) {
+            showFieldError('email', 'Email обязателен');
+            hasErrors = true;
+        } else if (!isValidEmail(email)) {
+            showFieldError('email', 'Введите корректный email адрес');
+            hasErrors = true;
+        }
+        
+        // Валидация темы
+        if (!subject || subject.length < 5) {
+            showFieldError('subject', 'Тема должна содержать минимум 5 символов');
+            hasErrors = true;
+        }
+        
+        // Валидация сообщения
+        if (!message || message.length < 10) {
+            showFieldError('message', 'Сообщение должно содержать минимум 10 символов');
+            hasErrors = true;
+        }
+        
+        if (hasErrors) {
+            showNotification('Пожалуйста, исправьте ошибки в форме', 'error');
             return;
         }
         
@@ -279,13 +352,123 @@ if (contactForm) {
         submitBtn.textContent = 'Отправляется...';
         submitBtn.disabled = true;
         
-        setTimeout(() => {
-            alert('Сообщение успешно отправлено! Мы свяжемся с вами в ближайшее время.');
-            this.reset();
+        // Отправка через Formspree
+        fetch(this.action, {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'Accept': 'application/json'
+            }
+        })
+        .then(response => {
+            if (response.ok) {
+                showNotification('Сообщение успешно отправлено! Мы свяжемся с вами в ближайшее время.', 'success');
+                this.reset();
+                clearAllErrors();
+            } else {
+                throw new Error('Ошибка отправки');
+            }
+        })
+        .catch(error => {
+            showNotification('Произошла ошибка при отправке сообщения. Пожалуйста, попробуйте еще раз.', 'error');
+            console.error('Form submission error:', error);
+        })
+        .finally(() => {
             submitBtn.textContent = originalText;
             submitBtn.disabled = false;
-        }, 2000);
+        });
     });
+}
+
+// Функции валидации
+function validateField(e) {
+    const field = e.target;
+    const value = field.value.trim();
+    
+    if (field.hasAttribute('required') && !value) {
+        showFieldError(field.id, 'Это поле обязательно для заполнения');
+    }
+}
+
+function clearFieldError(e) {
+    const field = e.target;
+    clearFieldErrorById(field.id);
+}
+
+function showFieldError(fieldId, message) {
+    const field = document.getElementById(fieldId);
+    if (!field) return;
+    
+    // Убираем предыдущую ошибку
+    clearFieldErrorById(fieldId);
+    
+    // Создаем элемент ошибки
+    const errorElement = document.createElement('div');
+    errorElement.className = 'field-error';
+    errorElement.textContent = message;
+    
+    // Добавляем класс ошибки к полю
+    field.classList.add('error');
+    
+    // Вставляем ошибку после поля
+    field.parentNode.appendChild(errorElement);
+}
+
+function clearFieldErrorById(fieldId) {
+    const field = document.getElementById(fieldId);
+    if (!field) return;
+    
+    // Убираем класс ошибки
+    field.classList.remove('error');
+    
+    // Убираем элемент ошибки
+    const errorElement = field.parentNode.querySelector('.field-error');
+    if (errorElement) {
+        errorElement.remove();
+    }
+}
+
+function clearAllErrors() {
+    const fields = contactForm.querySelectorAll('input, textarea');
+    fields.forEach(field => {
+        clearFieldErrorById(field.id);
+    });
+}
+
+function isValidEmail(email) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+}
+
+// Функция для показа уведомлений
+function showNotification(message, type = 'info') {
+    // Создаем элемент уведомления
+    const notification = document.createElement('div');
+    notification.className = `notification notification-${type}`;
+    notification.innerHTML = `
+        <div class="notification-content">
+            <span class="notification-message">${message}</span>
+            <button class="notification-close" onclick="this.parentElement.parentElement.remove()">×</button>
+        </div>
+    `;
+    
+    // Добавляем в body
+    document.body.appendChild(notification);
+    
+    // Показываем уведомление
+    setTimeout(() => {
+        notification.classList.add('show');
+    }, 100);
+    
+    // Автоматически скрываем через 5 секунд
+    setTimeout(() => {
+        notification.classList.remove('show');
+        setTimeout(() => {
+            if (notification.parentElement) {
+                notification.remove();
+            }
+        }, 300);
+    }, 5000);
 }
 
 // Article functions (support multiple articles by id)
@@ -294,17 +477,13 @@ function showFullArticle(targetId) {
     document.querySelectorAll('.article-full').forEach(el => el.style.display = 'none');
     const target = document.getElementById(targetId);
     if (target) target.style.display = 'block';
-    setTimeout(() => {
-        document.getElementById('article').scrollIntoView({ behavior: 'smooth' });
-    }, 100);
+    // Убираем автоматический скролл - пользователь остается на месте
 }
 
 function showPreview(targetId) {
     const target = document.getElementById(targetId);
     if (target) target.style.display = 'none';
-    setTimeout(() => {
-        document.getElementById('article').scrollIntoView({ behavior: 'smooth' });
-    }, 100);
+    // Убираем автоматический скролл - пользователь остается на месте
 }
 
 // Enhanced page load animation
@@ -320,4 +499,17 @@ window.addEventListener('load', () => {
             }, index * 200);
         });
     }, 500);
+    
+    // Дополнительная оптимизация для мобильных устройств
+    if (window.innerWidth <= 768) {
+        // Отключаем сложные эффекты на мобильных
+        document.body.classList.add('mobile-optimized');
+        
+        // Предзагружаем только необходимые ресурсы
+        const criticalImages = ['logo.png', 'favicon.png'];
+        criticalImages.forEach(src => {
+            const img = new Image();
+            img.src = src;
+        });
+    }
 });
