@@ -38,8 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Parallax effects
     initializeParallax();
     
-    // Оптимизация видео для мобильных устройств
-    optimizeVideosForMobile();
+
 });
 
 // Initialize all animations with Intersection Observer
@@ -170,39 +169,7 @@ const navToggle = document.querySelector('.nav-toggle');
 const navList = document.querySelector('.nav-list');
 const navOverlay = document.getElementById('navOverlay');
 
-// Оптимизация видео для мобильных устройств
-function optimizeVideosForMobile() {
-    const isMobile = window.innerWidth <= 768;
-    const videos = document.querySelectorAll('video');
-    
-    videos.forEach(video => {
-        if (isMobile) {
-            // На мобильных устройствах используем более низкое качество
-            video.setAttribute('preload', 'metadata');
-            video.setAttribute('poster', video.getAttribute('poster') || 'logo.png');
-            
-            // Добавляем lazy loading для видео
-            if ('IntersectionObserver' in window) {
-                const videoObserver = new IntersectionObserver((entries) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            video.play().catch(() => {
-                                // Игнорируем ошибки автовоспроизведения
-                            });
-                        } else {
-                            video.pause();
-                        }
-                    });
-                }, { threshold: 0.1 });
-                
-                videoObserver.observe(video);
-            }
-        } else {
-            // На десктопе используем полную загрузку
-            video.setAttribute('preload', 'auto');
-        }
-    });
-}
+
 
 function openMobileMenu() {
     navList.classList.add('active');
@@ -249,8 +216,7 @@ window.addEventListener('resize', () => {
         closeMobileMenu();
     }
     
-    // Переоптимизация видео при изменении размера окна
-    optimizeVideosForMobile();
+
 });
 
 // Enhanced header scroll effect
@@ -500,16 +466,5 @@ window.addEventListener('load', () => {
         });
     }, 500);
     
-    // Дополнительная оптимизация для мобильных устройств
-    if (window.innerWidth <= 768) {
-        // Отключаем сложные эффекты на мобильных
-        document.body.classList.add('mobile-optimized');
-        
-        // Предзагружаем только необходимые ресурсы
-        const criticalImages = ['logo.png', 'favicon.png'];
-        criticalImages.forEach(src => {
-            const img = new Image();
-            img.src = src;
-        });
-    }
+
 });
