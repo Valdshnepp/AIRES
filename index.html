@@ -33,6 +33,7 @@
                 <span></span>
             </div>
         </div>
+        <div class="nav-overlay" id="navOverlay"></div>
     </header>
 
             <section class="promo">
@@ -65,6 +66,8 @@
             </div>
         </div>
     </section>
+
+
 
     <section id="about" class="about section-transition">
         <div class="container">
@@ -206,7 +209,7 @@
         <div class="container">
             <h2 class="section-title fade-in-up">Наши исследования</h2>
             
-            <!-- Video section -->
+            <!-- Video section: Seismic -->
             <div class="article-video-section">
                 <video class="article-video" autoplay muted loop playsinline>
                     <source src="seysmik.mp4" type="video/mp4">
@@ -214,13 +217,13 @@
                 <div class="article-video-overlay">
                     <h3 class="article-video-title">Анализ сейсмической устойчивости зданий</h3>
                     <p class="article-video-subtitle">Современные подходы к проектированию и оценке безопасности зданий с применением машинного обучения</p>
-                    <a href="#article-full" class="article-video-btn" onclick="showFullArticle()">Читать полностью</a>
+                    <a href="#article-seismic-full" class="article-video-btn" onclick="showFullArticle('article-seismic-full')">Читать полностью</a>
                 </div>
             </div>
             
-            <!-- Полная статья (скрыта по умолчанию) -->
-            <div class="article-full" id="article-full" style="display: none;">
-                <button class="btn btn-secondary back-to-preview-btn" onclick="showPreview()">← Вернуться к превью</button>
+            <!-- Полная статья (скрыта по умолчанию): Seismic -->
+            <div class="article-full" id="article-seismic-full" style="display: none;">
+                <button class="btn btn-secondary back-to-preview-btn" onclick="showPreview('article-seismic-full')">← Вернуться к превью</button>
                 
                 <div class="article-content">
                     <div class="article-intro fade-in-up">
@@ -329,6 +332,81 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Oncology preview video section -->
+            <div class="article-video-section">
+                <video class="article-video" autoplay muted loop playsinline>
+                    <source src="seysmik.mp4" type="video/mp4">
+                </video>
+                <div class="article-video-overlay">
+                    <h3 class="article-video-title">Диагностика рака с помощью нейронных сетей</h3>
+                    <p class="article-video-subtitle">Обнаружение и пояснение признаков заболевания на биопсийных изображениях с помощью ИИ</p>
+                    <a href="#article-oncology-full" class="article-video-btn" onclick="showFullArticle('article-oncology-full')">Читать полностью</a>
+                </div>
+            </div>
+
+            <!-- Oncology full article (hidden by default) -->
+            <div class="article-full" id="article-oncology-full" style="display: none;">
+                <button class="btn btn-secondary back-to-preview-btn" onclick="showPreview('article-oncology-full')">← Вернуться к превью</button>
+                <div class="article-oncology-content">
+                    <div class="article-oncology-intro">
+                        <h4>Почему это важно</h4>
+                        <p>Рак предстательной железы — одно из самых распространённых онкологических заболеваний среди мужчин. Каждый год врачи по всему миру сталкиваются с миллионами новых случаев, и чем раньше поставлен диагноз, тем выше шанс на успешное лечение. Но диагностика проводится на основе биопсий — микроскопического анализа тканей. Это сложная, длительная и подверженная человеческому фактору процедура.</p>
+                        <p>Проект направлен на создание надёжной автоматической системы, способной находить признаки заболевания на снимках, показывать, где именно находится поражённая ткань, и работать одинаково хорошо на данных из разных лабораторий.</p>
+                    </div>
+
+                    <div class="article-oncology-stage">
+                        <h4>Этап 1. Подготовка данных</h4>
+                        <p>Для обучения использовался крупнейший в мире открытый набор изображений биопсий рака простаты — PANDA. Огромные сканы были разрезаны на фрагменты, лишние области удалены, цвета нормализованы, применены методы аугментации.</p>
+                    </div>
+
+                    <div class="article-oncology-stage">
+                        <div class="oncology-stage-content">
+                            <div class="oncology-stage-text">
+                                <h4>Этап 2. Классификация</h4>
+                                <p>В качестве основы использована EfficientNet‑B0, дообученная на медицинских данных. Итоговые результаты: QWK 0.904, Accuracy 0.721, Sensitivity 0.993, Specificity 0.908.</p>
+                            </div>
+                            <div class="oncology-stage-image">
+                                <img src="onko1.png" alt="Классификация, этап 2" class="oncology-img">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="article-oncology-stage">
+                        <div class="oncology-stage-content">
+                            <div class="oncology-stage-text">
+                                <h4>Этап 3. Пояснения к решениям</h4>
+                                <p>Методы визуализации выделяют области, наиболее значимые для модели при постановке диагноза. Они совпадают с поражёнными участками ткани, повышая доверие к решениям.</p>
+                            </div>
+                            <div class="oncology-stage-image">
+                                <img src="onko2.png" alt="Пояснения к решениям" class="oncology-img">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="article-oncology-stage">
+                        <div class="oncology-stage-content">
+                            <div class="oncology-stage-text">
+                                <h4>Этап 4. Грубая сегментация</h4>
+                                <p>Карты важности преобразуются в контуры поражённых областей, что даёт врачу наглядное представление о локализации проблемы.</p>
+                            </div>
+                            <div class="oncology-stage-image">
+                                <img src="onko3.png" alt="Сегментация" class="oncology-img">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="article-oncology-stage">
+                        <h4>Этап 5. Адаптация к новым данным</h4>
+                        <p>Модель, обученная на PANDA, быстро дообучается под данные любой лаборатории, сохраняя высокое качество предсказаний.</p>
+                    </div>
+
+                    <div class="article-oncology-stage">
+                        <h4>Итог</h4>
+                        <p>Система определяет степень рака, показывает значимые области, выделяет подозрительные зоны и адаптируется к данным из разных источников.</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -417,7 +495,7 @@
             
             <div class="footer-bottom">
                 <div class="footer-bottom-content">
-                    <p>&copy; 2024 AIRES. Все права защищены.</p>
+                    <p>&copy; 2025 AIRES. Все права защищены.</p>
                     <div class="footer-bottom-links">
                         <a href="#">Политика конфиденциальности</a>
                         <a href="#">Условия использования</a>

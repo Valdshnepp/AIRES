@@ -191,6 +191,22 @@ p {
     transition: 0.3s;
 }
 
+/* Mobile sidebar overlay */
+.nav-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.35s ease-in-out, visibility 0.35s ease-in-out;
+    z-index: 1000;
+}
+
+.nav-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
 /* Hero Section */
 .hero {
     position: relative;
@@ -345,6 +361,15 @@ p {
 .about-text p {
     margin-bottom: 1.5rem;
     line-height: 1.7;
+}
+
+/* Improve readability of the about description */
+.about-text {
+    background: rgba(0, 0, 0, 0.45);
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(6px);
 }
 
 .values-grid {
@@ -920,7 +945,21 @@ p {
 /* Responsive Design */
 @media (max-width: 768px) {
     .nav-list {
-        display: none;
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        top: 0;
+        right: 0;
+        height: 100vh;
+        width: 280px;
+        padding: 5rem 2rem 2rem;
+        background: rgba(20, 20, 20, 0.98);
+        backdrop-filter: blur(8px);
+        box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
+        transform: translateX(100%);
+        transition: transform 0.35s ease-in-out;
+        z-index: 1001;
+        gap: 1.2rem;
     }
     
     .nav-toggle {
@@ -978,6 +1017,9 @@ p {
     
     .stats {
         grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        margin-top: 1.5rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
     }
 
     /* Responsive adjustments for article */
@@ -992,6 +1034,18 @@ p {
     
     .article-stage {
         padding: 1.5rem;
+    }
+
+    /* Footer: center socials and contacts */
+    .footer-social {
+        justify-content: center;
+    }
+    .footer-contact-info {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 0.4rem;
     }
 }
 
@@ -1077,7 +1131,7 @@ p {
     }
     
     .nav-list.active {
-        display: flex;
+        transform: translateX(0);
     }
 }
 
@@ -1340,6 +1394,123 @@ html {
 .article-stage.visible {
     opacity: 1;
     transform: translateX(0);
+}
+
+/* Oncology article section */
+.article-oncology-section {
+    margin-top: 4rem;
+    padding-top: 3rem;
+    border-top: 2px solid rgba(0, 212, 255, 0.3);
+}
+
+.article-oncology-content {
+    background: rgba(42, 42, 42, 0.8);
+    border-radius: 20px;
+    padding: 3rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+}
+
+.article-oncology-title {
+    font-size: 2.5rem;
+    font-weight: 600;
+    margin-bottom: 2rem;
+    color: #00d4ff;
+    text-align: center;
+}
+
+.article-oncology-intro {
+    margin-bottom: 3rem;
+    padding-bottom: 2rem;
+    border-bottom: 2px solid rgba(0, 212, 255, 0.2);
+}
+
+.article-oncology-intro h4 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    color: #ffffff;
+}
+
+.article-oncology-intro p {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    margin-bottom: 1rem;
+    color: #b0b0b0;
+}
+
+.article-oncology-stage {
+    margin-bottom: 2.5rem;
+    padding: 2rem;
+    background: rgba(26, 26, 26, 0.8);
+    border-radius: 15px;
+    border-left: 4px solid #00d4ff;
+}
+
+.article-oncology-stage h4 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    color: #ffffff;
+}
+
+.article-oncology-stage p {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    color: #b0b0b0;
+}
+
+.oncology-stage-content {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 2rem;
+    align-items: start;
+}
+
+.oncology-stage-text h4 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    color: #ffffff;
+}
+
+.oncology-stage-text p {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    color: #b0b0b0;
+}
+
+.oncology-stage-image {
+    text-align: center;
+}
+
+.oncology-img {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+@media (max-width: 768px) {
+    .oncology-stage-content {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .article-oncology-content {
+        padding: 2rem;
+    }
+    
+    .article-oncology-stage {
+        padding: 1.5rem;
+    }
+    
+    .article-oncology-title {
+        font-size: 2rem;
+    }
 }
 
 /* Smooth contact item transitions */
