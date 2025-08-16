@@ -456,6 +456,8 @@
                     </div>
                     <!-- honeypot против ботов (скрыто стилями) -->
                     <input type="text" name="company" style="position:absolute;left:-9999px;opacity:0" tabindex="-1" autocomplete="off">
+                    <!-- Скрытое поле для времени ({{time}} в EmailJS шаблоне) -->
+                    <input type="hidden" name="time" id="timeField">
                     <button type="submit" class="btn btn-primary" id="sendBtn">Отправить сообщение</button>
                     <p id="formStatus" style="margin-top:8px;"></p>
                 </form>
@@ -530,6 +532,13 @@
     1. Зайдите в EmailJS Dashboard
     2. Email Services → скопируйте Service ID
     3. Email Templates → скопируйте Template ID
+    
+    Поля формы соответствуют шаблону EmailJS:
+    - {{name}} → name="name"
+    - {{email}} → name="email" 
+    - {{title}} → name="title"
+    - {{message}} → name="message"
+    - {{time}} → name="time" (автоматически заполняется)
     -->
     <script>
       (function () {
@@ -542,6 +551,18 @@
 
           // анти-бот: если honeypot заполнен — не отправляем
           if (form.company && form.company.value.trim() !== '') return;
+
+          // Заполняем поле времени текущей датой и временем
+          const now = new Date();
+          const timeString = now.toLocaleString('ru-RU', {
+            year: 'numeric',
+            month: '2-digit',
+            day: '2-digit',
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit'
+          });
+          document.getElementById('timeField').value = timeString;
 
           btn.disabled = true;
           msg.textContent = 'Отправляем...';
