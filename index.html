@@ -440,7 +440,7 @@
                         </div>
                     </div>
                 </div>
-                <form class="contact-form fade-in-up" id="contactForm" action="https://formspree.io/f/xayzqjvj" method="POST">
+                <form class="contact-form fade-in-up" id="contactForm">
                     <div class="form-group">
                         <input type="text" id="name" name="name" placeholder="Ваше имя" required>
                     </div>
@@ -448,16 +448,16 @@
                         <input type="email" id="email" name="email" placeholder="Ваш email" required>
                     </div>
                     <div class="form-group">
-                        <input type="text" id="subject" name="subject" placeholder="Тема сообщения" required>
+                        <!-- subject -> title (важно для {{title}}) -->
+                        <input type="text" id="title" name="title" placeholder="Тема сообщения" required>
                     </div>
                     <div class="form-group">
                         <textarea id="message" name="message" placeholder="Ваше сообщение" rows="5" required></textarea>
                     </div>
-                    <!-- Скрытые поля для Formspree -->
-                    <input type="hidden" name="_next" value="https://ivan170403-dev.github.io/AIRES/#contact">
-                    <input type="hidden" name="_subject" value="Новое сообщение с сайта AIRES">
-                    <input type="hidden" name="_captcha" value="false">
-                    <button type="submit" class="btn btn-primary">Отправить сообщение</button>
+                    <!-- honeypot против ботов (скрыто стилями) -->
+                    <input type="text" name="company" style="position:absolute;left:-9999px;opacity:0" tabindex="-1" autocomplete="off">
+                    <button type="submit" class="btn btn-primary" id="sendBtn">Отправить сообщение</button>
+                    <p id="formStatus" style="margin-top:8px;"></p>
                 </form>
             </div>
         </div>
@@ -513,5 +513,53 @@
     </footer>
 
     <script src="script.js"></script>
+    <!-- EmailJS SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script>
+    // ВСТАВЬ свой Public Key из EmailJS (Account → Public Key)
+    emailjs.init('0TKA7rxBON4u6sDg6');
+    </script>
+    
+    <!-- Скрипт отправки через EmailJS -->
+    <!-- 
+    ВАЖНО: Замените ID на ваши реальные из EmailJS Dashboard:
+    - service_xxxxxxx → ваш Service ID из Email Services
+    - template_xxxxxxx → ваш Template ID из Email Templates
+    
+    Как найти:
+    1. Зайдите в EmailJS Dashboard
+    2. Email Services → скопируйте Service ID
+    3. Email Templates → скопируйте Template ID
+    -->
+    <script>
+      (function () {
+        const form = document.getElementById('contactForm');
+        const btn  = document.getElementById('sendBtn');
+        const msg  = document.getElementById('formStatus');
+
+        form.addEventListener('submit', function (e) {
+          e.preventDefault();
+
+          // анти-бот: если honeypot заполнен — не отправляем
+          if (form.company && form.company.value.trim() !== '') return;
+
+          btn.disabled = true;
+          msg.textContent = 'Отправляем...';
+
+          emailjs.sendForm('service_hjteri5', 'template_6z8cowf', form)
+            .then(() => {
+              msg.textContent = 'Сообщение отправлено! Мы свяжемся с вами.';
+              form.reset();
+            })
+            .catch((error) => {
+              console.error(error);
+              msg.textContent = 'Ошибка при отправке. Попробуйте позже.';
+            })
+            .finally(() => {
+              btn.disabled = false;
+            });
+        });
+      })();
+    </script>
 </body>
 </html>
