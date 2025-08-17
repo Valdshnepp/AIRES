@@ -599,6 +599,13 @@ p {
     transform: none !important;
 }
 
+/* Принудительно показываем видео */
+.article-video-section video {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
 /* Оптимизация видео для мобильных устройств */
 @media (max-width: 768px) {
     .article-video-section {
@@ -661,6 +668,7 @@ p {
     height: 100%;
     object-fit: cover;
     filter: brightness(0.7);
+    z-index: 1;
 }
 
 .article-video-overlay {
@@ -1316,13 +1324,13 @@ p {
 
 .promo-video {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
     filter: brightness(0.7);
+    z-index: 1;
 }
 
 .promo-overlay {
@@ -1845,6 +1853,20 @@ html {
     visibility: visible !important;
 }
 
+/* Принудительно показываем видео на всех устройствах */
+.article-video-section video,
+.promo video {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+}
+
 /* Дополнительные оптимизации производительности */
 @media (max-width: 768px) {
     /* Отключаем сложные эффекты на мобильных */
@@ -1934,7 +1956,8 @@ body.mobile-optimized .fade-in-up {
         /* Оптимизация размера для мобильных */
         max-height: 60vh;
         width: 100%;
-        height: auto;
+        height: 100% !important; /* Принудительно устанавливаем высоту */
+        object-fit: cover; /* Сохраняем пропорции */
         /* Улучшенная производительность */
         -webkit-transform: translateZ(0);
         transform: translateZ(0);
@@ -1946,6 +1969,25 @@ body.mobile-optimized .fade-in-up {
     .promo, .article-video-section {
         overflow: hidden;
         position: relative;
+    }
+    
+    /* Исправляем позиционирование видео на мобильных */
+    .promo-video {
+        position: absolute !important;
+        top: 0 !important;
+        left: 0 !important;
+        transform: none !important;
+        width: 100% !important;
+        height: 100% !important;
+    }
+    
+    .article-video {
+        position: absolute !important;
+        top: 0 !important;
+        left: 0 !important;
+        transform: none !important;
+        width: 100% !important;
+        height: 100% !important;
     }
 }
 
@@ -1980,5 +2022,31 @@ body.mobile-optimized .fade-in-up {
     .video-play-button:hover {
         background: rgba(0, 212, 255, 1);
         transform: translate(-50%, -50%) scale(1.1);
+    }
+}
+
+/* Дополнительные исправления для мобильных устройств */
+@media (max-width: 768px) {
+    /* Принудительно показываем все видео */
+    video {
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+    }
+    
+    /* Исправляем z-index для видео */
+    .promo-video, .article-video {
+        z-index: 1 !important;
+    }
+    
+    /* Исправляем z-index для оверлеев */
+    .promo-overlay, .article-video-overlay {
+        z-index: 2 !important;
+    }
+    
+    /* Убираем transform для видео на мобильных */
+    .promo-video, .article-video {
+        transform: none !important;
+        -webkit-transform: none !important;
     }
 }

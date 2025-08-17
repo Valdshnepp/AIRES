@@ -291,6 +291,28 @@ window.addEventListener('load', () => {
     
     // Оптимизация видео для мобильных устройств
     optimizeVideosForMobile();
+    
+    // Дополнительная проверка видео через 2 секунды
+    setTimeout(() => {
+        const videos = document.querySelectorAll('video');
+        videos.forEach(video => {
+            // Принудительно показываем видео
+            video.style.display = 'block';
+            video.style.visibility = 'visible';
+            video.style.opacity = '1';
+            
+            // Устанавливаем правильное позиционирование
+            if (video.classList.contains('promo-video') || video.classList.contains('article-video')) {
+                video.style.position = 'absolute';
+                video.style.top = '0';
+                video.style.left = '0';
+                video.style.width = '100%';
+                video.style.height = '100%';
+                video.style.objectFit = 'cover';
+                video.style.zIndex = '1';
+            }
+        });
+    }, 2000);
 });
 
 // Функция оптимизации видео для мобильных устройств
@@ -302,13 +324,28 @@ function optimizeVideosForMobile() {
         // Добавляем класс для мобильной оптимизации
         document.body.classList.add('mobile-optimized');
         
+        // Принудительно показываем все видео на мобильных
+        const videos = document.querySelectorAll('video');
+        videos.forEach(video => {
+            // Устанавливаем стили для принудительного отображения
+            video.style.display = 'block';
+            video.style.visibility = 'visible';
+            video.style.opacity = '1';
+            video.style.position = 'absolute';
+            video.style.top = '0';
+            video.style.left = '0';
+            video.style.width = '100%';
+            video.style.height = '100%';
+            video.style.objectFit = 'cover';
+            video.style.zIndex = '1';
+        });
+        
         // Проверяем скорость соединения (если доступно)
         if ('connection' in navigator) {
             const connection = navigator.connection;
             
             // Если соединение медленное, отключаем автовоспроизведение
             if (connection.effectiveType === 'slow-2g' || connection.effectiveType === '2g') {
-                const videos = document.querySelectorAll('video');
                 videos.forEach(video => {
                     video.autoplay = false;
                     video.muted = false;
@@ -320,7 +357,6 @@ function optimizeVideosForMobile() {
         }
         
         // Оптимизация для мобильных устройств
-        const videos = document.querySelectorAll('video');
         videos.forEach(video => {
             // Устанавливаем preload="metadata" для экономии трафика
             video.preload = 'metadata';
@@ -344,6 +380,17 @@ function optimizeVideosForMobile() {
                 }, 1000);
             });
         });
+        
+        // Дополнительная проверка через 1 секунду
+        setTimeout(() => {
+            videos.forEach(video => {
+                if (video.style.display === 'none' || video.style.visibility === 'hidden') {
+                    video.style.display = 'block';
+                    video.style.visibility = 'visible';
+                    video.style.opacity = '1';
+                }
+            });
+        }, 1000);
     }
 }
 
