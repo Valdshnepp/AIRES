@@ -397,66 +397,102 @@ window.addEventListener('load', () => {
     }, 4000);
 });
 
-// Функция оптимизации видео для мобильных устройств
+// Улучшенная функция оптимизации видео для мобильных устройств
 function optimizeVideosForMobile() {
-    // Проверяем, является ли устройство мобильным
     const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
     
     if (isMobile) {
-        // Добавляем класс для мобильной оптимизации
         document.body.classList.add('mobile-optimized');
         
-        // Принудительно показываем все видео на мобильных
+        // Принудительно исправляем все видео
         const videos = document.querySelectorAll('video');
         videos.forEach(video => {
-            // Устанавливаем стили для принудительного отображения
-            video.style.display = 'block';
-            video.style.visibility = 'visible';
-            video.style.opacity = '1';
-            video.style.position = 'absolute';
-            video.style.top = '0';
-            video.style.left = '0';
-            video.style.width = '100%';
-            video.style.height = '100%';
-            video.style.objectFit = 'cover';
-            video.style.objectPosition = 'center';
-            video.style.zIndex = '1';
+            // Базовые стили для принудительного отображения
+            video.style.cssText = `
+                display: block !important;
+                visibility: visible !important;
+                opacity: 1 !important;
+                position: absolute !important;
+                top: 0 !important;
+                left: 0 !important;
+                width: 100% !important;
+                height: 100% !important;
+                object-fit: cover !important;
+                object-position: center !important;
+                z-index: 1 !important;
+                transform: none !important;
+                -webkit-transform: none !important;
+                -moz-transform: none !important;
+                -ms-transform: none !important;
+                background: #000 !important;
+                will-change: auto !important;
+                backface-visibility: visible !important;
+                -webkit-backface-visibility: visible !important;
+                filter: none !important;
+                -webkit-filter: none !important;
+            `;
             
-            // Убираем все трансформации
-            video.style.transform = 'none';
-            video.style.webkitTransform = 'none';
-            video.style.mozTransform = 'none';
-            video.style.msTransform = 'none';
-            
-                    // Принудительно устанавливаем размеры контейнера
-        const container = video.parentElement;
-        if (container) {
-            container.style.position = 'relative';
-            container.style.overflow = 'hidden';
-            container.style.width = '100%';
-            container.style.height = '100vh';
-            container.style.minHeight = '100vh';
-            
-            // Убираем все ограничения высоты
-            if (container.classList.contains('promo') || container.classList.contains('article-video-section')) {
-                container.style.height = '100vh';
-                container.style.minHeight = '100vh';
-                container.style.maxHeight = 'none';
+            // Принудительно устанавливаем размеры контейнера
+            const container = video.parentElement;
+            if (container) {
+                container.style.cssText = `
+                    position: relative !important;
+                    overflow: hidden !important;
+                    width: 100% !important;
+                    height: 100vh !important;
+                    min-height: 100vh !important;
+                    max-height: none !important;
+                    background: transparent !important;
+                    transform: none !important;
+                    -webkit-transform: none !important;
+                `;
             }
-        }
+            
+            // Исправляем проблемы с воспроизведением
+            video.playsInline = true;
+            video.setAttribute('webkit-playsinline', 'true');
+            video.setAttribute('playsinline', 'true');
+            video.muted = true;
+            video.loop = true;
+            
+            // Добавляем обработчики для исправления зависания
+            video.addEventListener('loadedmetadata', () => {
+                video.style.display = 'block';
+                video.style.visibility = 'visible';
+                video.style.opacity = '1';
+            });
+            
+            video.addEventListener('canplay', () => {
+                video.style.display = 'block';
+                video.style.visibility = 'visible';
+                video.style.opacity = '1';
+            });
+            
+            // Исправляем проблемы с паузой/воспроизведением
+            video.addEventListener('pause', () => {
+                setTimeout(() => {
+                    if (video.paused && !video.ended) {
+                        video.play().catch(() => {});
+                    }
+                }, 100);
+            });
+            
+            // Принудительно воспроизводим при ошибках
+            video.addEventListener('error', () => {
+                setTimeout(() => {
+                    video.load();
+                    video.play().catch(() => {});
+                }, 1000);
+            });
         });
         
-        // Проверяем скорость соединения (если доступно)
+        // Проверяем скорость соединения
         if ('connection' in navigator) {
             const connection = navigator.connection;
-            
-            // Если соединение медленное, отключаем автовоспроизведение
             if (connection.effectiveType === 'slow-2g' || connection.effectiveType === '2g') {
                 videos.forEach(video => {
                     video.autoplay = false;
                     video.muted = false;
-                    
-                    // Добавляем кнопку воспроизведения
                     addPlayButton(video);
                 });
             }
@@ -464,10 +500,9 @@ function optimizeVideosForMobile() {
         
         // Оптимизация для мобильных устройств
         videos.forEach(video => {
-            // Устанавливаем preload="metadata" для экономии трафика
             video.preload = 'metadata';
             
-            // Добавляем обработчик для паузы при скролле
+            // Улучшенная обработка скролла
             let isPaused = false;
             let scrollTimeout;
             
@@ -480,25 +515,100 @@ function optimizeVideosForMobile() {
                 clearTimeout(scrollTimeout);
                 scrollTimeout = setTimeout(() => {
                     if (video.autoplay) {
-                        video.play();
+                        video.play().catch(() => {});
                     }
                     isPaused = false;
                 }, 1000);
             });
         });
         
-        // Дополнительная проверка через 1 секунду
+        // Дополнительные проверки
         setTimeout(() => {
-            videos.forEach(video => {
-                if (video.style.display === 'none' || video.style.visibility === 'hidden') {
-                    video.style.display = 'block';
-                    video.style.visibility = 'visible';
-                    video.style.opacity = '1';
-                }
-            });
+            forceVideoDisplay();
         }, 1000);
+        
+        setTimeout(() => {
+            forceVideoDisplay();
+        }, 3000);
+        
+        setTimeout(() => {
+            forceVideoDisplay();
+        }, 5000);
     }
 }
+
+// Функция принудительного исправления отображения видео
+function forceVideoDisplay() {
+    const videos = document.querySelectorAll('video');
+    const containers = document.querySelectorAll('.promo, .article-video-section');
+    
+    // Принудительно исправляем все видео
+    videos.forEach(video => {
+        video.style.cssText = `
+            display: block !important;
+            visibility: visible !important;
+            opacity: 1 !important;
+            position: absolute !important;
+            top: 0 !important;
+            left: 0 !important;
+            width: 100% !important;
+            height: 100% !important;
+            object-fit: cover !important;
+            object-position: center !important;
+            z-index: 1 !important;
+            transform: none !important;
+            -webkit-transform: none !important;
+            background: #000 !important;
+            will-change: auto !important;
+            backface-visibility: visible !important;
+        `;
+        
+        // Принудительно загружаем и воспроизводим
+        if (video.readyState === 0) {
+            video.load();
+        }
+        
+        if (video.paused && !video.ended) {
+            video.play().catch(() => {});
+        }
+    });
+    
+    // Принудительно исправляем все контейнеры
+    containers.forEach(container => {
+        container.style.cssText = `
+            position: relative !important;
+            overflow: hidden !important;
+            width: 100% !important;
+            height: 100vh !important;
+            min-height: 100vh !important;
+            max-height: none !important;
+            background: transparent !important;
+            transform: none !important;
+            -webkit-transform: none !important;
+        `;
+    });
+}
+
+// Функция для исправления зависания видео
+function fixVideoFreezing() {
+    const videos = document.querySelectorAll('video');
+    
+    videos.forEach(video => {
+        // Сбрасываем видео при зависании
+        if (video.readyState > 0 && video.paused && !video.ended) {
+            video.currentTime = 0;
+            video.load();
+            video.play().catch(() => {});
+        }
+        
+        // Принудительно обновляем рендеринг
+        video.style.transform = 'translateZ(0)';
+        video.style.webkitTransform = 'translateZ(0)';
+    });
+}
+
+// Запускаем исправления каждые 10 секунд
+setInterval(fixVideoFreezing, 10000);
 
 // Функция добавления кнопки воспроизведения
 function addPlayButton(video) {
@@ -529,3 +639,70 @@ function addPlayButton(video) {
         videoContainer.appendChild(playButton);
     }
 }
+
+// Функция для удаления рекламы от Reg.ru
+function removeRegRuAds() {
+    // Удаляем элементы по содержимому
+    const adTexts = [
+        'Россия работает умно',
+        'Курс на цифровизацию',
+        'Наши дроны',
+        'В России так мощно растет IT',
+        'Память - без границ',
+        'Алкоголь уже не в моде'
+    ];
+    
+    // Удаляем по тексту
+    adTexts.forEach(text => {
+        const elements = Array.from(document.querySelectorAll('*')).filter(el => 
+            el.textContent && el.textContent.includes(text)
+        );
+        elements.forEach(el => {
+            if (el.style.background === 'white' || 
+                el.style.backgroundColor === 'white' ||
+                el.style.background === '#fff' ||
+                el.style.backgroundColor === '#fff') {
+                el.remove();
+            }
+        });
+    });
+    
+    // Удаляем белые блоки с изображениями
+    const whiteBlocks = document.querySelectorAll('div[style*="background: white"], div[style*="background-color: white"]');
+    whiteBlocks.forEach(block => {
+        if (block.querySelector('img')) {
+            block.remove();
+        }
+    });
+    
+    // Удаляем элементы без классов/ID (часто реклама)
+    const suspiciousElements = document.querySelectorAll('body > div:not([class]):not([id])');
+    suspiciousElements.forEach(el => {
+        if (el.style.background === 'white' || 
+            el.style.backgroundColor === 'white' ||
+            el.innerHTML.includes('img')) {
+            el.remove();
+        }
+    });
+}
+
+// Запускаем удаление рекламы при загрузке страницы
+document.addEventListener('DOMContentLoaded', () => {
+    removeRegRuAds();
+    
+    // Повторно проверяем через 2 секунды (на случай динамической загрузки)
+    setTimeout(removeRegRuAds, 2000);
+    
+    // Проверяем каждые 5 секунд
+    setInterval(removeRegRuAds, 5000);
+});
+
+// Дополнительная проверка при изменении DOM
+const observer = new MutationObserver(() => {
+    removeRegRuAds();
+});
+
+observer.observe(document.body, {
+    childList: true,
+    subtree: true
+});

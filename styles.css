@@ -1958,169 +1958,190 @@ body.mobile-optimized .fade-in-up {
     }
 }
 
-/* Оптимизация видео для мобильных устройств */
+/* Улучшенная оптимизация видео для мобильных устройств */
 @media (max-width: 768px) {
+    /* Принудительно исправляем все проблемы с видео */
     .promo-video, .article-video {
-        /* Оптимизация размера для мобильных */
-        max-height: none !important; /* Убираем ограничение высоты */
+        /* Базовые стили */
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        position: absolute !important;
+        top: 0 !important;
+        left: 0 !important;
         width: 100% !important;
-        height: 100% !important; /* Принудительно устанавливаем высоту */
-        object-fit: cover !important; /* Сохраняем пропорции */
+        height: 100% !important;
+        object-fit: cover !important;
+        object-position: center !important;
+        z-index: 1 !important;
+        
         /* Убираем все трансформации */
         transform: none !important;
         -webkit-transform: none !important;
-        /* Оптимизация памяти */
-        will-change: auto;
-        /* Принудительно центрируем */
-        top: 0 !important;
-        left: 0 !important;
-        right: 0 !important;
-        bottom: 0 !important;
-    }
-    
-    /* Отключаем сложные эффекты для видео на мобильных */
-    .promo, .article-video-section {
-        overflow: hidden;
-        position: relative;
+        -moz-transform: none !important;
+        -ms-transform: none !important;
+        
+        /* Исправляем проблемы с зависанием */
+        will-change: auto !important;
+        backface-visibility: visible !important;
+        perspective: 0 !important;
+        
+        /* Принудительно обновляем рендеринг */
+        -webkit-backface-visibility: visible !important;
+        -moz-backface-visibility: visible !important;
+        
+        /* Убираем все фильтры на мобильных */
+        filter: none !important;
+        -webkit-filter: none !important;
+        
+        /* Исправляем проблемы с воспроизведением */
+        /* playsinline и webkit-playsinline устанавливаются через HTML атрибуты */
+        
         /* Принудительно устанавливаем размеры */
-        width: 100% !important;
-        height: 100% !important;
+        min-width: 100% !important;
+        min-height: 100% !important;
+        max-width: none !important;
+        max-height: none !important;
     }
     
-    /* Исправляем позиционирование видео на мобильных */
-    .promo-video {
-        position: absolute !important;
-        top: 0 !important;
-        left: 0 !important;
-        transform: none !important;
+    /* Исправляем контейнеры видео */
+    .promo, .article-video-section {
+        position: relative !important;
+        overflow: hidden !important;
         width: 100% !important;
-        height: 100% !important;
+        height: 100vh !important;
+        min-height: 100vh !important;
+        max-height: none !important;
+        background: transparent !important;
+        
+        /* Убираем все трансформации */
+        transform: none !important;
+        -webkit-transform: none !important;
+        -moz-transform: none !important;
+        -ms-transform: none !important;
+        
+        /* Исправляем проблемы с рендерингом */
+        will-change: auto !important;
+        backface-visibility: visible !important;
+    }
+    
+    /* Дополнительные исправления для промо-видео */
+    .promo {
+        background: #000 !important;
+    }
+    
+    .promo-video {
+        background: #000 !important;
         /* Принудительно центрируем */
-        object-position: center !important;
+        object-position: center center !important;
+    }
+    
+    /* Дополнительные исправления для видео в исследованиях */
+    .article-video-section {
+        background: #000 !important;
     }
     
     .article-video {
-        position: absolute !important;
-        top: 0 !important;
-        left: 0 !important;
+        background: #000 !important;
+        /* Принудительно растягиваем на всю карточку */
+        object-position: center center !important;
+    }
+    
+    /* Исправляем проблемы с оверлеями */
+    .promo-overlay, .article-video-overlay {
+        z-index: 2 !important;
+        position: relative !important;
+        opacity: 1 !important;
         transform: none !important;
-        width: 100% !important;
-        height: 100% !important;
-        /* Принудительно центрируем */
-        object-position: center !important;
+        visibility: visible !important;
     }
 }
 
-/* Дополнительная оптимизация для очень медленных соединений */
-@media (max-width: 480px) and (max-device-width: 480px) {
+/* Дополнительные исправления для очень маленьких экранов */
+@media (max-width: 480px) {
     .promo-video, .article-video {
         /* Минимальные размеры для экономии трафика */
-        max-height: 50vh;
-        /* Отключаем автовоспроизведение на медленных соединениях */
-        autoplay: false;
+        max-height: none !important;
+        height: 100% !important;
+        
+        /* Отключаем сложные эффекты */
+        will-change: auto !important;
+        backface-visibility: visible !important;
+        
+        /* Принудительно обновляем рендеринг */
+        -webkit-transform: translateZ(0) !important;
+        transform: translateZ(0) !important;
     }
     
-    /* Показываем кнопку воспроизведения */
-    .video-play-button {
-        display: block !important;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        z-index: 10;
-        background: rgba(0, 212, 255, 0.9);
-        border: none;
-        border-radius: 50%;
-        width: 80px;
-        height: 80px;
-        color: white;
-        font-size: 2rem;
-        cursor: pointer;
-        transition: all 0.3s ease;
-    }
-    
-    .video-play-button:hover {
-        background: rgba(0, 212, 255, 1);
-        transform: translate(-50%, -50%) scale(1.1);
+    /* Исправляем размеры контейнеров */
+    .promo, .article-video-section {
+        height: 100vh !important;
+        min-height: 100vh !important;
+        max-height: none !important;
     }
 }
 
-/* Дополнительные исправления для мобильных устройств */
+/* Дополнительные критические исправления для видео */
 @media (max-width: 768px) {
     /* Принудительно показываем все видео */
     video {
         display: block !important;
         visibility: visible !important;
         opacity: 1 !important;
-    }
-    
-    /* Исправляем z-index для видео */
-    .promo-video, .article-video {
+        position: absolute !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover !important;
+        object-position: center !important;
         z-index: 1 !important;
-    }
-    
-    /* Исправляем z-index для оверлеев */
-    .promo-overlay, .article-video-overlay {
-        z-index: 2 !important;
-    }
-    
-    /* Убираем transform для видео на мобильных */
-    .promo-video, .article-video {
         transform: none !important;
         -webkit-transform: none !important;
-    }
-    
-    /* Принудительно исправляем размеры и позиционирование */
-    .promo-video {
-        position: absolute !important;
-        top: 0 !important;
-        left: 0 !important;
-        width: 100% !important;
-        height: 100% !important;
-        object-fit: cover !important;
-        object-position: center !important;
-        transform: none !important;
-        -webkit-transform: none !important;
-    }
-    
-    .article-video {
-        position: absolute !important;
-        top: 0 !important;
-        left: 0 !important;
-        width: 100% !important;
-        height: 100% !important;
-        object-fit: cover !important;
-        object-position: center !important;
-        transform: none !important;
-        -webkit-transform: none !important;
-    }
-    
-    /* Принудительно устанавливаем размеры контейнеров */
-    .promo {
-        width: 100% !important;
-        height: 100vh !important;
-        min-height: 100vh !important;
-        position: relative !important;
-        overflow: hidden !important;
-    }
-    
-    .article-video-section {
-        width: 100% !important;
-        height: 100vh !important;
-        min-height: 100vh !important;
-        position: relative !important;
-        overflow: hidden !important;
-    }
-    
-    /* Убираем все чёрные полосы */
-    .promo, .article-video-section {
-        background: transparent !important;
-    }
-    
-    /* Принудительно растягиваем видео на всю область */
-    .promo-video, .article-video {
         background: #000 !important;
-        min-height: 100vh !important;
-        max-height: none !important;
     }
+}
+
+/* Скрытие рекламы от Reg.ru */
+/* Попытка скрыть автоматически добавляемые рекламные блоки */
+div[style*="background: white"],
+div[style*="background-color: white"],
+div[style*="background: #fff"],
+div[style*="background-color: #fff"] {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    height: 0 !important;
+    overflow: hidden !important;
+}
+
+/* Скрытие по содержимому - используем JavaScript для этого */
+/* div:contains() не является стандартным CSS селектором */
+
+/* Дополнительные селекторы для рекламы */
+[class*="ad"],
+[class*="banner"],
+[id*="ad"],
+[id*="banner"],
+[style*="position: fixed"],
+[style*="position:fixed"] {
+    display: none !important;
+}
+
+/* Скрытие по структуре (белые блоки с изображениями) */
+/* Используем более простые селекторы для совместимости */
+div[style*="background: white"] img,
+div[style*="background-color: white"] img {
+    display: none !important;
+}
+
+/* Принудительное скрытие всех подозрительных элементов */
+body > div:not([class]):not([id]):not([style]) {
+    display: none !important;
+}
+
+/* Скрытие элементов с определенными стилями */
+div[style*="margin: 0px auto"],
+div[style*="text-align: center"] {
+    display: none !important;
 }
