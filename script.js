@@ -256,186 +256,9 @@ document.querySelectorAll('.project-card').forEach(card => {
     });
 });
 
-// Enhanced form handling
-const contactForm = document.getElementById('contactForm');
-if (contactForm) {
-    // Валидация в реальном времени
-    const inputs = contactForm.querySelectorAll('input, textarea');
-    inputs.forEach(input => {
-        input.addEventListener('blur', validateField);
-        input.addEventListener('input', clearFieldError);
-    });
-    
-    contactForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-        // Очищаем предыдущие ошибки
-        clearAllErrors();
-        
-        const formData = new FormData(this);
-        const name = formData.get('name').trim();
-        const email = formData.get('email').trim();
-        const subject = formData.get('subject').trim();
-        const message = formData.get('message').trim();
-        
-        let hasErrors = false;
-        
-        // Валидация имени
-        if (!name || name.length < 2) {
-            showFieldError('name', 'Имя должно содержать минимум 2 символа');
-            hasErrors = true;
-        }
-        
-        // Валидация email
-        if (!email) {
-            showFieldError('email', 'Email обязателен');
-            hasErrors = true;
-        } else if (!isValidEmail(email)) {
-            showFieldError('email', 'Введите корректный email адрес');
-            hasErrors = true;
-        }
-        
-        // Валидация темы
-        if (!subject || subject.length < 5) {
-            showFieldError('subject', 'Тема должна содержать минимум 5 символов');
-            hasErrors = true;
-        }
-        
-        // Валидация сообщения
-        if (!message || message.length < 10) {
-            showFieldError('message', 'Сообщение должно содержать минимум 10 символов');
-            hasErrors = true;
-        }
-        
-        if (hasErrors) {
-            showNotification('Пожалуйста, исправьте ошибки в форме', 'error');
-            return;
-        }
-        
-        const submitBtn = this.querySelector('button[type="submit"]');
-        const originalText = submitBtn.textContent;
-        
-        submitBtn.textContent = 'Отправляется...';
-        submitBtn.disabled = true;
-        
-        // Отправка через Formspree
-        fetch(this.action, {
-            method: 'POST',
-            body: formData,
-            headers: {
-                'Accept': 'application/json'
-            }
-        })
-        .then(response => {
-            if (response.ok) {
-                showNotification('Сообщение успешно отправлено! Мы свяжемся с вами в ближайшее время.', 'success');
-                this.reset();
-                clearAllErrors();
-            } else {
-                throw new Error('Ошибка отправки');
-            }
-        })
-        .catch(error => {
-            showNotification('Произошла ошибка при отправке сообщения. Пожалуйста, попробуйте еще раз.', 'error');
-            console.error('Form submission error:', error);
-        })
-        .finally(() => {
-            submitBtn.textContent = originalText;
-            submitBtn.disabled = false;
-        });
-    });
-}
+// Форма обрабатывается через EmailJS в HTML - убираем дублирующий код
 
-// Функции валидации
-function validateField(e) {
-    const field = e.target;
-    const value = field.value.trim();
-    
-    if (field.hasAttribute('required') && !value) {
-        showFieldError(field.id, 'Это поле обязательно для заполнения');
-    }
-}
-
-function clearFieldError(e) {
-    const field = e.target;
-    clearFieldErrorById(field.id);
-}
-
-function showFieldError(fieldId, message) {
-    const field = document.getElementById(fieldId);
-    if (!field) return;
-    
-    // Убираем предыдущую ошибку
-    clearFieldErrorById(fieldId);
-    
-    // Создаем элемент ошибки
-    const errorElement = document.createElement('div');
-    errorElement.className = 'field-error';
-    errorElement.textContent = message;
-    
-    // Добавляем класс ошибки к полю
-    field.classList.add('error');
-    
-    // Вставляем ошибку после поля
-    field.parentNode.appendChild(errorElement);
-}
-
-function clearFieldErrorById(fieldId) {
-    const field = document.getElementById(fieldId);
-    if (!field) return;
-    
-    // Убираем класс ошибки
-    field.classList.remove('error');
-    
-    // Убираем элемент ошибки
-    const errorElement = field.parentNode.querySelector('.field-error');
-    if (errorElement) {
-        errorElement.remove();
-    }
-}
-
-function clearAllErrors() {
-    const fields = contactForm.querySelectorAll('input, textarea');
-    fields.forEach(field => {
-        clearFieldErrorById(field.id);
-    });
-}
-
-function isValidEmail(email) {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
-}
-
-// Функция для показа уведомлений
-function showNotification(message, type = 'info') {
-    // Создаем элемент уведомления
-    const notification = document.createElement('div');
-    notification.className = `notification notification-${type}`;
-    notification.innerHTML = `
-        <div class="notification-content">
-            <span class="notification-message">${message}</span>
-            <button class="notification-close" onclick="this.parentElement.parentElement.remove()">×</button>
-        </div>
-    `;
-    
-    // Добавляем в body
-    document.body.appendChild(notification);
-    
-    // Показываем уведомление
-    setTimeout(() => {
-        notification.classList.add('show');
-    }, 100);
-    
-    // Автоматически скрываем через 5 секунд
-    setTimeout(() => {
-        notification.classList.remove('show');
-        setTimeout(() => {
-            if (notification.parentElement) {
-                notification.remove();
-            }
-        }, 300);
-    }, 5000);
-}
+// Функции валидации и уведомлений убраны - EmailJS обрабатывает форму
 
 // Article functions (support multiple articles by id)
 function showFullArticle(targetId) {
@@ -466,5 +289,90 @@ window.addEventListener('load', () => {
         });
     }, 500);
     
-
+    // Оптимизация видео для мобильных устройств
+    optimizeVideosForMobile();
 });
+
+// Функция оптимизации видео для мобильных устройств
+function optimizeVideosForMobile() {
+    // Проверяем, является ли устройство мобильным
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    
+    if (isMobile) {
+        // Добавляем класс для мобильной оптимизации
+        document.body.classList.add('mobile-optimized');
+        
+        // Проверяем скорость соединения (если доступно)
+        if ('connection' in navigator) {
+            const connection = navigator.connection;
+            
+            // Если соединение медленное, отключаем автовоспроизведение
+            if (connection.effectiveType === 'slow-2g' || connection.effectiveType === '2g') {
+                const videos = document.querySelectorAll('video');
+                videos.forEach(video => {
+                    video.autoplay = false;
+                    video.muted = false;
+                    
+                    // Добавляем кнопку воспроизведения
+                    addPlayButton(video);
+                });
+            }
+        }
+        
+        // Оптимизация для мобильных устройств
+        const videos = document.querySelectorAll('video');
+        videos.forEach(video => {
+            // Устанавливаем preload="metadata" для экономии трафика
+            video.preload = 'metadata';
+            
+            // Добавляем обработчик для паузы при скролле
+            let isPaused = false;
+            let scrollTimeout;
+            
+            window.addEventListener('scroll', () => {
+                if (!isPaused) {
+                    video.pause();
+                    isPaused = true;
+                }
+                
+                clearTimeout(scrollTimeout);
+                scrollTimeout = setTimeout(() => {
+                    if (video.autoplay) {
+                        video.play();
+                    }
+                    isPaused = false;
+                }, 1000);
+            });
+        });
+    }
+}
+
+// Функция добавления кнопки воспроизведения
+function addPlayButton(video) {
+    const playButton = document.createElement('button');
+    playButton.className = 'video-play-button';
+    playButton.innerHTML = '▶';
+    playButton.style.display = 'none';
+    
+    // Показываем кнопку при паузе
+    video.addEventListener('pause', () => {
+        playButton.style.display = 'block';
+    });
+    
+    // Скрываем кнопку при воспроизведении
+    video.addEventListener('play', () => {
+        playButton.style.display = 'none';
+    });
+    
+    // Обработчик клика по кнопке
+    playButton.addEventListener('click', () => {
+        video.play();
+    });
+    
+    // Добавляем кнопку в контейнер видео
+    const videoContainer = video.parentElement;
+    if (videoContainer) {
+        videoContainer.style.position = 'relative';
+        videoContainer.appendChild(playButton);
+    }
+}

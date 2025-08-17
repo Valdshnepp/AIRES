@@ -620,6 +620,9 @@ p {
     .article-video, .promo-video {
         object-fit: cover;
         object-position: center;
+        /* Оптимизация для мобильных устройств */
+        max-width: 100vw;
+        max-height: 50vh;
     }
     
     /* Дополнительные оптимизации для медленных соединений */
@@ -627,12 +630,26 @@ p {
         will-change: transform;
         backface-visibility: hidden;
         transform: translateZ(0);
+        /* Оптимизация производительности */
+        -webkit-transform: translateZ(0);
+        -moz-transform: translateZ(0);
+        -ms-transform: translateZ(0);
     }
     
     /* Улучшенная производительность для видео */
     .article-video-section, .promo {
         will-change: transform;
         backface-visibility: hidden;
+    }
+    
+    /* Дополнительная оптимизация для медленных соединений */
+    @media (max-width: 480px) {
+        .article-video, .promo-video {
+            /* Отключаем автовоспроизведение на очень медленных соединениях */
+            autoplay: false;
+            /* Уменьшаем качество для экономии трафика */
+            max-height: 40vh;
+        }
     }
 }
 
@@ -1908,5 +1925,60 @@ body.mobile-optimized .fade-in-up {
     
     .nav-list:not(.active) {
         animation: slideOutRight 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+}
+
+/* Оптимизация видео для мобильных устройств */
+@media (max-width: 768px) {
+    .promo-video, .article-video {
+        /* Оптимизация размера для мобильных */
+        max-height: 60vh;
+        width: 100%;
+        height: auto;
+        /* Улучшенная производительность */
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+        /* Оптимизация памяти */
+        will-change: auto;
+    }
+    
+    /* Отключаем сложные эффекты для видео на мобильных */
+    .promo, .article-video-section {
+        overflow: hidden;
+        position: relative;
+    }
+}
+
+/* Дополнительная оптимизация для очень медленных соединений */
+@media (max-width: 480px) and (max-device-width: 480px) {
+    .promo-video, .article-video {
+        /* Минимальные размеры для экономии трафика */
+        max-height: 50vh;
+        /* Отключаем автовоспроизведение на медленных соединениях */
+        autoplay: false;
+    }
+    
+    /* Показываем кнопку воспроизведения */
+    .video-play-button {
+        display: block !important;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 10;
+        background: rgba(0, 212, 255, 0.9);
+        border: none;
+        border-radius: 50%;
+        width: 80px;
+        height: 80px;
+        color: white;
+        font-size: 2rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+    
+    .video-play-button:hover {
+        background: rgba(0, 212, 255, 1);
+        transform: translate(-50%, -50%) scale(1.1);
     }
 }
