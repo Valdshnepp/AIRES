@@ -350,12 +350,51 @@ window.addEventListener('load', () => {
                         position: relative !important;
                         overflow: hidden !important;
                         width: 100% !important;
-                        height: 100% !important;
+                        height: 100vh !important;
+                        min-height: 100vh !important;
                     `;
                 }
             });
         }
     }, 3000);
+    
+    // Дополнительная проверка через 4 секунды для мобильных
+    setTimeout(() => {
+        if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+            // Принудительно исправляем размеры всех контейнеров видео
+            const videoContainers = document.querySelectorAll('.promo, .article-video-section');
+            videoContainers.forEach(container => {
+                container.style.cssText = `
+                    position: relative !important;
+                    overflow: hidden !important;
+                    width: 100% !important;
+                    height: 100vh !important;
+                    min-height: 100vh !important;
+                    max-height: none !important;
+                `;
+            });
+            
+            // Принудительно исправляем все видео
+            const videos = document.querySelectorAll('video');
+            videos.forEach(video => {
+                video.style.cssText = `
+                    display: block !important;
+                    visibility: visible !important;
+                    opacity: 1 !important;
+                    position: absolute !important;
+                    top: 0 !important;
+                    left: 0 !important;
+                    width: 100% !important;
+                    height: 100% !important;
+                    object-fit: cover !important;
+                    object-position: center !important;
+                    z-index: 1 !important;
+                    transform: none !important;
+                    -webkit-transform: none !important;
+                `;
+            });
+        }
+    }, 4000);
 });
 
 // Функция оптимизации видео для мобильных устройств
@@ -389,14 +428,22 @@ function optimizeVideosForMobile() {
             video.style.mozTransform = 'none';
             video.style.msTransform = 'none';
             
-            // Принудительно устанавливаем размеры контейнера
-            const container = video.parentElement;
-            if (container) {
-                container.style.position = 'relative';
-                container.style.overflow = 'hidden';
-                container.style.width = '100%';
-                container.style.height = '100%';
+                    // Принудительно устанавливаем размеры контейнера
+        const container = video.parentElement;
+        if (container) {
+            container.style.position = 'relative';
+            container.style.overflow = 'hidden';
+            container.style.width = '100%';
+            container.style.height = '100vh';
+            container.style.minHeight = '100vh';
+            
+            // Убираем все ограничения высоты
+            if (container.classList.contains('promo') || container.classList.contains('article-video-section')) {
+                container.style.height = '100vh';
+                container.style.minHeight = '100vh';
+                container.style.maxHeight = 'none';
             }
+        }
         });
         
         // Проверяем скорость соединения (если доступно)
