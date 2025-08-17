@@ -309,10 +309,53 @@ window.addEventListener('load', () => {
                 video.style.width = '100%';
                 video.style.height = '100%';
                 video.style.objectFit = 'cover';
+                video.style.objectPosition = 'center';
                 video.style.zIndex = '1';
+                
+                // Убираем все трансформации
+                video.style.transform = 'none';
+                video.style.webkitTransform = 'none';
+                video.style.mozTransform = 'none';
+                video.style.msTransform = 'none';
             }
         });
     }, 2000);
+    
+    // Дополнительная проверка через 3 секунды для мобильных
+    setTimeout(() => {
+        if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+            const videos = document.querySelectorAll('video');
+            videos.forEach(video => {
+                // Принудительно исправляем все стили
+                video.style.cssText = `
+                    display: block !important;
+                    visibility: visible !important;
+                    opacity: 1 !important;
+                    position: absolute !important;
+                    top: 0 !important;
+                    left: 0 !important;
+                    width: 100% !important;
+                    height: 100% !important;
+                    object-fit: cover !important;
+                    object-position: center !important;
+                    z-index: 1 !important;
+                    transform: none !important;
+                    -webkit-transform: none !important;
+                `;
+                
+                // Исправляем контейнер
+                const container = video.parentElement;
+                if (container) {
+                    container.style.cssText = `
+                        position: relative !important;
+                        overflow: hidden !important;
+                        width: 100% !important;
+                        height: 100% !important;
+                    `;
+                }
+            });
+        }
+    }, 3000);
 });
 
 // Функция оптимизации видео для мобильных устройств
@@ -337,7 +380,23 @@ function optimizeVideosForMobile() {
             video.style.width = '100%';
             video.style.height = '100%';
             video.style.objectFit = 'cover';
+            video.style.objectPosition = 'center';
             video.style.zIndex = '1';
+            
+            // Убираем все трансформации
+            video.style.transform = 'none';
+            video.style.webkitTransform = 'none';
+            video.style.mozTransform = 'none';
+            video.style.msTransform = 'none';
+            
+            // Принудительно устанавливаем размеры контейнера
+            const container = video.parentElement;
+            if (container) {
+                container.style.position = 'relative';
+                container.style.overflow = 'hidden';
+                container.style.width = '100%';
+                container.style.height = '100%';
+            }
         });
         
         // Проверяем скорость соединения (если доступно)

@@ -669,6 +669,9 @@ p {
     object-fit: cover;
     filter: brightness(0.7);
     z-index: 1;
+    /* Принудительно растягиваем на всю карточку */
+    transform: none !important;
+    -webkit-transform: none !important;
 }
 
 .article-video-overlay {
@@ -1331,6 +1334,9 @@ p {
     object-fit: cover;
     filter: brightness(0.7);
     z-index: 1;
+    /* Принудительно центрируем видео */
+    transform: none !important;
+    -webkit-transform: none !important;
 }
 
 .promo-overlay {
@@ -1954,21 +1960,29 @@ body.mobile-optimized .fade-in-up {
 @media (max-width: 768px) {
     .promo-video, .article-video {
         /* Оптимизация размера для мобильных */
-        max-height: 60vh;
-        width: 100%;
+        max-height: none !important; /* Убираем ограничение высоты */
+        width: 100% !important;
         height: 100% !important; /* Принудительно устанавливаем высоту */
-        object-fit: cover; /* Сохраняем пропорции */
-        /* Улучшенная производительность */
-        -webkit-transform: translateZ(0);
-        transform: translateZ(0);
+        object-fit: cover !important; /* Сохраняем пропорции */
+        /* Убираем все трансформации */
+        transform: none !important;
+        -webkit-transform: none !important;
         /* Оптимизация памяти */
         will-change: auto;
+        /* Принудительно центрируем */
+        top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        bottom: 0 !important;
     }
     
     /* Отключаем сложные эффекты для видео на мобильных */
     .promo, .article-video-section {
         overflow: hidden;
         position: relative;
+        /* Принудительно устанавливаем размеры */
+        width: 100% !important;
+        height: 100% !important;
     }
     
     /* Исправляем позиционирование видео на мобильных */
@@ -1979,6 +1993,8 @@ body.mobile-optimized .fade-in-up {
         transform: none !important;
         width: 100% !important;
         height: 100% !important;
+        /* Принудительно центрируем */
+        object-position: center !important;
     }
     
     .article-video {
@@ -1988,6 +2004,8 @@ body.mobile-optimized .fade-in-up {
         transform: none !important;
         width: 100% !important;
         height: 100% !important;
+        /* Принудительно центрируем */
+        object-position: center !important;
     }
 }
 
@@ -2048,5 +2066,47 @@ body.mobile-optimized .fade-in-up {
     .promo-video, .article-video {
         transform: none !important;
         -webkit-transform: none !important;
+    }
+    
+    /* Принудительно исправляем размеры и позиционирование */
+    .promo-video {
+        position: absolute !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover !important;
+        object-position: center !important;
+        transform: none !important;
+        -webkit-transform: none !important;
+    }
+    
+    .article-video {
+        position: absolute !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover !important;
+        object-position: center !important;
+        transform: none !important;
+        -webkit-transform: none !important;
+    }
+    
+    /* Принудительно устанавливаем размеры контейнеров */
+    .promo {
+        width: 100% !important;
+        height: 100vh !important;
+        min-height: 400px !important;
+        position: relative !important;
+        overflow: hidden !important;
+    }
+    
+    .article-video-section {
+        width: 100% !important;
+        height: 100vh !important;
+        min-height: 400px !important;
+        position: relative !important;
+        overflow: hidden !important;
     }
 }
