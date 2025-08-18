@@ -588,12 +588,17 @@ p {
     width: 100%;
     height: 100vh;
     overflow: hidden;
+    border-radius: 20px 20px 0 0;
+    margin-bottom: -20px; /* Создаем эффект наложения */
 }
 
 .article-description {
     background: rgba(0, 0, 0, 0.95);
-    padding: 2rem;
+    padding: 3rem 2rem 2rem;
     text-align: center;
+    border-radius: 0 0 20px 20px;
+    position: relative;
+    z-index: 2;
 }
 
 @supports (height: 100dvh) {
@@ -1515,6 +1520,119 @@ html {
 
 /* Старые стили для онкологических статей удалены */
 
+/* Privacy Policy Page */
+.privacy-policy {
+    padding: 8rem 0 4rem;
+    background: #1a1a1a;
+    min-height: 100vh;
+}
+
+.privacy-content {
+    background: #2a2a2a;
+    border-radius: 20px;
+    padding: 3rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.privacy-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    color: #00d4ff;
+    text-align: center;
+}
+
+.privacy-section {
+    margin-bottom: 2.5rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid #3a3a3a;
+}
+
+.privacy-section:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+
+.privacy-section h2 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    color: #ffffff;
+}
+
+.privacy-section h3 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin: 1.5rem 0 0.5rem 0;
+    color: #00d4ff;
+}
+
+.privacy-section p {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    color: #b0b0b0;
+}
+
+.privacy-section ul {
+    margin: 1rem 0;
+    padding-left: 1.5rem;
+}
+
+.privacy-section li {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 0.5rem;
+    color: #b0b0b0;
+}
+
+.privacy-section a {
+    color: #00d4ff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.privacy-section a:hover {
+    color: #ffffff;
+}
+
+.privacy-back {
+    text-align: center;
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid #3a3a3a;
+}
+
+@media (max-width: 768px) {
+    .privacy-policy {
+        padding: 6rem 0 2rem;
+    }
+    
+    .privacy-content {
+        padding: 2rem;
+        margin: 0 1rem;
+    }
+    
+    .privacy-title {
+        font-size: 2rem;
+    }
+    
+    .privacy-section h2 {
+        font-size: 1.5rem;
+    }
+    
+    .privacy-section h3 {
+        font-size: 1.1rem;
+    }
+    
+    .privacy-section p,
+    .privacy-section li {
+        font-size: 0.95rem;
+    }
+}
+
 /* Smooth contact item transitions */
 .contact-item {
     opacity: 0;
@@ -1572,12 +1690,15 @@ html {
     }
     .video-container {
         height: 60vh; /* Уменьшаем высоту видео на мобильных */
+        border-radius: 15px 15px 0 0;
+        margin-bottom: -15px;
     }
     .video-title-overlay {
         padding: 2rem 1rem 1.5rem;
     }
     .article-description {
-        padding: 1.5rem;
+        padding: 2rem 1.5rem 1.5rem;
+        border-radius: 0 0 15px 15px;
     }
     .article-video-title {
         font-size: 1.8rem;
