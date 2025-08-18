@@ -50,7 +50,7 @@ function initializeAnimations() {
                 entry.target.classList.add('visible');
                 
                 // Animate child elements with delay (excluding video overlays)
-                const animatedElements = entry.target.querySelectorAll('.fade-in-up, .research-card, .project-card, .value-item, .stat-item, .contact-item, .article-stage');
+                const animatedElements = entry.target.querySelectorAll('.fade-in-up, .research-card, .project-card, .value-item, .stat-item, .contact-item');
                 animatedElements.forEach((el, index) => {
                     setTimeout(() => {
                         el.classList.add('visible');
@@ -79,10 +79,7 @@ function initializeAnimations() {
         elementObserver.observe(el);
     });
 
-    // Observe images (excluding article video)
-    document.querySelectorAll('.article-img').forEach(el => {
-        elementObserver.observe(el);
-    });
+    // Observe images (excluding article video) - удалено, так как изображения статей больше не используются
 
     // Observer for stats with counter animation
     const statsObserver = new IntersectionObserver((entries) => {
@@ -266,20 +263,7 @@ document.querySelectorAll('.project-card').forEach(card => {
 
 // Функции валидации и уведомлений убраны - EmailJS обрабатывает форму
 
-// Article functions (support multiple articles by id)
-function showFullArticle(targetId) {
-    // Hide all full-articles
-    document.querySelectorAll('.article-full').forEach(el => el.style.display = 'none');
-    const target = document.getElementById(targetId);
-    if (target) target.style.display = 'block';
-    // Убираем автоматический скролл - пользователь остается на месте
-}
-
-function showPreview(targetId) {
-    const target = document.getElementById(targetId);
-    if (target) target.style.display = 'none';
-    // Убираем автоматический скролл - пользователь остается на месте
-}
+/* Функции для полных статей удалены - теперь используются только видео с описаниями */
 
 // Enhanced page load animation
 window.addEventListener('load', () => {

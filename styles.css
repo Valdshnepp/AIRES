@@ -563,52 +563,17 @@ p {
     opacity: 0.8;
 }
 
-/* Стили для разных секций статей */
-.seismic-section {
-    margin-bottom: 2rem;
-    position: relative;
-}
-
-.oncology-section {
-    margin-top: 2rem;
-    position: relative;
-}
-
-/* Добавляем визуальное разделение между секциями */
-.seismic-section::after {
-    content: '';
-    position: absolute;
-    bottom: -1rem;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 60px;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.8), transparent);
-    border-radius: 1px;
-}
-
-.oncology-section::before {
-    content: '';
-    position: absolute;
-    top: -1rem;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 60px;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.8), transparent);
-    border-radius: 1px;
-}
+/* Старые стили для секций статей удалены */
 
 /* Article video section - no animations */
 .article-video-section {
     position: relative;
-    height: 100vh; /* fallback */
-    min-height: 100vh; /* fallback */
+    height: 200vh; /* Увеличиваем высоту для видео + текст */
+    min-height: 200vh; /* Увеличиваем минимальную высоту */
     overflow: hidden;
     background: #000;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    flex-direction: column; /* Располагаем элементы вертикально */
     opacity: 1 !important;
     transform: none !important;
 }
@@ -682,23 +647,16 @@ p {
 }
 
 .article-video {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    /* заполняем карточку без полос при любом соотношении */
-    min-width: 100%;
-    min-height: 100%;
-    width: auto;
-    height: auto;
+    position: relative;
+    width: 100%;
+    height: 100vh; /* Видео занимает только верхнюю половину */
     object-fit: cover;
     filter: brightness(0.7);
     z-index: 1;
-    transform: translate(-50%, -50%);
 }
 
 .article-video-overlay {
-    position: absolute;
-    inset: 0;
+    position: relative;
     z-index: 2;
     display: flex;
     flex-direction: column; /* располагаем элементы столбцом */
@@ -706,10 +664,13 @@ p {
     justify-content: center;
     text-align: center;
     color: #fff;
-    padding: 0 2rem;
+    padding: 2rem;
     max-width: 100%;
     opacity: 1 !important;
     transform: none !important;
+    background: rgba(0, 0, 0, 0.9);
+    height: 100vh; /* Высота равна высоте видео */
+    flex: 1; /* Занимает оставшееся пространство */
 }
 
 .article-video-title {
@@ -737,147 +698,9 @@ p {
   .article-video-overlay { padding: 0 12px; }
 }
 
-.article-video-btn {
-    display: inline-block;
-    padding: 1rem 2rem;
-    background: linear-gradient(135deg, #00d4ff 0%, #0099cc 100%);
-    color: white;
-    text-decoration: none;
-    border-radius: 50px;
-    font-weight: 500;
-    font-size: 1.1rem;
-    box-shadow: 0 8px 24px rgba(0, 212, 255, 0.35);
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
-    opacity: 1 !important;
-    transform: none !important;
-    border: none;
-    cursor: pointer;
-    font-family: inherit;
-    transition: all 0.3s ease;
-}
+/* Кнопки "Читать полностью" удалены */
 
-.article-video-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 12px 32px rgba(0, 212, 255, 0.4);
-    color: white;
-}
-
-.article-full {
-    background: #2a2a2a;
-    border-radius: 20px;
-    padding: 3rem;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-}
-
-.back-to-preview-btn {
-    margin-bottom: 2rem;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-}
-
-.article-content {
-    max-width: 100%;
-}
-
-.article-intro {
-    margin-bottom: 3rem;
-    padding-bottom: 2rem;
-    border-bottom: 2px solid #3a3a3a;
-}
-
-.article-intro h3 {
-    font-size: 2.5rem;
-    font-weight: 600;
-    margin-bottom: 1.5rem;
-    color: #ffffff;
-}
-
-.article-intro p {
-    font-size: 1.1rem;
-    line-height: 1.7;
-    margin-bottom: 1rem;
-    color: #b0b0b0;
-}
-
-.article-stage {
-    margin-bottom: 3rem;
-    padding: 2rem;
-    background: #1a1a1a;
-    border-radius: 15px;
-    border-left: 4px solid #00d4ff;
-}
-
-.article-stage h4 {
-    font-size: 1.5rem;
-    font-weight: 600;
-    margin-bottom: 1.5rem;
-    color: #ffffff;
-}
-
-.article-stage h5 {
-    font-size: 1.2rem;
-    font-weight: 600;
-    margin: 1.5rem 0 1rem 0;
-    color: #ffffff;
-}
-
-.stage-content {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    gap: 2rem;
-    align-items: start;
-}
-
-.stage-text p {
-    font-size: 1rem;
-    line-height: 1.6;
-    margin-bottom: 1rem;
-    color: #b0b0b0;
-}
-
-.stage-text ul {
-    margin: 1rem 0;
-    padding-left: 1.5rem;
-}
-
-.stage-text li {
-    font-size: 1rem;
-    line-height: 1.6;
-    margin-bottom: 0.5rem;
-    color: #b0b0b0;
-}
-
-.stage-image {
-    text-align: center;
-}
-
-.article-img {
-    width: 100%;
-    max-width: 300px;
-    height: auto;
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-}
-
-.article-conclusion {
-    background: #1a1a1a;
-    padding: 3rem;
-    border-radius: 15px;
-    text-align: center;
-    margin-top: 3rem;
-}
-
-.article-conclusion h3 {
-    color: #00d4ff;
-    margin-bottom: 1.5rem;
-}
-
-.article-conclusion p {
-    font-size: 1.1rem;
-    line-height: 1.7;
-    color: #b0b0b0;
-}
+/* Полные статьи удалены - теперь используются только видео с описаниями */
 
 /* Contact Section */
 .contact {
@@ -1219,17 +1042,9 @@ p {
     }
 
     /* Responsive adjustments for article */
-    .stage-content {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-    }
-    
-    .article-full {
-        padding: 2rem;
-    }
-    
-    .article-stage {
-        padding: 1.5rem;
+    .article-video-section {
+        height: 160vh;
+        min-height: 160vh;
     }
 
     /* Footer: center socials and contacts */
@@ -1544,7 +1359,7 @@ html {
 }
 
 /* Smooth button transitions */
-.btn, .article-video-btn {
+.btn {
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -1566,17 +1381,7 @@ html {
     transform: translateY(0);
 }
 
-/* Smooth image transitions */
-.article-img, .article-preview-img {
-    opacity: 0;
-    transform: scale(0.95);
-    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.article-img.visible, .article-preview-img.visible {
-    opacity: 1;
-    transform: scale(1);
-}
+/* Старые стили для изображений статей удалены */
 
 /* Smooth form transitions */
 .form-group input, .form-group textarea {
@@ -1690,134 +1495,9 @@ html {
     }
 }
 
-/* Smooth article transitions */
-.article-stage {
-    opacity: 0;
-    transform: translateX(-20px);
-    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-}
+/* Старые стили для стадий статей удалены */
 
-.article-stage.visible {
-    opacity: 1;
-    transform: translateX(0);
-}
-
-/* Oncology article section */
-.article-oncology-section {
-    margin-top: 4rem;
-    padding-top: 3rem;
-    border-top: 2px solid rgba(0, 212, 255, 0.3);
-}
-
-.article-oncology-content {
-    background: rgba(42, 42, 42, 0.8);
-    border-radius: 20px;
-    padding: 3rem;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-    backdrop-filter: blur(10px);
-}
-
-.article-oncology-title {
-    font-size: 2.5rem;
-    font-weight: 600;
-    margin-bottom: 2rem;
-    color: #00d4ff;
-    text-align: center;
-}
-
-.article-oncology-intro {
-    margin-bottom: 3rem;
-    padding-bottom: 2rem;
-    border-bottom: 2px solid rgba(0, 212, 255, 0.2);
-}
-
-.article-oncology-intro h4 {
-    font-size: 1.8rem;
-    font-weight: 600;
-    margin-bottom: 1.5rem;
-    color: #ffffff;
-}
-
-.article-oncology-intro p {
-    font-size: 1.1rem;
-    line-height: 1.7;
-    margin-bottom: 1rem;
-    color: #b0b0b0;
-}
-
-.article-oncology-stage {
-    margin-bottom: 2.5rem;
-    padding: 2rem;
-    background: rgba(26, 26, 26, 0.8);
-    border-radius: 15px;
-    border-left: 4px solid #00d4ff;
-}
-
-.article-oncology-stage h4 {
-    font-size: 1.5rem;
-    font-weight: 600;
-    margin-bottom: 1.5rem;
-    color: #ffffff;
-}
-
-.article-oncology-stage p {
-    font-size: 1rem;
-    line-height: 1.6;
-    margin-bottom: 1rem;
-    color: #b0b0b0;
-}
-
-.oncology-stage-content {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    gap: 2rem;
-    align-items: start;
-}
-
-.oncology-stage-text h4 {
-    font-size: 1.5rem;
-    font-weight: 600;
-    margin-bottom: 1.5rem;
-    color: #ffffff;
-}
-
-.oncology-stage-text p {
-    font-size: 1rem;
-    line-height: 1.6;
-    margin-bottom: 1rem;
-    color: #b0b0b0;
-}
-
-.oncology-stage-image {
-    text-align: center;
-}
-
-.oncology-img {
-    width: 100%;
-    max-width: 300px;
-    height: auto;
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-}
-
-@media (max-width: 768px) {
-    .oncology-stage-content {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-    }
-    
-    .article-oncology-content {
-        padding: 2rem;
-    }
-    
-    .article-oncology-stage {
-        padding: 1.5rem;
-    }
-    
-    .article-oncology-title {
-        font-size: 2rem;
-    }
-}
+/* Старые стили для онкологических статей удалены */
 
 /* Smooth contact item transitions */
 .contact-item {
@@ -1849,12 +1529,12 @@ html {
 }
 
 /* Video overlay elements should always be visible */
-.article-video-title, .article-video-subtitle, .article-video-btn {
+.article-video-title, .article-video-subtitle {
     opacity: 1 !important;
     transform: none !important;
 }
 
-.article-video-title.visible, .article-video-subtitle.visible, .article-video-btn.visible {
+.article-video-title.visible, .article-video-subtitle.visible {
     opacity: 1 !important;
     transform: none !important;
 }
@@ -1871,22 +1551,27 @@ html {
 
 @media (max-width: 768px) {
     .article-video-section {
-        height: 80vh;
+        height: 160vh; /* Уменьшаем высоту на мобильных */
+        min-height: 160vh;
+    }
+    .article-video {
+        height: 80vh; /* Уменьшаем высоту видео на мобильных */
+    }
+    .article-video-overlay {
+        height: 80vh; /* Уменьшаем высоту оверлея на мобильных */
+        padding: 1rem;
     }
     .article-video-title {
-        font-size: 2rem;
+        font-size: 1.8rem;
+    }
+    .article-video-subtitle {
+        font-size: 0.9rem;
     }
     
     /* Улучшенные стили для мобильных устройств */
     .article-separator {
-        margin: 2rem 0;
-        height: 3px;
-    }
-    
-    .seismic-section::after,
-    .oncology-section::before {
-        width: 40px;
-        height: 1px;
+        margin: 1rem 0;
+        height: 2px;
     }
     
     .article-full {
@@ -2025,9 +1710,7 @@ section,
 .section-title, .hero-title, .hero-subtitle, .hero-description,
 .fade-in-up,
 .research-card, .project-card, .value-item, .stat-item,
-.contact-item,
-.article-stage,
-.article-img, .article-preview-img {
+.contact-item {
     display: block !important;
     opacity: 1 !important;
     visibility: visible !important;

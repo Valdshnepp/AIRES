@@ -211,316 +211,112 @@
         <div class="container">
             <h2 class="section-title fade-in-up">Наши исследования</h2>
             
-            <!-- Video section: Seismic -->
-            <div class="article-video-section seismic-section">
+            <!-- Video 1: Vegetables -->
+            <div class="article-video-section">
                 <video class="article-video" autoplay muted loop playsinline preload="metadata">
-                    <source src="https://storage.yandexcloud.net/aires-media/video/seysmik.mp4" type="video/mp4">
+                    <source src="https://storage.yandexcloud.net/aires-media/video/vegetables.mp4" type="video/mp4">
                 </video>
                 <div class="article-video-overlay">
-                    <h3 class="article-video-title">Анализ сейсмической устойчивости зданий</h3>
-                    <p class="article-video-subtitle">Современные подходы к проектированию и оценке безопасности зданий с применением машинного обучения</p>
-                    <button class="article-video-btn" onclick="showFullArticle('article-seismic-full')">Читать полностью</button>
+                    <h3 class="article-video-title">Робот-манипулятор нового поколения</h3>
+                    <p class="article-video-subtitle">Умная система, которая сама сортирует и калибрует овощи по точным параметрам качества</p>
                 </div>
             </div>
             
-            <!-- Полная статья (скрыта по умолчанию): Seismic -->
-            <div class="article-full" id="article-seismic-full" style="display: none;">
-                <button class="btn btn-secondary back-to-preview-btn" onclick="showPreview('article-seismic-full')">← Вернуться к превью</button>
-                
-                <div class="article-content">
-                    <div class="article-intro fade-in-up">
-                        <h3>Анализ сейсмической устойчивости зданий с применением машинного обучения</h3>
-                        <p>Современные подходы к проектированию и оценке безопасности зданий всё чаще включают в себя технологии машинного обучения и компьютерного моделирования. Наш проект представляет собой комплексную систему, способную автоматически определять и классифицировать повреждения в конструктивных элементах зданий, а также прогнозировать их поведение при сейсмических воздействиях.</p>
-                        <p>Мы выбрали в качестве тестового объекта типовую пятиэтажную панельную застройку советского образца — дом, аналогичный тысячам реальных построек, всё ещё эксплуатируемых в сейсмоопасных районах. Такой объект удобен тем, что он имеет стандартную модульную конструкцию, но в то же время подвержен целому спектру дефектов, накопленных за десятилетия эксплуатации.</p>
-                    </div>
-
-                    <div class="article-stage fade-in-up">
-                        <div class="stage-content">
-                            <div class="stage-text">
-                                <h4>Этап 1. Моделирование и процедурная генерация дефектов</h4>
-                                <p>В среде FreeCAD была воссоздана детализированная 3D-модель пятиэтажки, включая несущие стены, перекрытия, лестничные пролёты и плитные панели. Модель имела полный конструктивный разбор — каждая плита была представлена как отдельный объект, что позволило индивидуально накладывать на неё дефекты.</p>
-                                <p>В проекте мы сосредоточились на четырёх типах повреждений:</p>
-                                <ul>
-                                    <li>Трещины — с варьируемой длиной, толщиной и формой (прямые, разветвлённые, сетчатые).</li>
-                                    <li>Открепления — дефекты в местах крепления плит, моделировавшиеся с помощью смещения и ослабления материала в CAD.</li>
-                                    <li>Царапины — поверхностные повреждения бетона, моделировались с шумовыми картами.</li>
-                                    <li>Разрушения материала — выкрашивания и обломы с реальным снятием фрагментов в геометрии модели.</li>
-                                </ul>
-                                <p>Для генерации дефектов был разработан алгоритм, интегрированный в FreeCAD, который случайным образом выбирал набор плит, типы дефектов и их параметры. При этом учитывались правила совместимости — например, два крупных разрушения не могли находиться в одной плите рядом с несущей стеной, а трещины часто сопровождались зонами мелких царапин.</p>
-                                <p>Результат — десятки тысяч уникальных виртуальных сценариев повреждений, каждый из которых можно было использовать для дальнейшего анализа.</p>
-                            </div>
-                            <div class="stage-image">
-                                <img src="dom1.jpg" alt="Этап 1: Моделирование дефектов" class="article-img">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="article-stage fade-in-up">
-                        <div class="stage-content">
-                            <div class="stage-text">
-                                <h4>Этап 2. Моделирование сейсмических воздействий</h4>
-                                <p>Чтобы оценить, как здание поведёт себя при землетрясении, мы разработали плагин для FreeCAD, интегрированный с расчётным модулем метода конечных элементов (FEM). Этот модуль позволял рассчитывать:</p>
-                                <ul>
-                                    <li>Распределение напряжений и деформаций в каждой плите.</li>
-                                    <li>Временную эволюцию колебаний конструкции.</li>
-                                    <li>Волновые карты, отображающие распространение сейсмических волн через элементы здания.</li>
-                                </ul>
-                                <p>При моделировании использовалась модель Рэлея для затухания, позволяющая учитывать потери энергии в материале, и трёхкомпонентная запись сейсмограммы, приближенная к реальным землетрясениям средней магнитуды.</p>
-                                <p>Выходные данные включали:</p>
-                                <ul>
-                                    <li>Тензорные поля напряжений для каждой точки сетки.</li>
-                                    <li>Цветовые карты визуализации волн — они и стали основой для обучения нейросети YOLOv5.</li>
-                                    <li>Анимированные ролики распространения колебаний (использовались для верификации расчётов).</li>
-                                </ul>
-                            </div>
-                            <div class="stage-image">
-                                <img src="dom2.png" alt="Этап 2: Сейсмические воздействия" class="article-img">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="article-stage fade-in-up">
-                        <div class="stage-content">
-                            <div class="stage-text">
-                                <h4>Этап 3. Обработка данных и машинное обучение</h4>
-                                <p>Собранные данные анализировались двумя взаимосвязанными подсистемами:</p>
-                                <h5>1. Обнаружение дефектов на визуализациях волн (YOLOv5)</h5>
-                                <ul>
-                                    <li>Архитектура YOLOv5 (самая новая, на момент реализации проекта) была выбрана за баланс между скоростью и точностью.</li>
-                                    <li>Для обучения использовались 40 000 сгенерированных изображений с аннотированными зонами дефектов.</li>
-                                    <li>Итоговые показатели: mAP@0.5 = 94.7%, Recall = 92.3%, Precision = 96.1%, Accuracy = 83.2%.</li>
-                                </ul>
-                                <h5>2. Прогнозирование критичности дефектов (полносвязная сеть)</h5>
-                                <ul>
-                                    <li>На вход подавались нормализованные тензоры напряжений.</li>
-                                    <li>Выход сети — вероятность принадлежности элемента к конкретному классу повреждений.</li>
-                                    <li>Итоговые показатели: Recall = 94.8%, Precision = 97.5%, Accuracy = 89.4%.</li>
-                                </ul>
-                            </div>
-                            <div class="stage-image">
-                                <img src="dom3.png" alt="Этап 3: Машинное обучение" class="article-img">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="article-stage fade-in-up">
-                        <div class="stage-content">
-                            <div class="stage-text">
-                                <h4>Этап 4. Интеграция и презентация системы</h4>
-                                <p>Результаты работы двух моделей объединялись в интерфейсе, где пользователь мог:</p>
-                                <ul>
-                                    <li>Загрузить CAD-модель здания.</li>
-                                    <li>Выполнить расчёт сейсмических волн.</li>
-                                    <li>Получить автоматическую разметку дефектов и прогноз их опасности.</li>
-                                </ul>
-                                <p>Для демонстрации возможностей проекта была проведена серия реальных экспериментов на современной модели здания.</p>
-                            </div>
-                            <div class="stage-image">
-                                <img src="dom4.png" alt="Этап 4: Интеграция системы" class="article-img">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="article-stage fade-in-up">
-                        <div class="stage-content">
-                            <div class="stage-text">
-                                <h4>Выводы</h4>
-                                <p>Разработанная система демонстрирует, как можно объединить CAD-моделирование, FEM-расчёты и машинное обучение в единую платформу для анализа сейсмостойкости. Такой подход не только сокращает время оценки состояния зданий, но и позволяет выявлять опасные дефекты ещё на этапе проектирования или реконструкции.</p>
-                            </div>
-                            <div class="stage-image">
-                                <img src="dom5.png" alt="Заключение проекта" class="article-img">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Разделитель между статьями -->
+            <!-- Разделитель -->
             <div class="article-separator"></div>
-
-            <!-- Oncology preview video section -->
-            <div class="article-video-section oncology-section">
+            
+            <!-- Video 2: Seismic -->
+            <div class="article-video-section">
                 <video class="article-video" autoplay muted loop playsinline preload="metadata">
-                    <source src="https://storage.yandexcloud.net/aires-media/video/seysmik.mp4" type="video/mp4">
+                    <source src="https://storage.yandexcloud.net/aires-media/video/seismic.mp4" type="video/mp4">
                 </video>
                 <div class="article-video-overlay">
-                    <h3 class="article-video-title">Диагностика рака с помощью нейронных сетей</h3>
-                    <p class="article-video-subtitle">Обнаружение и пояснение признаков заболевания на биопсийных изображениях с помощью ИИ</p>
-                    <button class="article-video-btn" onclick="showFullArticle('article-oncology-full')">Читать полностью</button>
+                    <h3 class="article-video-title">Анализ сейсмических аномалий</h3>
+                    <p class="article-video-subtitle">Алгоритм машинного обучения для анализа сейсмических аномалий и оценки состояния аварийных зданий после землетрясений и других экстремальных воздействий. Система позволяет выявлять степень повреждений, формировать данные для оптимизации технологических процессов восстановления и повышать эффективность принятия решений в условиях ограниченного времени</p>
                 </div>
             </div>
-
-            <!-- Robotics welding preview video section -->
-            <div class="article-video-section robotics-section">
+            
+            <!-- Разделитель -->
+            <div class="article-separator"></div>
+            
+            <!-- Video 3: Oncology -->
+            <div class="article-video-section">
                 <video class="article-video" autoplay muted loop playsinline preload="metadata">
-                    <source src="draft_01.mp4" type="video/mp4">
+                    <source src="https://storage.yandexcloud.net/aires-media/video/oncology.mp4" type="video/mp4">
                 </video>
                 <div class="article-video-overlay">
-                    <h3 class="article-video-title">Робот‑сварщик: разработка и калибровка</h3>
-                    <p class="article-video-subtitle">Модель, калибровка датчиков, слежение за швом и управление дугой в реальном времени</p>
-                    <button class="article-video-btn" onclick="showFullArticle('article-robotics-full')">Читать полностью</button>
+                    <h3 class="article-video-title">Выявление онкологических заболеваний</h3>
+                    <p class="article-video-subtitle">Алгоритм машинного обучения для выявления онкологических заболеваний на основе анализа медицинских изображений — рентгеновских снимков и гистологических срезов. Система поддерживает врачей в постановке диагноза, выборе оптимального лечения и прогнозировании течения болезни, повышая точность и скорость медицинских решений</p>
                 </div>
             </div>
-
-            <!-- Полная статья: Робот‑сварщик (скрыта по умолчанию) -->
-            <div class="article-full" id="article-robotics-full" style="display: none;">
-                <button class="btn btn-secondary back-to-preview-btn" onclick="showPreview('article-robotics-full')">← Вернуться к превью</button>
-                <div class="article-content">
-                    <div class="article-intro fade-in-up">
-                        <h3>Разработка и калибровка робота‑сварщика для автоматизации сварочного процесса</h3>
-                        <p>Автоматизация сварки повышает стабильность и качество швов, ускоряет производство и снижает риски. Точная модель и калибровка сенсоров обеспечивают уверенное следование по шву с высокой повторяемостью.</p>
-                    </div>
-                    <div class="article-stage fade-in-up">
-                        <h4>Краткая суть проекта</h4>
-                        <p>Математическая модель манипулятора, калибровка конусного дальномера и base‑to‑world, слежение за швом и управление траекторией/параметрами сварки.</p>
-                    </div>
-                    <div class="article-stage fade-in-up">
-                        <h4>Этап 1 — постановка и спецификация</h4>
-                        <ul>
-                            <li>Точность, повторяемость, скорость и режимы сварки.</li>
-                            <li>Механика и сенсорика, протоколы и реальные‑временные требования.</li>
-                        </ul>
-                    </div>
-                    <div class="article-stage fade-in-up">
-                        <h4>Этап 2 — кинематика и ориентация</h4>
-                        <p>Матрицы однородных преобразований, Д‑Х нотация, прямая/обратная кинематика, якобиан и устойчивые псевдообратные решения.</p>
-                    </div>
-                    <div class="article-stage fade-in-up">
-                        <h4>Этап 3 — датчик и калибровка</h4>
-                        <p>Конус лучей, hand‑eye (Tsai–Lenz), MSE‑оптимизация, фильтрация и выделение профиля шва.</p>
-                    </div>
-                    <div class="article-stage fade-in-up">
-                        <h4>Этап 4 — слежение и траектории</h4>
-                        <p>Визуальное сервоуправление, гладкая интерполяция, null‑space и избегание коллизий.</p>
-                    </div>
-                    <div class="article-stage fade-in-up">
-                        <h4>Этап 5 — управление дугой</h4>
-                        <p>Синхронизация, параметры источника, поддержание длины дуги и адаптивная скорость.</p>
-                    </div>
-                    <div class="article-stage fade-in-up">
-                        <h4>Этап 6 — архитектура ПО</h4>
-                        <p>RTOS, ROS, SCADA; модули: кинематика, сенсорная обработка, планирование, контроллер процесса и логирование.</p>
-                    </div>
-                    <div class="article-stage fade-in-up">
-                        <h4>Этап 7 — симуляция и тесты</h4>
-                        <p>Цифровой двойник, стендовые испытания, устойчивость к шуму, метрики ошибки и качества шва.</p>
-                    </div>
-                    <div class="article-stage fade-in-up">
-                        <h4>Этап 8 — мониторинг и оптимизация</h4>
-                        <p>Постпроцессинг логов, аналитика дефектов, адаптивные стратегии с ML.</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Climate networks preview video section -->
-            <div class="article-video-section climate-section">
+            
+            <!-- Разделитель -->
+            <div class="article-separator"></div>
+            
+            <!-- Video 4: Tetrahedron -->
+            <div class="article-video-section">
                 <video class="article-video" autoplay muted loop playsinline preload="metadata">
-                    <source src="https://storage.yandexcloud.net/aires-media/video/seysmik.mp4" type="video/mp4">
+                    <source src="https://storage.yandexcloud.net/aires-media/video/tetrahedron.mp4" type="video/mp4">
                 </video>
                 <div class="article-video-overlay">
-                    <h3 class="article-video-title">Сетевые модели в климатических исследованиях</h3>
-                    <p class="article-video-subtitle">Графы температурных связей городов и сезонные закономерности</p>
-                    <button class="article-video-btn" onclick="showFullArticle('article-climate-full')">Читать полностью</button>
+                    <h3 class="article-video-title">Исследование тетраэдральной конфигурации спутников</h3>
+                    <p class="article-video-subtitle">Исследовательский проект по изучению эволюции тетраэдральной конфигурации из четырёх спутников, движущихся по кеплеровым орбитам. Целью является выявление аномалий в их динамике, которые могут указывать на присутствие тёмной материи и помочь глубже понять её распределение в космическом пространстве</p>
                 </div>
             </div>
-
-            <!-- Полная статья: Климатические сети (скрыта по умолчанию) -->
-            <div class="article-full" id="article-climate-full" style="display: none;">
-                <button class="btn btn-secondary back-to-preview-btn" onclick="showPreview('article-climate-full')">← Вернуться к превью</button>
-                <div class="article-content">
-                    <div class="article-stage fade-in-up">
-                        <h4>Почему это важно</h4>
-                        <p>Сетевой взгляд на климат выявляет скрытые связи городов и повышает точность прогнозов.</p>
-                        <div class="stage-image"><img src="pogoda1.png" alt="Климат 1" class="article-img"></div>
-                    </div>
-                    <div class="article-stage fade-in-up">
-                        <h4>Этап 1. Сбор и подготовка данных</h4>
-                        <p>Почасовая температура 2023 года для 7 городов, агрегации на суточный/недельный уровни, деление на сезоны и периоды.</p>
-                        <div class="stage-image"><img src="pogoda2.png" alt="Климат 2" class="article-img"></div>
-                    </div>
-                    <div class="article-stage fade-in-up">
-                        <h4>Этап 2. Корреляции</h4>
-                        <p>Матрицы Пирсона/Кендалла и тепловые карты кластеров.</p>
-                        <div class="stage-image"><img src="pogoda3.png" alt="Климат 3" class="article-img"></div>
-                    </div>
-                    <div class="article-stage fade-in-up">
-                        <h4>Этап 3. Графы</h4>
-                        <p>Построение сетей по порогам/критериям, анализ связности, клики, независимые множества, спектральный радиус.</p>
-                        <div class="stage-image"><img src="pogoda4.png" alt="Климат 4" class="article-img"></div>
-                    </div>
-                    <div class="article-stage fade-in-up">
-                        <h4>Этап 4. Сезонность</h4>
-                        <p>Весна/осень — плотные кластеры средней полосы; лето/зима — рост изоляции городов.</p>
-                        <div class="stage-image"><img src="pogoda5.png" alt="Климат 5" class="article-img"></div>
-                    </div>
-                    <div class="article-stage fade-in-up">
-                        <h4>Этап 6. Стабильность и прогноз</h4>
-                        <p>Конкордация Кендалла, метрические сравнения матриц, ARIMAX для переноса информации между городами.</p>
-                        <div class="stage-image"><img src="pogoda6.png" alt="Климат 6" class="article-img"></div>
-                    </div>
+            
+            <!-- Разделитель -->
+            <div class="article-separator"></div>
+            
+            <!-- Video 5: Weather -->
+            <div class="article-video-section">
+                <video class="article-video" autoplay muted loop playsinline preload="metadata">
+                    <source src="https://storage.yandexcloud.net/aires-media/video/weather.mp4" type="video/mp4">
+                </video>
+                <div class="article-video-overlay">
+                    <h3 class="article-video-title">Предсказание погодных условий</h3>
+                    <p class="article-video-subtitle">Проект по разработке сетевых моделей для предсказания погодных условий на основе климатических данных. Система позволяет выявлять закономерности в изменениях климата, повышать точность прогнозов и создавать основу для долгосрочных климатических исследований</p>
                 </div>
             </div>
-
-            <!-- Oncology full article (hidden by default) -->
-            <div class="article-full" id="article-oncology-full" style="display: none;">
-                <button class="btn btn-secondary back-to-preview-btn" onclick="showPreview('article-oncology-full')">← Вернуться к превью</button>
-                <div class="article-oncology-content">
-                    <div class="article-oncology-intro">
-                        <h4>Почему это важно</h4>
-                        <p>Рак предстательной железы — одно из самых распространённых онкологических заболеваний среди мужчин. Каждый год врачи по всему миру сталкиваются с миллионами новых случаев, и чем раньше поставлен диагноз, тем выше шанс на успешное лечение. Но диагностика проводится на основе биопсий — микроскопического анализа тканей. Это сложная, длительная и подверженная человеческому фактору процедура.</p>
-                        <p>Проект направлен на создание надёжной автоматической системы, способной находить признаки заболевания на снимках, показывать, где именно находится поражённая ткань, и работать одинаково хорошо на данных из разных лабораторий.</p>
-                    </div>
-
-                    <div class="article-oncology-stage">
-                        <h4>Этап 1. Подготовка данных</h4>
-                        <p>Для обучения использовался крупнейший в мире открытый набор изображений биопсий рака простаты — PANDA. Огромные сканы были разрезаны на фрагменты, лишние области удалены, цвета нормализованы, применены методы аугментации.</p>
-                    </div>
-
-                    <div class="article-oncology-stage">
-                        <div class="oncology-stage-content">
-                            <div class="oncology-stage-text">
-                                <h4>Этап 2. Классификация</h4>
-                                <p>В качестве основы использована EfficientNet‑B0, дообученная на медицинских данных. Итоговые результаты: QWK 0.904, Accuracy 0.721, Sensitivity 0.993, Specificity 0.908.</p>
-                            </div>
-                            <div class="oncology-stage-image">
-                                <img src="onko1.png" alt="Классификация, этап 2" class="oncology-img">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="article-oncology-stage">
-                        <div class="oncology-stage-content">
-                            <div class="oncology-stage-text">
-                                <h4>Этап 3. Пояснения к решениям</h4>
-                                <p>Методы визуализации выделяют области, наиболее значимые для модели при постановке диагноза. Они совпадают с поражёнными участками ткани, повышая доверие к решениям.</p>
-                            </div>
-                            <div class="oncology-stage-image">
-                                <img src="onko2.png" alt="Пояснения к решениям" class="oncology-img">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="article-oncology-stage">
-                        <div class="oncology-stage-content">
-                            <div class="oncology-stage-text">
-                                <h4>Этап 4. Грубая сегментация</h4>
-                                <p>Карты важности преобразуются в контуры поражённых областей, что даёт врачу наглядное представление о локализации проблемы.</p>
-                            </div>
-                            <div class="oncology-stage-image">
-                                <img src="onko3.png" alt="Сегментация" class="oncology-img">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="article-oncology-stage">
-                        <h4>Этап 5. Адаптация к новым данным</h4>
-                        <p>Модель, обученная на PANDA, быстро дообучается под данные любой лаборатории, сохраняя высокое качество предсказаний.</p>
-                    </div>
-
-                    <div class="article-oncology-stage">
-                        <h4>Итог</h4>
-                        <p>Система определяет степень рака, показывает значимые области, выделяет подозрительные зоны и адаптируется к данным из разных источников.</p>
-                    </div>
+            
+            <!-- Разделитель -->
+            <div class="article-separator"></div>
+            
+            <!-- Video 6: Cryptocurrency -->
+            <div class="article-video-section">
+                <video class="article-video" autoplay muted loop playsinline preload="metadata">
+                    <source src="https://storage.yandexcloud.net/aires-media/video/cryptocurrency.mp4" type="video/mp4">
+                </video>
+                <div class="article-video-overlay">
+                    <h3 class="article-video-title">Криптовалютная система</h3>
+                    <p class="article-video-subtitle">Проект по созданию и развитию криптовалютной системы, основанной на современных принципах децентрализации и безопасности. Решение включает разработку инфраструктуры для быстрых и надёжных транзакций, а также стратегии продвижения и интеграции в финансовые и бизнес-процессы</p>
+                </div>
+            </div>
+            
+            <!-- Разделитель -->
+            <div class="article-separator"></div>
+            
+            <!-- Video 7: Robotfone -->
+            <div class="article-video-section">
+                <video class="article-video" autoplay muted loop playsinline preload="metadata">
+                    <source src="https://storage.yandexcloud.net/aires-media/video/robotfone.mp4" type="video/mp4">
+                </video>
+                <div class="article-video-overlay">
+                    <h3 class="article-video-title">Нейросетевая модель для детекции объектов</h3>
+                    <p class="article-video-subtitle">Нейросетевая модель для детекции объектов</p>
+                </div>
+            </div>
+            
+            <!-- Разделитель -->
+            <div class="article-separator"></div>
+            
+            <!-- Video 8: Robot Welder -->
+            <div class="article-video-section">
+                <video class="article-video" autoplay muted loop playsinline preload="metadata">
+                    <source src="https://storage.yandexcloud.net/aires-media/video/robot-welder.mp4" type="video/mp4">
+                </video>
+                <div class="article-video-overlay">
+                    <h3 class="article-video-title">Робот сварщик</h3>
+                    <p class="article-video-subtitle">Робот сварщик</p>
                 </div>
             </div>
         </div>
