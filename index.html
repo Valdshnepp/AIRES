@@ -350,6 +350,117 @@
                 </div>
             </div>
 
+            <!-- Robotics welding preview video section -->
+            <div class="article-video-section robotics-section">
+                <video class="article-video" autoplay muted loop playsinline preload="metadata">
+                    <source src="draft_01.mp4" type="video/mp4">
+                </video>
+                <div class="article-video-overlay">
+                    <h3 class="article-video-title">Робот‑сварщик: разработка и калибровка</h3>
+                    <p class="article-video-subtitle">Модель, калибровка датчиков, слежение за швом и управление дугой в реальном времени</p>
+                    <button class="article-video-btn" onclick="showFullArticle('article-robotics-full')">Читать полностью</button>
+                </div>
+            </div>
+
+            <!-- Полная статья: Робот‑сварщик (скрыта по умолчанию) -->
+            <div class="article-full" id="article-robotics-full" style="display: none;">
+                <button class="btn btn-secondary back-to-preview-btn" onclick="showPreview('article-robotics-full')">← Вернуться к превью</button>
+                <div class="article-content">
+                    <div class="article-intro fade-in-up">
+                        <h3>Разработка и калибровка робота‑сварщика для автоматизации сварочного процесса</h3>
+                        <p>Автоматизация сварки повышает стабильность и качество швов, ускоряет производство и снижает риски. Точная модель и калибровка сенсоров обеспечивают уверенное следование по шву с высокой повторяемостью.</p>
+                    </div>
+                    <div class="article-stage fade-in-up">
+                        <h4>Краткая суть проекта</h4>
+                        <p>Математическая модель манипулятора, калибровка конусного дальномера и base‑to‑world, слежение за швом и управление траекторией/параметрами сварки.</p>
+                    </div>
+                    <div class="article-stage fade-in-up">
+                        <h4>Этап 1 — постановка и спецификация</h4>
+                        <ul>
+                            <li>Точность, повторяемость, скорость и режимы сварки.</li>
+                            <li>Механика и сенсорика, протоколы и реальные‑временные требования.</li>
+                        </ul>
+                    </div>
+                    <div class="article-stage fade-in-up">
+                        <h4>Этап 2 — кинематика и ориентация</h4>
+                        <p>Матрицы однородных преобразований, Д‑Х нотация, прямая/обратная кинематика, якобиан и устойчивые псевдообратные решения.</p>
+                    </div>
+                    <div class="article-stage fade-in-up">
+                        <h4>Этап 3 — датчик и калибровка</h4>
+                        <p>Конус лучей, hand‑eye (Tsai–Lenz), MSE‑оптимизация, фильтрация и выделение профиля шва.</p>
+                    </div>
+                    <div class="article-stage fade-in-up">
+                        <h4>Этап 4 — слежение и траектории</h4>
+                        <p>Визуальное сервоуправление, гладкая интерполяция, null‑space и избегание коллизий.</p>
+                    </div>
+                    <div class="article-stage fade-in-up">
+                        <h4>Этап 5 — управление дугой</h4>
+                        <p>Синхронизация, параметры источника, поддержание длины дуги и адаптивная скорость.</p>
+                    </div>
+                    <div class="article-stage fade-in-up">
+                        <h4>Этап 6 — архитектура ПО</h4>
+                        <p>RTOS, ROS, SCADA; модули: кинематика, сенсорная обработка, планирование, контроллер процесса и логирование.</p>
+                    </div>
+                    <div class="article-stage fade-in-up">
+                        <h4>Этап 7 — симуляция и тесты</h4>
+                        <p>Цифровой двойник, стендовые испытания, устойчивость к шуму, метрики ошибки и качества шва.</p>
+                    </div>
+                    <div class="article-stage fade-in-up">
+                        <h4>Этап 8 — мониторинг и оптимизация</h4>
+                        <p>Постпроцессинг логов, аналитика дефектов, адаптивные стратегии с ML.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Climate networks preview video section -->
+            <div class="article-video-section climate-section">
+                <video class="article-video" autoplay muted loop playsinline preload="metadata">
+                    <source src="https://storage.yandexcloud.net/aires-media/video/seysmik.mp4" type="video/mp4">
+                </video>
+                <div class="article-video-overlay">
+                    <h3 class="article-video-title">Сетевые модели в климатических исследованиях</h3>
+                    <p class="article-video-subtitle">Графы температурных связей городов и сезонные закономерности</p>
+                    <button class="article-video-btn" onclick="showFullArticle('article-climate-full')">Читать полностью</button>
+                </div>
+            </div>
+
+            <!-- Полная статья: Климатические сети (скрыта по умолчанию) -->
+            <div class="article-full" id="article-climate-full" style="display: none;">
+                <button class="btn btn-secondary back-to-preview-btn" onclick="showPreview('article-climate-full')">← Вернуться к превью</button>
+                <div class="article-content">
+                    <div class="article-stage fade-in-up">
+                        <h4>Почему это важно</h4>
+                        <p>Сетевой взгляд на климат выявляет скрытые связи городов и повышает точность прогнозов.</p>
+                        <div class="stage-image"><img src="pogoda1.png" alt="Климат 1" class="article-img"></div>
+                    </div>
+                    <div class="article-stage fade-in-up">
+                        <h4>Этап 1. Сбор и подготовка данных</h4>
+                        <p>Почасовая температура 2023 года для 7 городов, агрегации на суточный/недельный уровни, деление на сезоны и периоды.</p>
+                        <div class="stage-image"><img src="pogoda2.png" alt="Климат 2" class="article-img"></div>
+                    </div>
+                    <div class="article-stage fade-in-up">
+                        <h4>Этап 2. Корреляции</h4>
+                        <p>Матрицы Пирсона/Кендалла и тепловые карты кластеров.</p>
+                        <div class="stage-image"><img src="pogoda3.png" alt="Климат 3" class="article-img"></div>
+                    </div>
+                    <div class="article-stage fade-in-up">
+                        <h4>Этап 3. Графы</h4>
+                        <p>Построение сетей по порогам/критериям, анализ связности, клики, независимые множества, спектральный радиус.</p>
+                        <div class="stage-image"><img src="pogoda4.png" alt="Климат 4" class="article-img"></div>
+                    </div>
+                    <div class="article-stage fade-in-up">
+                        <h4>Этап 4. Сезонность</h4>
+                        <p>Весна/осень — плотные кластеры средней полосы; лето/зима — рост изоляции городов.</p>
+                        <div class="stage-image"><img src="pogoda5.png" alt="Климат 5" class="article-img"></div>
+                    </div>
+                    <div class="article-stage fade-in-up">
+                        <h4>Этап 6. Стабильность и прогноз</h4>
+                        <p>Конкордация Кендалла, метрические сравнения матриц, ARIMAX для переноса информации между городами.</p>
+                        <div class="stage-image"><img src="pogoda6.png" alt="Климат 6" class="article-img"></div>
+                    </div>
+                </div>
+            </div>
+
             <!-- Oncology full article (hidden by default) -->
             <div class="article-full" id="article-oncology-full" style="display: none;">
                 <button class="btn btn-secondary back-to-preview-btn" onclick="showPreview('article-oncology-full')">← Вернуться к превью</button>
