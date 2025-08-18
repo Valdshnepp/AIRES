@@ -556,11 +556,15 @@ p {
 
 /* Разделитель между статьями */
 .article-separator {
-    height: 4px;
-    background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.6), transparent);
-    margin: 3rem 0;
-    border-radius: 2px;
-    opacity: 0.8;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 1), transparent);
+    margin: 2rem 0;
+    border-radius: 0;
+    opacity: 1;
+    width: 100%;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 /* Старые стили для секций статей удалены */
