@@ -580,6 +580,20 @@ p {
     flex-direction: column; /* Располагаем элементы вертикально */
     opacity: 1 !important;
     transform: none !important;
+    margin-bottom: 2rem;
+}
+
+.video-container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.article-description {
+    background: rgba(0, 0, 0, 0.95);
+    padding: 2rem;
+    text-align: center;
 }
 
 @supports (height: 100dvh) {
@@ -651,36 +665,34 @@ p {
 }
 
 .article-video {
-    position: relative;
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
-    height: 100vh; /* Видео занимает только верхнюю половину */
+    height: 100%;
     object-fit: cover;
     filter: none; /* Убираем затемнение */
     z-index: 1;
 }
 
-.article-video-overlay {
-    position: relative;
+.video-title-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
     z-index: 2;
-    display: flex;
-    flex-direction: column; /* располагаем элементы столбцом */
-    align-items: center;
-    justify-content: center;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+    padding: 3rem 2rem 2rem;
     text-align: center;
     color: #fff;
-    padding: 3rem 2rem;
-    max-width: 100%;
     opacity: 1 !important;
     transform: none !important;
-    background: rgba(0, 0, 0, 0.95);
-    min-height: 200px; /* Минимальная высота для текста */
-    flex: none; /* Не растягиваемся */
 }
 
 .article-video-title {
     font-size: 2.5rem;
     font-weight: 700;
-    margin-bottom: 1.5rem;
+    margin-bottom: 0;
     text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9);
     opacity: 1 !important;
     transform: none !important;
@@ -697,27 +709,10 @@ p {
     color: #e0e0e0;
     line-height: 1.6;
     max-width: 800px;
+    margin: 0 auto;
 }
 
-/* Мобильные размеры и отступы для текста */
-@media (max-width: 768px) {
-  .article-video-title { 
-    font-size: 1.8rem; 
-    line-height: 1.2; 
-    padding: 0 8px; 
-    margin-bottom: 1rem;
-  }
-  .article-video-subtitle { 
-    font-size: 0.95rem; 
-    line-height: 1.5; 
-    max-width: 95%; 
-    margin: 0 auto; 
-    padding: 0 8px; 
-  }
-  .article-video-overlay { 
-    padding: 2rem 12px; 
-  }
-}
+/* Старые мобильные стили удалены */
 
 /* Кнопки "Читать полностью" удалены */
 
@@ -1575,18 +1570,20 @@ html {
         height: auto; /* Автоматическая высота на мобильных */
         min-height: auto;
     }
-    .article-video {
+    .video-container {
         height: 60vh; /* Уменьшаем высоту видео на мобильных */
     }
-    .article-video-overlay {
-        min-height: 150px; /* Уменьшаем минимальную высоту оверлея на мобильных */
-        padding: 2rem 1rem;
+    .video-title-overlay {
+        padding: 2rem 1rem 1.5rem;
+    }
+    .article-description {
+        padding: 1.5rem;
     }
     .article-video-title {
-        font-size: 1.6rem;
+        font-size: 1.8rem;
     }
     .article-video-subtitle {
-        font-size: 0.9rem;
+        font-size: 0.95rem;
     }
     
     /* Улучшенные стили для мобильных устройств */
