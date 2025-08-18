@@ -212,9 +212,11 @@ p {
     position: relative;
     min-height: 100vh;
     display: flex;
-    align-items: center;
+    justify-content: center;  /* добавь */
+    align-items: center;      /* оставь */
     background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
     overflow: hidden;
+    text-align: center; 
 }
 
 .hero-background {
