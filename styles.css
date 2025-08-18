@@ -1958,148 +1958,24 @@ body.mobile-optimized .fade-in-up {
     }
 }
 
-/* Улучшенная оптимизация видео для мобильных устройств */
-@media (max-width: 768px) {
-    /* Принудительно исправляем все проблемы с видео */
-    .promo-video, .article-video {
-        /* Базовые стили */
-        display: block !important;
-        visibility: visible !important;
-        opacity: 1 !important;
-        position: absolute !important;
-        top: 0 !important;
-        left: 0 !important;
-        width: 100% !important;
-        height: 100% !important;
-        object-fit: cover !important;
-        object-position: center !important;
-        z-index: 1 !important;
-        
-        /* Убираем все трансформации */
-        transform: none !important;
-        -webkit-transform: none !important;
-        -moz-transform: none !important;
-        -ms-transform: none !important;
-        
-        /* Исправляем проблемы с зависанием */
-        will-change: auto !important;
-        backface-visibility: visible !important;
-        perspective: 0 !important;
-        
-        /* Принудительно обновляем рендеринг */
-        -webkit-backface-visibility: visible !important;
-        -moz-backface-visibility: visible !important;
-        
-        /* Убираем все фильтры на мобильных */
-        filter: none !important;
-        -webkit-filter: none !important;
-        
-        /* Исправляем проблемы с воспроизведением */
-        /* playsinline и webkit-playsinline устанавливаются через HTML атрибуты */
-        
-        /* Принудительно устанавливаем размеры */
-        min-width: 100% !important;
-        min-height: 100% !important;
-        max-width: none !important;
-        max-height: none !important;
-    }
-    
-    /* Исправляем контейнеры видео */
-    .promo, .article-video-section {
-        position: relative !important;
-        overflow: hidden !important;
-        width: 100% !important;
-        height: 100vh !important;
-        min-height: 100vh !important;
-        max-height: none !important;
-        background: transparent !important;
-        
-        /* Убираем все трансформации */
-        transform: none !important;
-        -webkit-transform: none !important;
-        -moz-transform: none !important;
-        -ms-transform: none !important;
-        
-        /* Исправляем проблемы с рендерингом */
-        will-change: auto !important;
-        backface-visibility: visible !important;
-    }
-    
-    /* Дополнительные исправления для промо-видео */
-    .promo {
-        background: #000 !important;
-    }
-    
-    .promo-video {
-        background: #000 !important;
-        /* Принудительно центрируем */
-        object-position: center center !important;
-    }
-    
-    /* Дополнительные исправления для видео в исследованиях */
-    .article-video-section {
-        background: #000 !important;
-    }
-    
-    .article-video {
-        background: #000 !important;
-        /* Принудительно растягиваем на всю карточку */
-        object-position: center center !important;
-    }
-    
-    /* Исправляем проблемы с оверлеями */
-    .promo-overlay, .article-video-overlay {
-        z-index: 2 !important;
-        position: relative !important;
-        opacity: 1 !important;
-        transform: none !important;
-        visibility: visible !important;
-    }
-}
-
-/* Дополнительные исправления для очень маленьких экранов */
-@media (max-width: 480px) {
-    .promo-video, .article-video {
-        /* Минимальные размеры для экономии трафика */
-        max-height: none !important;
-        height: 100% !important;
-        
-        /* Отключаем сложные эффекты */
-        will-change: auto !important;
-        backface-visibility: visible !important;
-        
-        /* Принудительно обновляем рендеринг */
-        -webkit-transform: translateZ(0) !important;
-        transform: translateZ(0) !important;
-    }
-    
-    /* Исправляем размеры контейнеров */
-    .promo, .article-video-section {
-        height: 100vh !important;
-        min-height: 100vh !important;
-        max-height: none !important;
-    }
-}
-
-/* Дополнительные критические исправления для видео */
-@media (max-width: 768px) {
-    /* Принудительно показываем все видео */
-    video {
-        display: block !important;
-        visibility: visible !important;
-        opacity: 1 !important;
-        position: absolute !important;
-        top: 0 !important;
-        left: 0 !important;
-        width: 100% !important;
-        height: 100% !important;
-        object-fit: cover !important;
-        object-position: center !important;
-        z-index: 1 !important;
-        transform: none !important;
-        -webkit-transform: none !important;
-        background: #000 !important;
-    }
-}
+/* Убраны спец-правила «оптимизации» видео на мобильных — используем базовые стили ниже */
 
 /* Удалены агрессивные правила скрытия рекламы, чтобы не ломать разметку */
+
+/* Safety overrides: force core content to be visible even if JS fails */
+.header {
+    z-index: 2000 !important;
+}
+
+section,
+.section-title, .hero-title, .hero-subtitle, .hero-description,
+.fade-in-up,
+.research-card, .project-card, .value-item, .stat-item,
+.contact-item,
+.article-stage,
+.article-img, .article-preview-img {
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !Important;
+}
