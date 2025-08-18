@@ -213,7 +213,7 @@ p {
     min-height: 100vh;
     display: flex;
     align-items: center;      /* центрируем по вертикали */
-    justify-content: flex-start; /* вернем контент чуть выше центра */
+    justify-content: center;  /* центрируем по вертикали */
     background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
     overflow: hidden;
     text-align: center; 
@@ -267,7 +267,7 @@ p {
     grid-template-columns: 1fr 1fr;
     gap: 4rem;
     align-items: center;
-    padding-top: 6rem; /* отступ сверху, чтобы текст не лип к видео */
+    padding-top: 4rem; /* отступ от фиксированного хэддера */
 }
 
 /* Hero without video: single-column layout */
