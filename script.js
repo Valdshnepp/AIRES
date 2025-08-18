@@ -127,6 +127,12 @@ function initializeSmoothScroll() {
 
 // Enhanced parallax effects
 function initializeParallax() {
+    // Отключаем параллакс на мобильных, чтобы не "уползало" видео и не появлялись черные полосы
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    if (isMobile || window.innerWidth <= 1024) {
+        return; // без параллакса на мобильных/узких экранах
+    }
+
     window.addEventListener('scroll', () => {
         const scrolled = window.pageYOffset;
         const parallaxElements = document.querySelectorAll('.floating-element');

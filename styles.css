@@ -1372,6 +1372,11 @@ p {
     -webkit-transform: none !important;
 }
 
+/* Если по высоте не хватает (чёрные полосы), чуть увеличим масштаб видео */
+@media (max-width: 768px) {
+    .promo-video { transform: scale(1.05); }
+}
+
 .promo-overlay {
     position: relative;
     z-index: 2;
