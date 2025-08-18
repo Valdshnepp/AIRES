@@ -2102,46 +2102,4 @@ body.mobile-optimized .fade-in-up {
     }
 }
 
-/* Скрытие рекламы от Reg.ru */
-/* Попытка скрыть автоматически добавляемые рекламные блоки */
-div[style*="background: white"],
-div[style*="background-color: white"],
-div[style*="background: #fff"],
-div[style*="background-color: #fff"] {
-    display: none !important;
-    visibility: hidden !important;
-    opacity: 0 !important;
-    height: 0 !important;
-    overflow: hidden !important;
-}
-
-/* Скрытие по содержимому - используем JavaScript для этого */
-/* div:contains() не является стандартным CSS селектором */
-
-/* Дополнительные селекторы для рекламы */
-[class*="ad"],
-[class*="banner"],
-[id*="ad"],
-[id*="banner"],
-[style*="position: fixed"],
-[style*="position:fixed"] {
-    display: none !important;
-}
-
-/* Скрытие по структуре (белые блоки с изображениями) */
-/* Используем более простые селекторы для совместимости */
-div[style*="background: white"] img,
-div[style*="background-color: white"] img {
-    display: none !important;
-}
-
-/* Принудительное скрытие всех подозрительных элементов */
-body > div:not([class]):not([id]):not([style]) {
-    display: none !important;
-}
-
-/* Скрытие элементов с определенными стилями */
-div[style*="margin: 0px auto"],
-div[style*="text-align: center"] {
-    display: none !important;
-}
+/* Удалены агрессивные правила скрытия рекламы, чтобы не ломать разметку */
