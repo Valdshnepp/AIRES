@@ -701,11 +701,13 @@ p {
     inset: 0;
     z-index: 2;
     display: flex;
+    flex-direction: column; /* располагаем элементы столбцом */
     align-items: center;
     justify-content: center;
     text-align: center;
     color: #fff;
     padding: 0 2rem;
+    max-width: 100%;
     opacity: 1 !important;
     transform: none !important;
 }
@@ -726,6 +728,13 @@ p {
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
     opacity: 1 !important;
     transform: none !important;
+}
+
+/* Мобильные размеры и отступы для текста поверх видео */
+@media (max-width: 768px) {
+  .article-video-title { font-size: 2rem; line-height: 1.2; padding: 0 8px; }
+  .article-video-subtitle { font-size: 1rem; line-height: 1.5; max-width: 90%; margin: 0 auto 1.25rem; padding: 0 8px; }
+  .article-video-overlay { padding: 0 12px; }
 }
 
 .article-video-btn {
