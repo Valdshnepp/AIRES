@@ -687,7 +687,7 @@ p {
     left: 0;
     right: 0;
     z-index: 2;
-    background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.9));
     padding: 3rem 2rem 2rem;
     text-align: center;
     color: #fff;
@@ -699,10 +699,11 @@ p {
     font-size: 2.5rem;
     font-weight: 700;
     margin-bottom: 0;
-    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9);
+    text-shadow: 0 4px 12px rgba(0, 0, 0, 0.95), 0 2px 4px rgba(0, 0, 0, 0.8);
     opacity: 1 !important;
     transform: none !important;
     color: #ffffff;
+    letter-spacing: 0.5px;
 }
 
 .article-video-subtitle {
@@ -713,9 +714,10 @@ p {
     opacity: 1 !important;
     transform: none !important;
     color: #e0e0e0;
-    line-height: 1.6;
-    max-width: 800px;
+    line-height: 1.5;
+    max-width: 700px;
     margin: 0 auto;
+    font-weight: 400;
 }
 
 /* Старые мобильные стили удалены */
@@ -1818,9 +1820,11 @@ html {
     }
     .article-video-title {
         font-size: 1.8rem;
+        text-shadow: 0 3px 8px rgba(0, 0, 0, 0.95), 0 1px 3px rgba(0, 0, 0, 0.8);
     }
     .article-video-subtitle {
         font-size: 0.95rem;
+        max-width: 95%;
     }
     
     /* Улучшенные стили для мобильных устройств */
