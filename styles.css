@@ -687,8 +687,8 @@ p {
     left: 0;
     right: 0;
     z-index: 2;
-    background: linear-gradient(transparent, rgba(0, 0, 0, 0.9));
-    padding: 3rem 2rem 2rem;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.95) 40%, rgba(0, 0, 0, 0.98) 100%);
+    padding: 4rem 2rem 2rem;
     text-align: center;
     color: #fff;
     opacity: 1 !important;
@@ -699,11 +699,20 @@ p {
     font-size: 2.5rem;
     font-weight: 700;
     margin-bottom: 0;
-    text-shadow: 0 4px 12px rgba(0, 0, 0, 0.95), 0 2px 4px rgba(0, 0, 0, 0.8);
+    text-shadow: 
+        0 0 20px rgba(0, 0, 0, 1),
+        0 0 40px rgba(0, 0, 0, 0.8),
+        0 4px 8px rgba(0, 0, 0, 0.9),
+        0 2px 4px rgba(0, 0, 0, 0.8);
     opacity: 1 !important;
     transform: none !important;
     color: #ffffff;
     letter-spacing: 0.5px;
+    background: rgba(0, 0, 0, 0.3);
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    display: inline-block;
+    backdrop-filter: blur(4px);
 }
 
 .article-video-subtitle {
@@ -1820,7 +1829,12 @@ html {
     }
     .article-video-title {
         font-size: 1.8rem;
-        text-shadow: 0 3px 8px rgba(0, 0, 0, 0.95), 0 1px 3px rgba(0, 0, 0, 0.8);
+        text-shadow: 
+            0 0 15px rgba(0, 0, 0, 1),
+            0 0 30px rgba(0, 0, 0, 0.8),
+            0 3px 6px rgba(0, 0, 0, 0.9),
+            0 1px 3px rgba(0, 0, 0, 0.8);
+        padding: 0.4rem 0.8rem;
     }
     .article-video-subtitle {
         font-size: 0.95rem;
