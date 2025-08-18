@@ -683,24 +683,28 @@ p {
 
 .article-video {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    top: 50%;
+    left: 50%;
+    /* заполняем карточку без полос при любом соотношении */
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
     object-fit: cover;
     filter: brightness(0.7);
     z-index: 1;
-    /* Принудительно растягиваем на всю карточку */
-    transform: none !important;
-    -webkit-transform: none !important;
+    transform: translate(-50%, -50%);
 }
 
 .article-video-overlay {
-    position: relative;
+    position: absolute;
+    inset: 0;
     z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     text-align: center;
     color: #fff;
-    max-width: 800px;
     padding: 0 2rem;
     opacity: 1 !important;
     transform: none !important;
