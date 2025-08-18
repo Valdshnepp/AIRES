@@ -1917,8 +1917,7 @@ html {
 }
 
 /* Принудительно показываем видео на всех устройствах */
-.article-video-section video,
-.promo video {
+.article-video-section video {
     display: block !important;
     visibility: visible !important;
     opacity: 1 !important;
