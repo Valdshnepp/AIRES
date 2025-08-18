@@ -217,7 +217,6 @@ p {
     background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
     overflow: hidden;
     text-align: center; 
-    padding-top: 100px; 
 }
 
 .hero-background {
@@ -278,7 +277,6 @@ p {
 
 .hero-content {
     color: white;
-    margin-top: 60px;
 }
 
 .hero-title {
