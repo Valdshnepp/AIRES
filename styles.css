@@ -1360,17 +1360,16 @@ p {
 
 .promo-video {
     position: absolute;
-    top: 0;
-    left: 0;
-    /* растягиваем строго по контейнеру */
-    width: 100% !important;
-    height: 100% !important;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
     object-fit: cover;
     filter: brightness(0.7);
     z-index: 1;
-    /* Принудительно центрируем видео */
-    transform: none !important;
-    -webkit-transform: none !important;
+    transform: translate(-50%, -50%);
 }
 
 /* Если по высоте не хватает (чёрные полосы), чуть увеличим масштаб видео */
