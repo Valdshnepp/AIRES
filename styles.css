@@ -572,9 +572,9 @@ p {
 /* Article video section - no animations */
 .article-video-section {
     position: relative;
-    height: 200vh; /* Увеличиваем высоту для видео + текст */
-    min-height: 200vh; /* Увеличиваем минимальную высоту */
-    overflow: hidden;
+    height: auto; /* Автоматическая высота */
+    min-height: auto; /* Автоматическая минимальная высота */
+    overflow: visible; /* Показываем все содержимое */
     background: #000;
     display: flex;
     flex-direction: column; /* Располагаем элементы вертикально */
@@ -655,7 +655,7 @@ p {
     width: 100%;
     height: 100vh; /* Видео занимает только верхнюю половину */
     object-fit: cover;
-    filter: brightness(0.7);
+    filter: none; /* Убираем затемнение */
     z-index: 1;
 }
 
@@ -668,38 +668,55 @@ p {
     justify-content: center;
     text-align: center;
     color: #fff;
-    padding: 2rem;
+    padding: 3rem 2rem;
     max-width: 100%;
     opacity: 1 !important;
     transform: none !important;
-    background: rgba(0, 0, 0, 0.9);
-    height: 100vh; /* Высота равна высоте видео */
-    flex: 1; /* Занимает оставшееся пространство */
+    background: rgba(0, 0, 0, 0.95);
+    min-height: 200px; /* Минимальная высота для текста */
+    flex: none; /* Не растягиваемся */
 }
 
 .article-video-title {
-    font-size: 3rem;
+    font-size: 2.5rem;
     font-weight: 700;
-    margin-bottom: 1rem;
-    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+    margin-bottom: 1.5rem;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9);
     opacity: 1 !important;
     transform: none !important;
+    color: #ffffff;
 }
 
 .article-video-subtitle {
-    font-size: 1.2rem;
-    margin-bottom: 2rem;
-    opacity: 0.9;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+    font-size: 1.1rem;
+    margin-bottom: 0;
+    opacity: 0.95;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.9);
     opacity: 1 !important;
     transform: none !important;
+    color: #e0e0e0;
+    line-height: 1.6;
+    max-width: 800px;
 }
 
-/* Мобильные размеры и отступы для текста поверх видео */
+/* Мобильные размеры и отступы для текста */
 @media (max-width: 768px) {
-  .article-video-title { font-size: 2rem; line-height: 1.2; padding: 0 8px; }
-  .article-video-subtitle { font-size: 1rem; line-height: 1.5; max-width: 90%; margin: 0 auto 1.25rem; padding: 0 8px; }
-  .article-video-overlay { padding: 0 12px; }
+  .article-video-title { 
+    font-size: 1.8rem; 
+    line-height: 1.2; 
+    padding: 0 8px; 
+    margin-bottom: 1rem;
+  }
+  .article-video-subtitle { 
+    font-size: 0.95rem; 
+    line-height: 1.5; 
+    max-width: 95%; 
+    margin: 0 auto; 
+    padding: 0 8px; 
+  }
+  .article-video-overlay { 
+    padding: 2rem 12px; 
+  }
 }
 
 /* Кнопки "Читать полностью" удалены */
@@ -1197,7 +1214,7 @@ p {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    filter: brightness(0.7);
+    filter: none; /* Убираем затемнение */
     z-index: 1;
 }
 
@@ -1555,18 +1572,18 @@ html {
 
 @media (max-width: 768px) {
     .article-video-section {
-        height: 160vh; /* Уменьшаем высоту на мобильных */
-        min-height: 160vh;
+        height: auto; /* Автоматическая высота на мобильных */
+        min-height: auto;
     }
     .article-video {
-        height: 80vh; /* Уменьшаем высоту видео на мобильных */
+        height: 60vh; /* Уменьшаем высоту видео на мобильных */
     }
     .article-video-overlay {
-        height: 80vh; /* Уменьшаем высоту оверлея на мобильных */
-        padding: 1rem;
+        min-height: 150px; /* Уменьшаем минимальную высоту оверлея на мобильных */
+        padding: 2rem 1rem;
     }
     .article-video-title {
-        font-size: 1.8rem;
+        font-size: 1.6rem;
     }
     .article-video-subtitle {
         font-size: 0.9rem;
@@ -1575,18 +1592,7 @@ html {
     /* Улучшенные стили для мобильных устройств */
     .article-separator {
         margin: 1rem 0;
-        height: 2px;
-    }
-    
-    .article-full {
-        padding: 2rem;
-        margin: 1rem;
-    }
-    
-    .back-to-preview-btn {
-        margin-bottom: 1.5rem;
-        padding: 0.8rem 1.5rem;
-        font-size: 0.9rem;
+        height: 1px;
     }
 }
 
