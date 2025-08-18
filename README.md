@@ -98,7 +98,7 @@ Vercel
 Поддержка
 
 По вопросам работы сайта или настройки форм обращайтесь:
-- Email: ivan170403@mail.ru
+- Email: aires-team@mail.ru
 - GitHub: [ivan170403-dev](https://github.com/ivan170403-dev)
 
 Лицензия
