@@ -589,7 +589,7 @@ p {
     height: 100vh;
     overflow: hidden;
     border-radius: 20px 20px 0 0;
-    margin-bottom: -30px; /* Увеличиваем эффект наложения */
+    margin-bottom: 0; /* Убираем наложение */
 }
 
 .article-description {
@@ -599,7 +599,7 @@ p {
     border-radius: 0 0 20px 20px;
     position: relative;
     z-index: 2;
-    margin-top: -30px; /* Создаем дополнительный эффект наложения */
+    margin-top: 1rem; /* Добавляем небольшой отступ */
 }
 
 @supports (height: 100dvh) {
@@ -1816,7 +1816,7 @@ html {
     .video-container {
         height: 60vh; /* Уменьшаем высоту видео на мобильных */
         border-radius: 15px 15px 0 0;
-        margin-bottom: -20px;
+        margin-bottom: 0; /* Убираем наложение */
     }
     .video-title-overlay {
         padding: 2rem 1rem 1.5rem;
@@ -1824,7 +1824,7 @@ html {
     .article-description {
         padding: 3rem 1.5rem 1.5rem;
         border-radius: 0 0 15px 15px;
-        margin-top: -20px;
+        margin-top: 0.5rem; /* Добавляем небольшой отступ */
         background: linear-gradient(180deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.95) 40%, rgba(0, 0, 0, 0.95) 100%);
     }
     .article-video-title {
