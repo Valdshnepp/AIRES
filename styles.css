@@ -1252,7 +1252,7 @@ p {
     align-items: center;
     justify-content: center;
     text-align: center;
-    padding: 0 1rem;
+    padding: 12vh 1rem 0; /* смещаем контент чуть ниже */
     color: #fff;
     opacity: 0;
     transform: translateY(20px);
