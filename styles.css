@@ -1250,9 +1250,10 @@ p {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-end; /* смещаем контент вниз */
     text-align: center;
-    padding: 12vh 1rem 0; /* смещаем контент чуть ниже */
+    padding: 0 1rem 18vh; /* отступ снизу, чтобы было видно видео */
+    gap: 0.75rem;
     color: #fff;
     opacity: 0;
     transform: translateY(20px);
@@ -1264,6 +1265,11 @@ p {
 .promo-overlay .promo-text {
     text-shadow: 0 2px 8px rgba(0, 0, 0, 0.65), 0 0 2px rgba(0, 0, 0, 0.9);
     -webkit-text-stroke: 0.4px rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.35); /* подложка для читаемости на светлом фоне */
+    backdrop-filter: blur(3px);
+    padding: 0.4rem 0.8rem;
+    border-radius: 10px;
+    display: inline-block;
 }
 .promo-overlay .btn {
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
@@ -1301,6 +1307,10 @@ p {
     }
     .promo-text {
         font-size: 0.95rem;
+    }
+    .promo-overlay {
+        padding: 0 1rem 14vh; /* поменьше отступ снизу на мобильных */
+        gap: 0.5rem;
     }
 }
 
