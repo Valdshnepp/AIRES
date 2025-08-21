@@ -1253,37 +1253,32 @@ p {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-end; /* смещаем контент вниз */
+    justify-content: flex-end; /* в самый низ */
     text-align: center;
-    padding: 0 1rem 18vh; /* отступ снизу, чтобы было видно видео */
-    gap: 0.75rem;
+    padding: 0 1rem 3.5vh; /* минимальный отступ от нижнего края */
+    gap: 0.6rem;
     color: #fff;
     opacity: 0;
     transform: translateY(20px);
     transition: opacity 1.5s ease, transform 1.5s ease;
+    /* слегка затемняем низ для лучшей читаемости */
+    background: linear-gradient(180deg, rgba(0,0,0,0) 50%, rgba(0,0,0,.2) 75%, rgba(0,0,0,.45) 100%);
 }
 
 /* Improve text readability on video */
 .promo-overlay .promo-title,
 .promo-overlay .promo-text {
-    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.65), 0 0 2px rgba(0, 0, 0, 0.9);
-    -webkit-text-stroke: 0.6px rgba(0, 0, 0, 0.55);
-    backdrop-filter: blur(3px);
-    padding: 0.5rem 0.9rem;
+    color: #00d4ff; /* голубой текст */
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.7);
+    background: rgba(0, 0, 0, 0.55); /* тёмный полупрозрачный фон */
+    backdrop-filter: blur(4px);
+    padding: 0.45rem 0.9rem;
     border-radius: 12px;
     display: inline-block;
 }
 
-/* Сильнее затемняем фон у заголовка для максимальной читаемости на светлом фоне */
-.promo-overlay .promo-title {
-    background: rgba(0, 0, 0, 0.6);
-}
-
-/* Нижний текст — чёрный на синем фоне и крупнее */
 .promo-overlay .promo-text {
-    background: linear-gradient(135deg, rgba(0, 184, 255, 0.92), rgba(0, 140, 220, 0.92));
-    color: #111111;
-    font-size: 1.25rem;
+    font-size: 1.15rem;
     font-weight: 600;
 }
 .promo-overlay .btn {
@@ -1298,8 +1293,8 @@ p {
 
 .promo-text {
     max-width: 960px;
-    line-height: 1.7;
-    margin-bottom: 1.25rem;
+    line-height: 1.6;
+    margin-bottom: 0.75rem;
 }
 
 .promo-btn {
@@ -1315,12 +1310,9 @@ p {
         height: 100vh;
         min-height: 100vh;
     }
-    .promo-title {
-        font-size: 1.7rem;
-    }
-    .promo-text {
-        font-size: 1.05rem;
-    }
+    .promo-title { font-size: 1.6rem; }
+    .promo-text { font-size: 1rem; }
+    .promo-overlay { padding-bottom: 6vh; }
     .promo-overlay {
         padding: 0 1rem 14vh; /* поменьше отступ снизу на мобильных */
         gap: 0.5rem;
