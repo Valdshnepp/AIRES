@@ -1242,13 +1242,14 @@ p {
         min-width: 100%;
         min-height: 100%;
         transform: none;
-        object-position: 72% 22%;
+        /* Максимально уводим центр кадра влево, чтобы в кадре была правая поднятая рука */
+        object-position: 90% 22%;
     }
 }
 
 @media (max-width: 480px) {
     .promo-video {
-        object-position: 78% 24%;
+        object-position: 95% 24%;
     }
 }
 
@@ -1273,23 +1274,35 @@ p {
 
 /* Improve text readability on video */
 .promo-overlay .promo-text {
-    /* Градиентный текст без плашки */
-    padding: 0.45rem 0.9rem;
-    border-radius: 12px;
+    /* Градиентный текст с тонкой обводкой и блюром фона через ::before */
+    position: relative;
+    padding: 0.5rem 1rem;
+    border-radius: 14px;
     display: inline-block;
     color: transparent;
-    background-image: linear-gradient(135deg, #3ee7ff 0%, #00b7e6 100%);
+    background-image: linear-gradient(135deg, #6ff0ff 0%, #12cfff 100%);
     -webkit-background-clip: text;
     background-clip: text;
-    /* Чёрная обводка букв (для контраста) */
-    -webkit-text-stroke: 0.8px rgba(0,0,0,0.85);
-    text-shadow: -1px 0 0 rgba(0,0,0,0.75), 1px 0 0 rgba(0,0,0,0.75), 0 -1px 0 rgba(0,0,0,0.75), 0 1px 0 rgba(0,0,0,0.75);
+    /* Тонкая обводка для контраста, без заливки чёрным */
+    -webkit-text-stroke: 0.6px rgba(0,0,0,0.8);
+    text-shadow: 0 2px 3px rgba(0,0,0,0.5);
 }
 
 .promo-overlay .promo-text { font-size: 1.15rem; font-weight: 700; }
 
+/* Лёгкая размытая подложка только за текстом */
+.promo-overlay .promo-text::before {
+    content: '';
+    position: absolute;
+    inset: -8px -12px;
+    background: rgba(0,0,0,0.22);
+    backdrop-filter: blur(6px);
+    border-radius: 16px;
+    z-index: -1;
+}
+
 @media (min-width: 1025px) {
-    .promo-overlay .promo-text { font-size: 1.35rem; }
+    .promo-overlay .promo-text { font-size: 1.5rem; }
 }
 .promo-overlay .btn {
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
