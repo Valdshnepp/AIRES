@@ -1242,7 +1242,13 @@ p {
         min-width: 100%;
         min-height: 100%;
         transform: none;
-        object-position: 58% 20%;
+        object-position: 72% 22%;
+    }
+}
+
+@media (max-width: 480px) {
+    .promo-video {
+        object-position: 78% 24%;
     }
 }
 
@@ -1267,21 +1273,24 @@ p {
 
 /* Improve text readability on video */
 .promo-overlay .promo-text {
-    /* Градиент как у кнопки */
-    background: linear-gradient(135deg, rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)); /* убираем видимую рамку-плашку */
-    -webkit-background-clip: padding-box;
-    backdrop-filter: blur(4px);
+    /* Градиентный текст без плашки */
     padding: 0.45rem 0.9rem;
     border-radius: 12px;
     display: inline-block;
     color: transparent;
-    background-image: linear-gradient(135deg, #00d4ff 0%, #0099cc 100%);
+    background-image: linear-gradient(135deg, #3ee7ff 0%, #00b7e6 100%);
     -webkit-background-clip: text;
     background-clip: text;
-    text-shadow: none;
+    /* Чёрная обводка букв (для контраста) */
+    -webkit-text-stroke: 0.8px rgba(0,0,0,0.85);
+    text-shadow: -1px 0 0 rgba(0,0,0,0.75), 1px 0 0 rgba(0,0,0,0.75), 0 -1px 0 rgba(0,0,0,0.75), 0 1px 0 rgba(0,0,0,0.75);
 }
 
 .promo-overlay .promo-text { font-size: 1.15rem; font-weight: 700; }
+
+@media (min-width: 1025px) {
+    .promo-overlay .promo-text { font-size: 1.35rem; }
+}
 .promo-overlay .btn {
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
 }
