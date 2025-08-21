@@ -1242,14 +1242,14 @@ p {
         min-width: 100%;
         min-height: 100%;
         transform: none;
-        /* Центр + небольшое смещение вправо ≈ 50px */
-        object-position: calc(50% + 50px) 22%;
+        /* Центр + смещение вправо на 80px (на 30px больше) */
+        object-position: calc(50% + 80px) 22%;
     }
 }
 
 @media (max-width: 480px) {
     .promo-video {
-        object-position: calc(50% + 50px) 24%;
+        object-position: calc(50% + 80px) 24%;
     }
 }
 
@@ -1274,22 +1274,21 @@ p {
 
 /* Improve text readability on video */
 .promo-overlay .promo-text {
-    /* Градиентный текст с тонкой обводкой и блюром фона через ::before */
+    /* Чистый светлый текст без обводки */
     position: relative;
     padding: 0.5rem 1rem;
     border-radius: 14px;
     display: inline-block;
-    color: transparent;
-    background-image: linear-gradient(135deg, #82f5ff 0%, #19d2ff 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    /* Тонкая обводка для контраста, без заливки чёрным */
-    -webkit-text-stroke: 0.7px rgba(0,0,0,0.85);
-    text-shadow: 0 1px 2px rgba(0,0,0,0.6), 0 3px 8px rgba(0,0,0,0.35);
-    letter-spacing: 0.2px;
+    background-image: none;
+    -webkit-background-clip: initial;
+    background-clip: initial;
+    color: rgba(255,255,255,0.96);
+    -webkit-text-stroke: 0 transparent;
+    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
+    letter-spacing: 0.3px;
 }
 
-.promo-overlay .promo-text { font-size: 1.15rem; font-weight: 700; }
+.promo-overlay .promo-text { font-size: 1.4rem; font-weight: 700; }
 
 /* Лёгкая размытая подложка только за текстом */
 .promo-overlay .promo-text::before {
@@ -1303,7 +1302,7 @@ p {
 }
 
 @media (min-width: 1025px) {
-    .promo-overlay .promo-text { font-size: 1.6rem; }
+    .promo-overlay .promo-text { font-size: 2rem; }
 }
 .promo-overlay .btn {
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
@@ -1311,7 +1310,7 @@ p {
 
 /* Заголовок убран в разметке */
 
-.promo-text { max-width: 960px; line-height: 1.6; margin-bottom: 0.75rem; }
+.promo-text { max-width: 1200px; line-height: 1.55; margin-bottom: 0.75rem; }
 
 .promo-btn {
     padding: 0.85rem 1.4rem;
