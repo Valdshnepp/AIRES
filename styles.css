@@ -1242,7 +1242,7 @@ p {
         min-width: 100%;
         min-height: 100%;
         transform: none;
-        object-position: 50% 18%;
+        object-position: 58% 20%;
     }
 }
 
@@ -1266,36 +1266,29 @@ p {
 }
 
 /* Improve text readability on video */
-.promo-overlay .promo-title,
 .promo-overlay .promo-text {
-    color: #00d4ff; /* голубой текст */
-    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.7);
-    background: rgba(0, 0, 0, 0.55); /* тёмный полупрозрачный фон */
+    /* Градиент как у кнопки */
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)); /* убираем видимую рамку-плашку */
+    -webkit-background-clip: padding-box;
     backdrop-filter: blur(4px);
     padding: 0.45rem 0.9rem;
     border-radius: 12px;
     display: inline-block;
+    color: transparent;
+    background-image: linear-gradient(135deg, #00d4ff 0%, #0099cc 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    text-shadow: none;
 }
 
-.promo-overlay .promo-text {
-    font-size: 1.15rem;
-    font-weight: 600;
-}
+.promo-overlay .promo-text { font-size: 1.15rem; font-weight: 700; }
 .promo-overlay .btn {
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
 }
 
-.promo-title {
-    font-size: 2.2rem;
-    font-weight: 700;
-    margin-bottom: 0.75rem;
-}
+/* Заголовок убран в разметке */
 
-.promo-text {
-    max-width: 960px;
-    line-height: 1.6;
-    margin-bottom: 0.75rem;
-}
+.promo-text { max-width: 960px; line-height: 1.6; margin-bottom: 0.75rem; }
 
 .promo-btn {
     padding: 0.85rem 1.4rem;
@@ -1303,15 +1296,14 @@ p {
 
 @media (max-width: 768px) {
     .promo {
-        height: 100vh;
-        min-height: 100vh;
+        height: 92vh;
+        min-height: 92vh;
     }
     .promo.minimized {
         height: 100vh;
         min-height: 100vh;
     }
-    .promo-title { font-size: 1.6rem; }
-    .promo-text { font-size: 1rem; }
+    .promo-text { font-size: 0.9rem; }
     .promo-overlay { padding-bottom: 6vh; }
     .promo-overlay {
         padding: 0 1rem 14vh; /* поменьше отступ снизу на мобильных */
