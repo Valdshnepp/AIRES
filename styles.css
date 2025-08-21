@@ -1325,12 +1325,14 @@ p {
         height: 100vh;
         min-height: 100vh;
     }
-    .promo-text { font-size: 0.9rem; }
-    .promo-overlay { padding-bottom: 6vh; }
+    .promo-text { font-size: 0.8rem; }
+    .promo-overlay { padding-bottom: 2vh; }
     .promo-overlay {
-        padding: 0 1rem 14vh; /* поменьше отступ снизу на мобильных */
+        padding: 0 1rem 2vh; /* сдвигаем ниже, чтобы было больше видео */
         gap: 0.5rem;
     }
+    /* Уменьшаем кнопку на мобильных */
+    .promo-btn { padding: 0.6rem 1rem; font-size: 0.9rem; }
 }
 
 /* Smooth transitions between sections */
