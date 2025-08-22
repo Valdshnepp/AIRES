@@ -1335,6 +1335,34 @@ p {
     .promo-btn { padding: 0.6rem 1rem; font-size: 0.9rem; }
 }
 
+/* Mobile intro block above video */
+.promo-intro-mobile {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .promo-intro-mobile {
+        display: block;
+        background: rgb(199,203,209);
+        color: #111;
+        padding: 72px 0 16px; /* учитываем фиксированный хедер */
+    }
+    .promo-intro-mobile .promo-intro-text {
+        color: #111;
+        margin: 0 0 12px;
+        font-weight: 600;
+        line-height: 1.5;
+        text-align: center;
+    }
+    .promo-intro-mobile .promo-intro-btn {
+        display: inline-block;
+        margin: 0 auto;
+    }
+    /* Уменьшаем видео-блок и убираем оверлейный текст на мобилках */
+    .promo { height: 70vh; min-height: 70vh; }
+    .promo-overlay { display: none; }
+}
+
 /* Smooth transitions between sections */
 section {
     transition: all 0.8s ease;
