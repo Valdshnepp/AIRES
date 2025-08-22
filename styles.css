@@ -1343,16 +1343,27 @@ p {
 @media (max-width: 768px) {
     .promo-intro-mobile {
         display: block;
-        background: rgb(199,203,209);
+        background: #ffffff;
         color: #111;
-        padding: 72px 0 16px; /* учитываем фиксированный хедер */
+        /* учитываем фиксированный хедер и даем блоку высоту для центрирования */
+        padding: 72px 0 24px;
+    }
+    .promo-intro-mobile .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 36vh;
+        text-align: center;
+        gap: 14px;
     }
     .promo-intro-mobile .promo-intro-text {
         color: #111;
-        margin: 0 0 12px;
+        margin: 0;
         font-weight: 600;
-        line-height: 1.5;
-        text-align: center;
+        line-height: 1.6;
+        letter-spacing: 0.2px;
+        font-size: 1.05rem;
     }
     .promo-intro-mobile .promo-intro-btn {
         display: inline-block;

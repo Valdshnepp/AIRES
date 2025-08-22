@@ -138,14 +138,7 @@ function initializeParallax() {
             const speed = 0.5 + (index * 0.1);
             element.style.transform = `translateY(${scrolled * speed}px) rotate(${scrolled * 0.1}deg)`;
         });
-
-        // Parallax for video sections
-        const videoSections = document.querySelectorAll('.promo, .article-video-section');
-        videoSections.forEach(section => {
-            const speed = 0.3;
-            const yPos = -(scrolled * speed);
-            section.style.transform = `translateY(${yPos}px)`;
-        });
+        // Видеоблоки больше не двигаем при скролле (убран эффект увеличения/параллакса)
     });
 }
 
