@@ -1342,10 +1342,10 @@ p {
 
 @media (max-width: 768px) {
     .promo-intro-mobile {
-        display: block;
+        display: none; /* скрываем верхний блок на мобильных */
         background: #ffffff;
         color: #111;
-        /* учитываем фиксированный хедер и даем блоку высоту для центрирования */
+        /* оставляем стили на случай будущего использования */
         padding: 72px 0 24px;
     }
     .promo-intro-mobile .container {
@@ -1369,9 +1369,10 @@ p {
         display: inline-block;
         margin: 0 auto;
     }
-    /* Уменьшаем видео-блок и убираем оверлейный текст на мобилках */
+    /* Уменьшаем видео-блок. Оверлей показываем, но без текста — только кнопка */
     .promo { height: 70vh; min-height: 70vh; }
-    .promo-overlay { display: none; }
+    .promo-overlay { display: flex; }
+    .promo-overlay .promo-text { display: none; }
 }
 
 /* Smooth transitions between sections */
