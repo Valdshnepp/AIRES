@@ -1253,8 +1253,8 @@ p {
     }
     .mobile-video {
         display: block;
-        /* Центрируем мобильное видео */
-        object-position: center center;
+        /* Сдвигаем мобильное видео левее, чтобы убрать черную полосу справа */
+        object-position: 60% center; /* Changed from center center to 60% center */
         /* Улучшаем загрузку на мобильных */
         will-change: transform;
         transform: translateZ(0);
@@ -1307,10 +1307,10 @@ p {
 .promo-text-animated {
     position: absolute;
     top: 20%; /* Moved lower from 10% */
-    right: 20%; /* Moved more to the left from 5% */
+    right: 15%; /* Moved more to the left from 5% */
     display: flex;
     flex-direction: column;
-    align-items: center; /* Changed from flex-end to center for centering */
+    align-items: flex-end; /* Changed back to flex-end for proper right alignment */
     gap: 0.5rem;
     z-index: 3;
 }
@@ -1319,13 +1319,13 @@ p {
     opacity: 0;
     transform: translateX(30px);
     color: #000000;
-    font-family: 'Inter', sans-serif;
+    font-family: 'Orbitron', sans-serif;
     font-weight: 700;
     font-size: 3rem; /* Increased from 3rem to 3.5rem */
     text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.8);
     transition: all 0.8s ease;
     white-space: nowrap;
-    text-align: center; /* Added for center alignment */
+    text-align: right; /* Changed to right alignment for proper positioning */
 }
 
 .promo-text-animated .word.visible {
@@ -1345,15 +1345,18 @@ p {
 /* Мобильная версия текста */
 @media (max-width: 768px) {
     .promo-text-animated {
-        top: 15%; /* Moved lower to avoid header overlap */
-        right: 5%;
+        top: 20%; /* Moved lower to avoid header overlap */
+        left: 5%; /* Changed from right to left to prevent off-screen text */
+        right: auto; /* Reset right positioning */
         flex-direction: row; /* Changed from column to row for horizontal layout */
         align-items: flex-start; /* Align to top */
-        gap: 1rem; /* Increased gap for horizontal spacing */
+        gap: 0.5rem; /* Reduced gap for better fit */
+        max-width: 90vw; /* Prevent text from going off-screen */
     }
     
     .promo-text-animated .word {
-        font-size: 1.6rem; /* Increased mobile font size */
+        font-size: 1.2rem; /* Reduced font size to fit better */
+        white-space: nowrap; /* Prevent text wrapping */
     }
     
     /* Mobile sequential layout instead of checkerboard */
