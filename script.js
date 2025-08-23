@@ -27,6 +27,9 @@ document.addEventListener('DOMContentLoaded', () => {
             overlay.style.opacity = '1';
             overlay.style.transform = 'translateY(0)';
         }
+        
+        // Start animated text sequence
+        startTextAnimation();
     }, 1500);
 
     // Initialize all animations
@@ -272,7 +275,8 @@ window.addEventListener('load', () => {
         });
     }, 500);
     
-    // Убрана вся мобильная «оптимизация» видео — оставляем стандартное поведение HTML5
+    // Улучшаем загрузку видео на мобильных устройствах
+    improveMobileVideoLoading();
 });
 
 // Удалены функции мобильной «оптимизации» видео — используем нативное поведение браузера
@@ -308,3 +312,41 @@ function addPlayButton(video) {
 }
 
 // Удалены агрессивные функции удаления рекламных блоков, которые затрагивали легитимные элементы
+
+// Функция анимации появления текста "Открой дверь в мир будущего"
+function startTextAnimation() {
+    const words = document.querySelectorAll('.promo-text-animated .word');
+    
+    words.forEach((word, index) => {
+        setTimeout(() => {
+            word.classList.add('visible');
+        }, index * 500); // Задержка 0.5 секунды между словами
+    });
+}
+
+// Функция улучшения загрузки видео на мобильных устройствах
+function improveMobileVideoLoading() {
+    const isMobile = window.innerWidth <= 768;
+    
+    if (isMobile) {
+        const videos = document.querySelectorAll('video');
+        
+        videos.forEach(video => {
+            // Принудительно загружаем видео
+            video.load();
+            
+            // Добавляем обработчики для лучшей совместимости
+            video.addEventListener('canplay', () => {
+                video.play().catch(e => {
+                    console.log('Автовоспроизведение заблокировано, добавляем кнопку воспроизведения');
+                    addPlayButton(video);
+                });
+            });
+            
+            // Обработка ошибок загрузки
+            video.addEventListener('error', () => {
+                console.log('Ошибка загрузки видео:', video.src);
+            });
+        });
+    }
+}

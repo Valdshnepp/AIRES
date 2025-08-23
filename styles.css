@@ -1228,8 +1228,29 @@ p {
     object-fit: cover;
     filter: none; /* Убираем затемнение */
     z-index: 1;
-    /* Сдвигаем кадр так, чтобы были видны голова и рука робота */
-    object-position: 47% 18%;
+    /* Показываем полное видео без обрезки сверху */
+    object-position: center center;
+}
+
+/* Скрываем мобильное видео на десктопе */
+.mobile-video {
+    display: none;
+}
+
+/* Показываем мобильное видео только на мобильных устройствах */
+@media (max-width: 768px) {
+    .desktop-video {
+        display: none;
+    }
+    .mobile-video {
+        display: block;
+        /* Центрируем мобильное видео */
+        object-position: center center;
+        /* Улучшаем загрузку на мобильных */
+        will-change: transform;
+        transform: translateZ(0);
+        -webkit-transform: translateZ(0);
+    }
 }
 
 /* Мобильный режим: центрируем и гарантируем покрытие без полос */
@@ -1270,6 +1291,70 @@ p {
     transition: opacity 1.5s ease, transform 1.5s ease;
     /* слегка затемняем низ для лучшей читаемости (мягче, чем раньше) */
     background: linear-gradient(180deg, rgba(0,0,0,0) 55%, rgba(0,0,0,.12) 78%, rgba(0,0,0,.30) 100%);
+}
+
+/* Анимированный текст "Открой дверь в мир будущего" */
+.promo-text-animated {
+    position: absolute;
+    top: 15%;
+    right: 10%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.5rem;
+    z-index: 3;
+}
+
+.promo-text-animated .word {
+    opacity: 0;
+    transform: translateX(30px);
+    color: #000000;
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 1.8rem;
+    text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.8);
+    transition: all 0.8s ease;
+    white-space: nowrap;
+}
+
+.promo-text-animated .word.visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Мобильная версия текста */
+@media (max-width: 768px) {
+    .promo-text-animated {
+        top: 10%;
+        right: 5%;
+    }
+    
+    .promo-text-animated .word {
+        font-size: 1.4rem;
+    }
+}
+
+/* Кнопка воспроизведения для видео */
+.video-play-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80px;
+    height: 80px;
+    background: rgba(0, 0, 0, 0.7);
+    border: 3px solid #fff;
+    border-radius: 50%;
+    color: #fff;
+    font-size: 2rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 10;
+}
+
+.video-play-button:hover {
+    background: rgba(0, 0, 0, 0.9);
+    transform: translate(-50%, -50%) scale(1.1);
 }
 
 /* Improve text readability on video */

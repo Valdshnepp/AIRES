@@ -42,12 +42,20 @@
 
             <section class="promo">
             <button class="close-video-btn" onclick="closeVideo()">×</button>
-            <video class="promo-video" autoplay muted loop playsinline preload="metadata">
+            <video class="promo-video desktop-video" autoplay muted loop playsinline preload="auto">
                 <source src="https://storage.yandexcloud.net/aires-media/video/robotfone.mp4?v=2" type="video/mp4">
             </video>
+            <video class="promo-video mobile-video" autoplay muted loop playsinline preload="auto">
+                <source src="mobilefone.mp4" type="video/mp4">
+            </video>
             <div class="promo-overlay">
-                <p class="promo-text">Робототехника, анализ сейсмобезопасности с ИИ, медицинские нейросети, климатическое моделирование, реальная детекция объектов и индустриальная автоматизация.</p>
-                <a href="#projects" class="btn btn-primary promo-btn">Смотреть проекты</a>
+                <div class="promo-text-animated">
+                    <span class="word" data-word="Открой">Открой</span>
+                    <span class="word" data-word="дверь">дверь</span>
+                    <span class="word" data-word="в">в</span>
+                    <span class="word" data-word="мир">мир</span>
+                    <span class="word" data-word="будущего">будущего</span>
+                </div>
             </div>
         </section>
 
