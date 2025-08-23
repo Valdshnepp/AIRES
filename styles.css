@@ -1228,8 +1228,7 @@ p {
     object-fit: cover;
     filter: none; /* Убираем затемнение */
     z-index: 1;
-    /* Показываем полное видео без обрезки сверху */
-    object-position: center center;
+    object-position: 47% calc(18% + 30px); /* Original position + 30px down */
 }
 
 /* Скрываем мобильное видео на десктопе */
@@ -1311,7 +1310,7 @@ p {
     color: #000000;
     font-family: 'Inter', sans-serif;
     font-weight: 700;
-    font-size: 1.8rem;
+    font-size: 2.2rem; /* Increased font size */
     text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.8);
     transition: all 0.8s ease;
     white-space: nowrap;
@@ -1322,6 +1321,15 @@ p {
     transform: translateX(0);
 }
 
+/* Checkerboard pattern for word positioning */
+.promo-text-animated .word:nth-child(odd) {
+    margin-right: 0;
+}
+
+.promo-text-animated .word:nth-child(even) {
+    margin-right: 2rem; /* Offset even words to create checkerboard effect */
+}
+
 /* Мобильная версия текста */
 @media (max-width: 768px) {
     .promo-text-animated {
@@ -1330,7 +1338,12 @@ p {
     }
     
     .promo-text-animated .word {
-        font-size: 1.4rem;
+        font-size: 1.6rem; /* Increased mobile font size */
+    }
+    
+    /* Mobile checkerboard pattern */
+    .promo-text-animated .word:nth-child(even) {
+        margin-right: 1.5rem; /* Smaller offset for mobile */
     }
 }
 

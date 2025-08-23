@@ -316,7 +316,6 @@ function addPlayButton(video) {
 // Функция анимации появления текста "Открой дверь в мир будущего"
 function startTextAnimation() {
     const words = document.querySelectorAll('.promo-text-animated .word');
-    
     words.forEach((word, index) => {
         setTimeout(() => {
             word.classList.add('visible');
