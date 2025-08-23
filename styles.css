@@ -1202,9 +1202,19 @@ p {
     transition: height 1.5s ease;
 }
 
-/* Minimized promo height after scroll/close */
+/* Minimized promo height after scroll/close - DISABLED */
 .promo.minimized {
-    height: 80vh; /* desktop */
+    height: 100vh; /* Keep original height */
+    min-height: 100vh;
+}
+
+/* Disable all minimized state changes */
+.promo.minimized,
+.promo.minimized .promo-video,
+.promo.minimized .mobile-video {
+    height: 100vh !important;
+    min-height: 100vh !important;
+    max-height: none !important;
 }
 
 /* Use modern viewport units when supported to avoid mobile browser UI jump */
@@ -1296,8 +1306,8 @@ p {
 /* Анимированный текст "Открой дверь в мир будущего" */
 .promo-text-animated {
     position: absolute;
-    bottom: 10%; /* Moved lower from 10% */
-    right: 7%; /* Moved more to the left from 5% */
+    top: 20%; /* Moved lower from 10% */
+    right: 20%; /* Moved more to the left from 5% */
     display: flex;
     flex-direction: column;
     align-items: center; /* Changed from flex-end to center for centering */
@@ -1335,7 +1345,7 @@ p {
 /* Мобильная версия текста */
 @media (max-width: 768px) {
     .promo-text-animated {
-        top: 5%; /* Moved to top of video */
+        top: 15%; /* Moved lower to avoid header overlap */
         right: 5%;
         flex-direction: row; /* Changed from column to row for horizontal layout */
         align-items: flex-start; /* Align to top */
@@ -1421,8 +1431,8 @@ p {
 
 @media (max-width: 768px) {
     .promo {
-        height: 92vh;
-        min-height: 92vh;
+        height: 100vh;
+        min-height: 100vh;
     }
     .promo.minimized {
         height: 100vh;

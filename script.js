@@ -6,7 +6,7 @@ function closeVideo() {
     const body = document.body;
     const header = document.querySelector('.header');
     
-    promo.classList.add('minimized');
+    // Removed minimized class to keep video size constant
     body.classList.remove('video-active');
     header.classList.remove('video-active');
     videoActive = false;
@@ -239,7 +239,7 @@ function closeVideo() {
     const body = document.body;
     const header = document.querySelector('.header');
     
-    promo.classList.add('minimized');
+    // Removed minimized class to keep video size constant
     body.classList.remove('video-active');
     header.classList.remove('video-active');
     videoActive = false;
