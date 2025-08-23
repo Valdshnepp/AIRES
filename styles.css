@@ -1228,7 +1228,7 @@ p {
     object-fit: cover;
     filter: none; /* Убираем затемнение */
     z-index: 1;
-    object-position: 47% calc(18% + 30px); /* Original position + 30px down */
+    object-position: 47% calc(18% + 50px); /* Original position + 30px down */
 }
 
 /* Скрываем мобильное видео на десктопе */
