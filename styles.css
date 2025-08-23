@@ -1296,11 +1296,11 @@ p {
 /* Анимированный текст "Открой дверь в мир будущего" */
 .promo-text-animated {
     position: absolute;
-    top: 10%;
-    right: 5%;
+    top: 15%; /* Moved lower from 10% */
+    right: 8%; /* Moved more to the left from 5% */
     display: flex;
     flex-direction: column;
-    align-items: flex-end;
+    align-items: center; /* Changed from flex-end to center for centering */
     gap: 0.5rem;
     z-index: 3;
 }
@@ -1311,10 +1311,11 @@ p {
     color: #000000;
     font-family: 'Inter', sans-serif;
     font-weight: 700;
-    font-size: 3rem; /* Increased font size */
+    font-size: 3.5rem; /* Increased from 3rem to 3.5rem */
     text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.8);
     transition: all 0.8s ease;
     white-space: nowrap;
+    text-align: center; /* Added for center alignment */
 }
 
 .promo-text-animated .word.visible {
@@ -1334,17 +1335,20 @@ p {
 /* Мобильная версия текста */
 @media (max-width: 768px) {
     .promo-text-animated {
-        top: 10%;
+        top: 5%; /* Moved to top of video */
         right: 5%;
+        flex-direction: row; /* Changed from column to row for horizontal layout */
+        align-items: flex-start; /* Align to top */
+        gap: 1rem; /* Increased gap for horizontal spacing */
     }
     
     .promo-text-animated .word {
         font-size: 1.6rem; /* Increased mobile font size */
     }
     
-    /* Mobile checkerboard pattern */
+    /* Mobile sequential layout instead of checkerboard */
     .promo-text-animated .word:nth-child(even) {
-        margin-right: 1.5rem; /* Smaller offset for mobile */
+        margin-right: 0; /* Remove checkerboard offset for mobile */
     }
 }
 
