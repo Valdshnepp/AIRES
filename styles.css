@@ -1349,7 +1349,7 @@ p {
         left: 5%; /* Changed from right to left to prevent off-screen text */
         right: auto; /* Reset right positioning */
         flex-direction: row; /* Changed from column to row for horizontal layout */
-        align-items: flex-start; /* Align to top */
+        align-items: center; /* Align to top */
         gap: 0.5rem; /* Reduced gap for better fit */
         max-width: 90vw; /* Prevent text from going off-screen */
     }
