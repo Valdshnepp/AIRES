@@ -1355,7 +1355,7 @@ p {
     }
     
     .promo-text-animated .word {
-        font-size: 1rem; /* Reduced font size to fit better */
+        font-size: 0.85rem; /* Reduced font size to fit better */
         white-space: nowrap; /* Prevent text wrapping */
     }
     
