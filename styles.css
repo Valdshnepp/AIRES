@@ -1274,13 +1274,13 @@ p {
         object-fit: cover;
         transform: none;
         z-index: 1;
-        object-position: 47% calc(18% + 40px); /* Original position + 30px down */
+        object-position: center center !important; /* убираем сдвиг вправо */
     }
 }
 
 @media (max-width: 480px) {
     .promo-video {
-        object-position: calc(50% + 80px) 24%;
+        object-position: center 55% !important;
     }
 }
 
@@ -1310,16 +1310,16 @@ p {
     right: 15%; /* Moved more to the left from 5% */
     display: flex;
     flex-direction: column;
-    align-items: flex-end; /* Changed back to flex-end for proper right alignment */
+    align-items: center; /* Changed back to flex-end for proper right alignment */
     gap: 0.5rem;
-    z-index: 3;
+    z-index: 3; 
 }
 
 .promo-text-animated .word {
     opacity: 0;
     transform: translateX(30px);
     color: #000000;
-    font-family: 'Orbitron', sans-serif;
+    font-family: 'DotGothic16', sans-serif;
     font-weight: 700;
     font-size: 3rem; /* Increased from 3rem to 3.5rem */
     text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.8);
