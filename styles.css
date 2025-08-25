@@ -1306,26 +1306,39 @@ p {
 /* Анимированный текст "Открой дверь в мир будущего" */
 .promo-text-animated {
     position: absolute;
-    top: 20%; /* Moved lower from 10% */
-    right: 10%; /* Moved more to the left from 5% */
+    top: 25%;
+    right: 7%;
     display: flex;
     flex-direction: column;
-    align-items: center; /* Changed back to flex-end for proper right alignment */
+    align-items: flex-start;
     gap: 0.5rem;
     z-index: 3; 
+}
+
+.promo-text-animated .word-line {
+    display: flex;
+    justify-content: flex-start;
 }
 
 .promo-text-animated .word {
     opacity: 0;
     transform: translateX(30px);
-    color: #000000;
+    color: #1a1a1a;
     font-family: 'DotGothic16', sans-serif;
     font-weight: 700;
-    font-size: 3rem; /* Increased from 3rem to 3.5rem */
-    text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.8);
+    font-size: 2.8rem;
+    text-shadow: 
+        0 0 10px rgba(255, 255, 255, 0.3),
+        0 0 20px rgba(255, 255, 255, 0.2),
+        0 0 30px rgba(255, 255, 255, 0.1);
     transition: all 0.8s ease;
     white-space: nowrap;
-    text-align: right; /* Changed to right alignment for proper positioning */
+    text-align: left;
+    background: linear-gradient(45deg, #000000, #1a1a1a, #000000);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.1));
 }
 
 .promo-text-animated .word.visible {
@@ -1333,35 +1346,55 @@ p {
     transform: translateX(0);
 }
 
-/* Checkerboard pattern for word positioning */
-.promo-text-animated .word:nth-child(odd) {
-    margin-right: 0;
+/* Лестничное расположение слов */
+.promo-text-animated .word-line:nth-child(1) {
+    margin-left: 0;
 }
 
-.promo-text-animated .word:nth-child(even) {
-    margin-right: 2rem; /* Offset even words to create checkerboard effect */
+.promo-text-animated .word-line:nth-child(2) {
+    margin-left: 3rem;
+}
+
+.promo-text-animated .word-line:nth-child(3) {
+    margin-left: 6rem;
+}
+
+.promo-text-animated .word-line:nth-child(4) {
+    margin-left: 9rem;
 }
 
 /* Мобильная версия текста */
 @media (max-width: 768px) {
     .promo-text-animated {
-        top: 20%; /* Moved lower to avoid header overlap */
-        left: 5%; /* Changed from right to left to prevent off-screen text */
-        right: auto; /* Reset right positioning */
-        flex-direction: row; /* Changed from column to row for horizontal layout */
-        align-items: center; /* Align to top */
-        gap: 0.5rem; /* Reduced gap for better fit */
-        max-width: 90vw; /* Prevent text from going off-screen */
+        top: 20%;
+        left: 5%;
+        right: auto;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.3rem;
+        max-width: 90vw;
     }
     
     .promo-text-animated .word {
-        font-size: 0.85rem; /* Reduced font size to fit better */
-        white-space: nowrap; /* Prevent text wrapping */
+        font-size: 1.2rem;
+        white-space: nowrap;
     }
     
-    /* Mobile sequential layout instead of checkerboard */
-    .promo-text-animated .word:nth-child(even) {
-        margin-right: 0; /* Remove checkerboard offset for mobile */
+    /* Мобильное лестничное расположение */
+    .promo-text-animated .word-line:nth-child(1) {
+        margin-left: 0;
+    }
+    
+    .promo-text-animated .word-line:nth-child(2) {
+        margin-left: 1.5rem;
+    }
+    
+    .promo-text-animated .word-line:nth-child(3) {
+        margin-left: 3rem;
+    }
+    
+    .promo-text-animated .word-line:nth-child(4) {
+        margin-left: 4.5rem;
     }
 }
 
