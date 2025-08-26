@@ -16,7 +16,10 @@ class VideoOptimizer {
     }
 
     detectMobile() {
-        return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+        const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+        console.log(`User Agent: ${navigator.userAgent}`);
+        console.log(`Определено как: ${isMobile ? 'мобильное' : 'десктоп'}`);
+        return isMobile;
     }
 
     detectNetworkSpeed() {
@@ -59,30 +62,39 @@ class VideoOptimizer {
 
     optimizeExistingVideos() {
         const videoElements = document.querySelectorAll('.lazy-video');
+        console.log(`Найдено ${videoElements.length} видео элементов`);
+        console.log(`Устройство: ${this.isMobile ? 'мобильное' : 'десктоп'}`);
+        
         videoElements.forEach((video, index) => {
             this.videos.push(video);
             this.intersectionObserver.observe(video);
             
-            // Для первого видео (обложка сайта) на мобильных загружаем blue.mp4
-            // Это заменяет черный фон с постером на реальное видео
+            // Для первого видео (обложка сайта) на мобильных загружаем MP4/blue.mp4
+            // Это заменяет черный фон с постером на реальное видео в хорошем качестве
             if (this.isMobile && index === 0) {
+                console.log(`Обрабатываем первое видео (индекс ${index}) для мобильного устройства`);
                 this.loadBlueVideo(video);
             }
         });
     }
 
     loadBlueVideo(video) {
-        // Для мобильных устройств загружаем blue.mp4 (обложка сайта)
+        // Для мобильных устройств загружаем MP4/blue.mp4 (обложка сайта в хорошем качестве)
+        console.log('Загружаем blue.mp4 для мобильного устройства');
+        
         const blueSource = video.querySelector('source[type="video/mp4"]');
         if (blueSource) {
-            blueSource.src = 'low bitrate/blue.mp4';
+            console.log('Источник найден, обновляем на MP4/blue.mp4');
+            blueSource.src = 'MP4/blue.mp4';
             video.load();
             video.dataset.loaded = 'true';
             
             // Начинаем воспроизведение
             video.play().catch(e => {
-                console.log('Автовоспроизведение blue.mp4 заблокировано:', e);
+                console.log('Автовоспроизведение MP4/blue.mp4 заблокировано:', e);
             });
+        } else {
+            console.log('Источник MP4 не найден');
         }
     }
 
