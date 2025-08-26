@@ -6,7 +6,7 @@ function closeVideo() {
     const body = document.body;
     const header = document.querySelector('.header');
     
-    promo.classList.add('minimized');
+    // Removed minimized class to keep video size constant
     body.classList.remove('video-active');
     header.classList.remove('video-active');
     videoActive = false;
@@ -27,6 +27,9 @@ document.addEventListener('DOMContentLoaded', () => {
             overlay.style.opacity = '1';
             overlay.style.transform = 'translateY(0)';
         }
+        
+        // Start animated text sequence
+        startTextAnimation();
     }, 1500);
 
     // Initialize all animations
@@ -38,8 +41,23 @@ document.addEventListener('DOMContentLoaded', () => {
     // Parallax effects
     initializeParallax();
     
-
+    // Preload project videos to prevent black background
+    preloadProjectVideos();
 });
+
+// Simple function to preload project videos
+function preloadProjectVideos() {
+    const projectVideos = document.querySelectorAll('.article-video-section video');
+    projectVideos.forEach(video => {
+        // Set background color to prevent black background
+        video.style.background = '#000';
+        
+        // Simple preload without complex optimizations
+        if (video.readyState === 0) {
+            video.load();
+        }
+    });
+}
 
 // Initialize all animations with Intersection Observer
 function initializeAnimations() {
@@ -78,29 +96,6 @@ function initializeAnimations() {
     document.querySelectorAll('.section-title:not(.article-video-title), .hero-title, .hero-subtitle, .hero-description').forEach(el => {
         elementObserver.observe(el);
     });
-
-    // Observe images (excluding article video) - удалено, так как изображения статей больше не используются
-
-    // Observer for stats with counter animation
-    const statsObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const statNumbers = entry.target.querySelectorAll('.stat-number');
-                statNumbers.forEach((stat, index) => {
-                    setTimeout(() => {
-                        const target = parseInt(stat.getAttribute('data-target'));
-                        animateCounter(stat, target);
-                    }, index * 200);
-                });
-                statsObserver.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.5 });
-
-    const statsSection = document.querySelector('.stats');
-    if (statsSection) {
-        statsObserver.observe(statsSection);
-    }
 }
 
 // Enhanced smooth scrolling
@@ -122,49 +117,36 @@ function initializeSmoothScroll() {
     });
 }
 
-// Enhanced parallax effects
+// Parallax effects
 function initializeParallax() {
-    // Отключаем параллакс на мобильных, чтобы не "уползало" видео и не появлялись черные полосы
-    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-    if (isMobile || window.innerWidth <= 1024) {
-        return; // без параллакса на мобильных/узких экранах
-    }
-
     window.addEventListener('scroll', () => {
         const scrolled = window.pageYOffset;
-        const parallaxElements = document.querySelectorAll('.floating-element');
+        const parallaxElements = document.querySelectorAll('.parallax');
         
-        parallaxElements.forEach((element, index) => {
-            const speed = 0.5 + (index * 0.1);
-            element.style.transform = `translateY(${scrolled * speed}px) rotate(${scrolled * 0.1}deg)`;
-        });
-
-        // Parallax for video sections
-        const videoSections = document.querySelectorAll('.promo, .article-video-section');
-        videoSections.forEach(section => {
-            const speed = 0.3;
-            const yPos = -(scrolled * speed);
-            section.style.transform = `translateY(${yPos}px)`;
+        parallaxElements.forEach(element => {
+            const speed = element.dataset.speed || 0.5;
+            element.style.transform = `translateY(${scrolled * speed}px)`;
         });
     });
 }
 
-// Enhanced counter animation
-function animateCounter(element, target, duration = 2000) {
-    let start = 0;
-    const increment = target / (duration / 16);
-    
-    function updateCounter() {
-        start += increment;
-        if (start < target) {
-            element.textContent = Math.floor(start);
-            requestAnimationFrame(updateCounter);
-        } else {
-            element.textContent = target;
-        }
+// Close video when scrolling down
+window.addEventListener('scroll', () => {
+    // Close/minimize video when scrolling down
+    if (videoActive && window.scrollY > 100) {
+        closeVideo();
     }
+});
+
+// Close video function for scroll event
+function closeVideo() {
+    const body = document.body;
+    const header = document.querySelector('.header');
     
-    updateCounter();
+    // Removed minimized class to keep video size constant
+    body.classList.remove('video-active');
+    header.classList.remove('video-active');
+    videoActive = false;
 }
 
 // Enhanced mobile navigation (sidebar with overlay)
@@ -238,17 +220,6 @@ window.addEventListener('scroll', () => {
     }
 });
 
-function closeVideo() {
-    const promo = document.querySelector('.promo');
-    const body = document.body;
-    const header = document.querySelector('.header');
-    
-    promo.classList.add('minimized');
-    body.classList.remove('video-active');
-    header.classList.remove('video-active');
-    videoActive = false;
-}
-
 // Enhanced project card effects
 document.querySelectorAll('.project-card').forEach(card => {
     card.addEventListener('click', function() {
@@ -279,39 +250,61 @@ window.addEventListener('load', () => {
         });
     }, 500);
     
-    // Убрана вся мобильная «оптимизация» видео — оставляем стандартное поведение HTML5
+    // Улучшаем загрузку видео на мобильных устройствах
+    improveMobileVideoLoading();
 });
 
 // Удалены функции мобильной «оптимизации» видео — используем нативное поведение браузера
 
-// Функция добавления кнопки воспроизведения
-function addPlayButton(video) {
-    const playButton = document.createElement('button');
-    playButton.className = 'video-play-button';
-    playButton.innerHTML = '▶';
-    playButton.style.display = 'none';
+// Функция анимации появления текста "Открой дверь в мир будущего"
+function startTextAnimation() {
+    const words = document.querySelectorAll('.promo-text-animated .word');
+    words.forEach((word, index) => {
+        setTimeout(() => {
+            word.classList.add('visible');
+        }, index * 500); // Задержка 0.5 секунды между словами
+    });
+}
+
+// Функция для переключения разворачивающихся блоков проектов
+function toggleProjectDetails(projectId) {
+    const projectDetails = document.getElementById(projectId);
+    const isExpanded = projectDetails.classList.contains('expanded');
     
-    // Показываем кнопку при паузе
-    video.addEventListener('pause', () => {
-        playButton.style.display = 'block';
+    // Находим кнопку для этого проекта
+    const button = document.querySelector(`button[onclick="toggleProjectDetails('${projectId}')"]`);
+    
+    // Закрываем все открытые блоки и сбрасываем текст кнопок
+    const allProjectDetails = document.querySelectorAll('.project-details');
+    allProjectDetails.forEach(project => {
+        project.classList.remove('expanded');
     });
     
-    // Скрываем кнопку при воспроизведении
-    video.addEventListener('play', () => {
-        playButton.style.display = 'none';
+    // Сбрасываем текст всех кнопок на "Читать полностью"
+    const allButtons = document.querySelectorAll('.read-more-btn');
+    allButtons.forEach(btn => {
+        btn.textContent = 'Читать полностью';
     });
     
-    // Обработчик клика по кнопке
-    playButton.addEventListener('click', () => {
-        video.play();
-    });
-    
-    // Добавляем кнопку в контейнер видео
-    const videoContainer = video.parentElement;
-    if (videoContainer) {
-        videoContainer.style.position = 'relative';
-        videoContainer.appendChild(playButton);
+    // Если блок был закрыт, открываем его и меняем текст кнопки
+    if (!isExpanded) {
+        projectDetails.classList.add('expanded');
+        
+        // Меняем текст кнопки на "Закрыть статью"
+        if (button) {
+            button.textContent = 'Закрыть статью';
+        }
+        
+        // Плавно прокручиваем к открытому блоку
+        setTimeout(() => {
+            projectDetails.scrollIntoView({
+                behavior: 'smooth',
+                block: 'nearest'
+            });
+        }, 300);
     }
 }
 
-// Удалены агрессивные функции удаления рекламных блоков, которые затрагивали легитимные элементы
+
+
+
