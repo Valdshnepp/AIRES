@@ -59,38 +59,29 @@ class VideoOptimizer {
 
     optimizeExistingVideos() {
         const videoElements = document.querySelectorAll('.lazy-video');
-        videoElements.forEach(video => {
+        videoElements.forEach((video, index) => {
             this.videos.push(video);
             this.intersectionObserver.observe(video);
             
-            // Добавляем постер-изображение для мобильных
-            if (this.isMobile) {
-                this.addVideoPoster(video);
+            // Для первого видео (обложка сайта) на мобильных загружаем blue.mp4
+            // Это заменяет черный фон с постером на реальное видео
+            if (this.isMobile && index === 0) {
+                this.loadBlueVideo(video);
             }
         });
     }
 
-    addVideoPoster(video) {
-        const container = video.closest('.video-container');
-        if (container) {
-            const poster = document.createElement('div');
-            poster.className = 'video-poster';
-            poster.innerHTML = `
-                <div class="poster-content">
-                    <i class="fas fa-play-circle"></i>
-                    <p>Нажмите для воспроизведения</p>
-                </div>
-            `;
-            container.appendChild(poster);
+    loadBlueVideo(video) {
+        // Для мобильных устройств загружаем blue.mp4 (обложка сайта)
+        const blueSource = video.querySelector('source[type="video/mp4"]');
+        if (blueSource) {
+            blueSource.src = 'low bitrate/blue.mp4';
+            video.load();
+            video.dataset.loaded = 'true';
             
-            // Показываем постер пока видео не загружено
-            poster.style.display = 'block';
-            video.style.opacity = '0';
-            
-            // Скрываем постер после загрузки видео
-            video.addEventListener('loadeddata', () => {
-                poster.style.display = 'none';
-                video.style.opacity = '1';
+            // Начинаем воспроизведение
+            video.play().catch(e => {
+                console.log('Автовоспроизведение blue.mp4 заблокировано:', e);
             });
         }
     }
@@ -115,10 +106,7 @@ class VideoOptimizer {
         if (this.isVideoVisible(video)) {
             video.play().catch(e => {
                 console.log('Автовоспроизведение заблокировано:', e);
-                this.showPlayButton(video);
             });
-        } else {
-            this.showPlayButton(video);
         }
     }
 
@@ -161,19 +149,7 @@ class VideoOptimizer {
         return rect.top < window.innerHeight && rect.bottom > 0;
     }
 
-    showPlayButton(video) {
-        const container = video.closest('.video-container');
-        if (container) {
-            const playButton = container.querySelector('.video-play-button');
-            if (playButton) {
-                playButton.style.display = 'flex';
-                playButton.addEventListener('click', () => {
-                    video.play();
-                    playButton.style.display = 'none';
-                });
-            }
-        }
-    }
+
 
     // Метод для принудительной загрузки всех видео (для тестирования)
     loadAllVideos() {
