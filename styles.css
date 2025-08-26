@@ -1520,6 +1520,229 @@ p {
     }
 }
 
+/* Стили для модального окна */
+.article-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    display: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.article-modal.active {
+    display: block;
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.modal-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(5px);
+}
+
+.modal-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.9);
+    width: 90%;
+    max-width: 900px;
+    max-height: 90vh;
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.95) 0%, rgba(0, 20, 40, 0.95) 100%);
+    border-radius: 20px;
+    border: 1px solid rgba(0, 212, 255, 0.3);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    transition: all 0.3s ease;
+    overflow: hidden;
+    opacity: 0;
+}
+
+.article-modal.active .modal-content {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+}
+
+.modal-close-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    background: rgba(0, 212, 255, 0.2);
+    border: 1px solid rgba(0, 212, 255, 0.5);
+    border-radius: 50%;
+    color: #00d4ff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.modal-close-btn:hover {
+    background: rgba(0, 212, 255, 0.3);
+    transform: scale(1.1);
+}
+
+.modal-body {
+    padding: 60px 40px 40px;
+    max-height: calc(90vh - 100px);
+    overflow-y: auto;
+    color: #ffffff;
+}
+
+.modal-body h4 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    color: #00d4ff;
+    text-align: center;
+}
+
+.modal-body p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    color: #e0e0e0;
+}
+
+.modal-body .project-block {
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background: rgba(0, 212, 255, 0.1);
+    border-radius: 15px;
+    border-left: 4px solid #00d4ff;
+}
+
+.modal-body h5 {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    color: #00d4ff;
+}
+
+/* Адаптивность для модального окна */
+@media (max-width: 768px) {
+    .modal-content {
+        width: 95%;
+        max-height: 95vh;
+    }
+    
+    .modal-body {
+        padding: 50px 20px 30px;
+        max-height: calc(95vh - 80px);
+    }
+    
+    .modal-body h4 {
+        font-size: 1.6rem;
+    }
+    
+    .modal-body p {
+        font-size: 1rem;
+    }
+    
+    .modal-body h5 {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .modal-content {
+        width: 98%;
+        max-height: 98vh;
+    }
+    
+    .modal-body {
+        padding: 40px 15px 25px;
+        max-height: calc(98vh - 65px);
+    }
+    
+    .modal-body h4 {
+        font-size: 1.4rem;
+    }
+    
+    .modal-body p {
+        font-size: 0.95rem;
+    }
+    
+    .modal-body h5 {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 360px) {
+    .modal-body {
+        padding: 35px 10px 20px;
+        max-height: calc(98vh - 55px);
+    }
+    
+    .modal-body h4 {
+        font-size: 1.2rem;
+    }
+    
+    .modal-body p {
+        font-size: 0.9rem;
+    }
+    
+    .modal-body h5 {
+        font-size: 0.95rem;
+    }
+}
+
+@media (min-width: 1200px) {
+    .modal-content {
+        max-width: 1000px;
+    }
+    
+    .modal-body {
+        padding: 70px 50px 50px;
+    }
+    
+    .modal-body h4 {
+        font-size: 2.2rem;
+    }
+    
+    .modal-body p {
+        font-size: 1.2rem;
+    }
+    
+    .modal-body h5 {
+        font-size: 1.4rem;
+    }
+}
+
+@media (min-width: 1600px) {
+    .modal-content {
+        max-width: 1200px;
+    }
+    
+    .modal-body {
+        padding: 80px 60px 60px;
+    }
+    
+    .modal-body h4 {
+        font-size: 2.5rem;
+    }
+    
+    .modal-body p {
+        font-size: 1.3rem;
+    }
+    
+    .modal-body h5 {
+        font-size: 1.5rem;
+    }
+}
+
 .promo-overlay {
     position: absolute; /* перекрываем видео */
     inset: 0;           /* top:0; right:0; bottom:0; left:0 */

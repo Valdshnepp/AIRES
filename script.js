@@ -315,7 +315,15 @@ function openArticleModal(projectId) {
     // Блокируем прокрутку страницы
     document.body.style.overflow = 'hidden';
     
-    console.log('Модальное окно открыто');
+    // Сбрасываем скролл модального окна наверх
+    setTimeout(() => {
+        const modalBody = modal.querySelector('.modal-body');
+        if (modalBody) {
+            modalBody.scrollTop = 0;
+        }
+    }, 100);
+    
+    console.log('Модальное окно открыто, скролл сброшен наверх');
 }
 
 // Функция для закрытия модального окна
@@ -332,7 +340,13 @@ function closeArticleModal() {
     const modalContent = document.getElementById('modalContent');
     modalContent.innerHTML = '';
     
-    console.log('Модальное окно закрыто');
+    // Сбрасываем скролл модального окна наверх при закрытии
+    const modalBody = modal.querySelector('.modal-body');
+    if (modalBody) {
+        modalBody.scrollTop = 0;
+    }
+    
+    console.log('Модальное окно закрыто, скролл сброшен');
 }
 
 // Закрытие модального окна по клику на затемненную область
