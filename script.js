@@ -123,10 +123,18 @@ function initializeParallax() {
         const scrolled = window.pageYOffset;
         const parallaxElements = document.querySelectorAll('.parallax');
         
+<<<<<<< HEAD
         parallaxElements.forEach(element => {
             const speed = element.dataset.speed || 0.5;
             element.style.transform = `translateY(${scrolled * speed}px)`;
         });
+=======
+        parallaxElements.forEach((element, index) => {
+            const speed = 0.5 + (index * 0.1);
+            element.style.transform = `translateY(${scrolled * speed}px) rotate(${scrolled * 0.1}deg)`;
+        });
+        // Видеоблоки больше не двигаем при скролле (убран эффект увеличения/параллакса)
+>>>>>>> 2b4520b489daa8e5dc5e9d6fb63e77bfcd9487a4
     });
 }
 
@@ -220,6 +228,20 @@ window.addEventListener('scroll', () => {
     }
 });
 
+<<<<<<< HEAD
+=======
+function closeVideo() {
+    const promo = document.querySelector('.promo');
+    const body = document.body;
+    const header = document.querySelector('.header');
+    
+    // Removed minimized class to keep video size constant
+    body.classList.remove('video-active');
+    header.classList.remove('video-active');
+    videoActive = false;
+}
+
+>>>>>>> 2b4520b489daa8e5dc5e9d6fb63e77bfcd9487a4
 // Enhanced project card effects
 document.querySelectorAll('.project-card').forEach(card => {
     card.addEventListener('click', function() {
@@ -305,6 +327,47 @@ function toggleProjectDetails(projectId) {
     }
 }
 
+<<<<<<< HEAD
 
 
 
+=======
+// Удалены агрессивные функции удаления рекламных блоков, которые затрагивали легитимные элементы
+
+// Функция анимации появления текста "Открой дверь в мир будущего"
+function startTextAnimation() {
+    const words = document.querySelectorAll('.promo-text-animated .word');
+    words.forEach((word, index) => {
+        setTimeout(() => {
+            word.classList.add('visible');
+        }, index * 500); // Задержка 0.5 секунды между словами
+    });
+}
+
+// Функция улучшения загрузки видео на мобильных устройствах
+function improveMobileVideoLoading() {
+    const isMobile = window.innerWidth <= 768;
+    
+    if (isMobile) {
+        const videos = document.querySelectorAll('video');
+        
+        videos.forEach(video => {
+            // Принудительно загружаем видео
+            video.load();
+            
+            // Добавляем обработчики для лучшей совместимости
+            video.addEventListener('canplay', () => {
+                video.play().catch(e => {
+                    console.log('Автовоспроизведение заблокировано, добавляем кнопку воспроизведения');
+                    addPlayButton(video);
+                });
+            });
+            
+            // Обработка ошибок загрузки
+            video.addEventListener('error', () => {
+                console.log('Ошибка загрузки видео:', video.src);
+            });
+        });
+    }
+}
+>>>>>>> 2b4520b489daa8e5dc5e9d6fb63e77bfcd9487a4

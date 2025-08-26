@@ -1409,7 +1409,13 @@ p {
         /* Сдвигаем мобильное видео левее, чтобы убрать черную полосу справа */
         object-position: 60% center; /* Changed from center center to 60% center */
         /* Улучшаем загрузку на мобильных */
+<<<<<<< HEAD
 
+=======
+        will-change: transform;
+        transform: translateZ(0);
+        -webkit-transform: translateZ(0);
+>>>>>>> 2b4520b489daa8e5dc5e9d6fb63e77bfcd9487a4
     }
 }
 
@@ -1452,6 +1458,127 @@ p {
     transition: opacity 1.5s ease, transform 1.5s ease;
     /* слегка затемняем низ для лучшей читаемости (мягче, чем раньше) */
     background: linear-gradient(180deg, rgba(0,0,0,0) 55%, rgba(0,0,0,.12) 78%, rgba(0,0,0,.30) 100%);
+<<<<<<< HEAD
+=======
+}
+
+/* Анимированный текст "Открой дверь в мир будущего" */
+.promo-text-animated {
+    position: absolute;
+    top: 25%;
+    right: 7%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+    z-index: 3; 
+}
+
+.promo-text-animated .word-line {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.promo-text-animated .word {
+    opacity: 0;
+    transform: translateX(30px);
+    color: #1a1a1a;
+    font-family: 'DotGothic16', sans-serif;
+    font-weight: 700;
+    font-size: 2.8rem;
+    text-shadow: 
+        0 0 10px rgba(255, 255, 255, 0.3),
+        0 0 20px rgba(255, 255, 255, 0.2),
+        0 0 30px rgba(255, 255, 255, 0.1);
+    transition: all 0.8s ease;
+    white-space: nowrap;
+    text-align: left;
+    background: linear-gradient(45deg, #000000, #1a1a1a, #000000);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.1));
+}
+
+.promo-text-animated .word.visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Лестничное расположение слов */
+.promo-text-animated .word-line:nth-child(1) {
+    margin-left: 0;
+}
+
+.promo-text-animated .word-line:nth-child(2) {
+    margin-left: 3rem;
+}
+
+.promo-text-animated .word-line:nth-child(3) {
+    margin-left: 6rem;
+}
+
+.promo-text-animated .word-line:nth-child(4) {
+    margin-left: 9rem;
+}
+
+/* Мобильная версия текста */
+@media (max-width: 768px) {
+    .promo-text-animated {
+        top: 20%;
+        left: 5%;
+        right: auto;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.3rem;
+        max-width: 90vw;
+    }
+    
+    .promo-text-animated .word {
+        font-size: 1.2rem;
+        white-space: nowrap;
+    }
+    
+    /* Мобильное лестничное расположение */
+    .promo-text-animated .word-line:nth-child(1) {
+        margin-left: 0;
+    }
+    
+    .promo-text-animated .word-line:nth-child(2) {
+        margin-left: 1.5rem;
+    }
+    
+    .promo-text-animated .word-line:nth-child(3) {
+        margin-left: 3rem;
+    }
+    
+    .promo-text-animated .word-line:nth-child(4) {
+        margin-left: 4.5rem;
+    }
+}
+
+/* Кнопка воспроизведения для видео */
+.video-play-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80px;
+    height: 80px;
+    background: rgba(0, 0, 0, 0.7);
+    border: 3px solid #fff;
+    border-radius: 50%;
+    color: #fff;
+    font-size: 2rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 10;
+}
+
+.video-play-button:hover {
+    background: rgba(0, 0, 0, 0.9);
+    transform: translate(-50%, -50%) scale(1.1);
+>>>>>>> 2b4520b489daa8e5dc5e9d6fb63e77bfcd9487a4
 }
 
 /* Анимированный текст "Открой дверь в мир будущего" */
