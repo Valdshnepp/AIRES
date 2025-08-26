@@ -134,14 +134,23 @@ p {
 .logo {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 10px;
+    min-height: 80px; /* Обеспечиваем минимальную высоту для центрирования */
 }
 
 .logo-img {
     width: 80px;
     height: 80px;
+    max-width: 80px;
+    max-height: 80px;
     border-radius: 8px;
     filter: brightness(0) invert(1); /* Make logo white */
+    object-fit: contain; /* Сохраняем пропорции логотипа */
+    -webkit-object-fit: contain; /* Для Safari */
+    object-position: center; /* Центрируем логотип */
+    -webkit-object-position: center; /* Для Safari */
+    display: block; /* Лучшая совместимость с браузерами */
 }
 
 .nav-list {
@@ -518,6 +527,16 @@ p {
 .article {
     padding: 5rem 0;
     background: #0a0a0a;
+    min-height: auto;
+    overflow: visible;
+    position: relative;
+}
+
+.article .container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
 }
 
 /* Разделитель между статьями */
@@ -549,6 +568,7 @@ p {
     display: flex;
     flex-direction: column;
     margin-bottom: 2rem;
+    width: 100%;
 }
 
 .video-container {
@@ -982,8 +1002,15 @@ p {
 .footer-logo-img {
     width: 80px;
     height: 80px;
+    max-width: 80px;
+    max-height: 80px;
     border-radius: 8px;
     filter: brightness(0) invert(1); /* Make logo white */
+    object-fit: contain; /* Сохраняем пропорции логотипа */
+    -webkit-object-fit: contain; /* Для Safari */
+    object-position: center; /* Центрируем логотип */
+    -webkit-object-position: center; /* Для Safari */
+    display: block; /* Лучшая совместимость с браузерами */
 }
 
 .footer-description {
@@ -1142,9 +1169,28 @@ p {
 
 
     /* Responsive adjustments for article */
+    .article {
+        padding: 3rem 0;
+        overflow: visible;
+    }
+    
+    .article .container {
+        padding: 0 15px;
+    }
+    
     .article-video-section {
-        height: 160vh;
-        min-height: 160vh;
+        height: auto;
+        min-height: auto;
+        margin-bottom: 1.5rem;
+        width: 100%;
+    }
+    
+    .video-container {
+        height: 60vh;
+    }
+    
+    .article-description {
+        padding: 2rem 1.5rem 1.5rem;
     }
 
 
@@ -1249,13 +1295,30 @@ p {
 }
 
 @media (max-width: 768px) {
+    .logo {
+        min-height: 56px; /* Адаптируем минимальную высоту для мобильных */
+    }
     .logo-img {
         width: 56px;
         height: 56px;
+        max-width: 56px;
+        max-height: 56px;
+        object-fit: contain; /* Сохраняем пропорции логотипа */
+        -webkit-object-fit: contain; /* Для Safari */
+        object-position: center; /* Центрируем логотип */
+        -webkit-object-position: center; /* Для Safari */
+        display: block; /* Лучшая совместимость с браузерами */
     }
     .footer-logo-img {
         width: 56px;
         height: 56px;
+        max-width: 56px;
+        max-height: 56px;
+        object-fit: contain; /* Сохраняем пропорции логотипа */
+        -webkit-object-fit: contain; /* Для Safari */
+        object-position: center; /* Центрируем логотип */
+        -webkit-object-position: center; /* Для Safari */
+        display: block; /* Лучшая совместимость с браузерами */
     }
 }
 
@@ -1297,6 +1360,16 @@ p {
     .promo.minimized { height: 100svh; min-height: 100svh; }
 }
 
+/* Мобильная версия с современными viewport units */
+@media (max-width: 768px) {
+    @supports (height: 50dvh) {
+        .promo { height: 50dvh; min-height: 50dvh; }
+    }
+    @supports (height: 50svh) {
+        .promo { height: 50svh; min-height: 50svh; }
+    }
+}
+
 .promo-video {
     position: absolute;
     top: 0;
@@ -1320,11 +1393,20 @@ p {
         display: none;
     }
     .mobile-video {
-        display: block;
-        /* Сдвигаем мобильное видео левее, чтобы убрать черную полосу справа */
-        object-position: 60% center; /* Changed from center center to 60% center */
-        /* Улучшаем загрузку на мобильных */
-
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        /* Обеспечиваем полное покрытие экрана без черных полос */
+        object-fit: cover !important;
+        object-position: center center !important;
+        width: 100% !important;
+        height: 100% !important;
+        min-width: 100% !important;
+        min-height: 100% !important;
+        position: absolute !important;
+        top: 0 !important;
+        left: 0 !important;
+        z-index: 1 !important;
     }
 }
 
@@ -1337,16 +1419,71 @@ p {
         height: 100%;
         min-width: 100%;
         min-height: 100%;
-        object-fit: cover;
+        object-fit: cover !important;
         transform: none;
         z-index: 1;
-        object-position: center center !important; /* убираем сдвиг вправо */
+        object-position: center center !important; /* центрируем видео */
     }
 }
 
 @media (max-width: 480px) {
     .promo-video {
-        object-position: center 55% !important;
+        object-fit: cover !important;
+        object-position: center center !important;
+    }
+    
+    .mobile-video {
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        object-fit: cover !important;
+        object-position: center center !important;
+        width: 100% !important;
+        height: 100% !important;
+        min-width: 100% !important;
+        min-height: 100% !important;
+        position: absolute !important;
+        top: 0 !important;
+        left: 0 !important;
+        z-index: 1 !important;
+    }
+}
+
+/* Стили для средних мобильных экранов */
+@media (max-width: 768px) and (min-width: 481px) {
+    .mobile-video {
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        object-fit: cover !important;
+        object-position: center center !important;
+        width: 100% !important;
+        height: 100% !important;
+        min-width: 100% !important;
+        min-height: 100% !important;
+        position: absolute !important;
+        top: 0 !important;
+        left: 0 !important;
+        z-index: 1 !important;
+    }
+}
+
+/* Стили для очень маленьких экранов */
+@media (max-width: 360px) {
+    .mobile-video {
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        object-fit: cover !important;
+        object-position: center center !important;
+        width: 100% !important;
+        height: 100% !important;
+        min-width: 100% !important;
+        min-height: 100% !important;
+        position: absolute !important;
+        top: 0 !important;
+        left: 0 !important;
+        z-index: 1 !important;
     }
 }
 
@@ -1561,7 +1698,7 @@ p {
         margin: 0 auto;
     }
     /* Уменьшаем видео-блок. Оверлей показываем, но без текста — только кнопка */
-    .promo { height: 70vh; min-height: 70vh; }
+    .promo { height: 50vh; min-height: 50vh; }
     .promo-overlay { display: flex; }
     .promo-overlay .promo-text { display: none; }
 }
@@ -2296,4 +2433,37 @@ section,
     opacity: 1;
     visibility: visible;
     transform: none;
+}
+
+/* Черный блок-подложка */
+.black-background-block {
+    background: #000;
+    width: 100%;
+    height: 4rem; /* Такая же высота как у футера */
+    min-height: 4rem;
+}
+
+/* Показываем блоки на соответствующих устройствах */
+.desktop-only {
+    display: block;
+}
+
+.mobile-only {
+    display: none;
+}
+
+/* Адаптивность для мобильных устройств */
+@media (max-width: 768px) {
+    .black-background-block {
+        height: 3rem;
+        min-height: 3rem;
+    }
+    
+    .desktop-only {
+        display: none;
+    }
+    
+    .mobile-only {
+        display: block;
+    }
 }

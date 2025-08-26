@@ -20,17 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
     body.classList.add('video-active');
     header.classList.add('video-active');
     
-    // Show overlay text after 1.5 seconds
-    setTimeout(() => {
-        const overlay = document.querySelector('.promo-overlay');
-        if (overlay) {
-            overlay.style.opacity = '1';
-            overlay.style.transform = 'translateY(0)';
-        }
-        
-        // Start animated text sequence
-        startTextAnimation();
-    }, 1500);
+    // Промо оверлей убран - текст уже есть в видео
 
     // Initialize all animations
     initializeAnimations();
@@ -256,15 +246,7 @@ window.addEventListener('load', () => {
 
 // Удалены функции мобильной «оптимизации» видео — используем нативное поведение браузера
 
-// Функция анимации появления текста "Открой дверь в мир будущего"
-function startTextAnimation() {
-    const words = document.querySelectorAll('.promo-text-animated .word');
-    words.forEach((word, index) => {
-        setTimeout(() => {
-            word.classList.add('visible');
-        }, index * 500); // Задержка 0.5 секунды между словами
-    });
-}
+// Функция анимации текста убрана - текст уже есть в видео
 
 // Функция для переключения разворачивающихся блоков проектов
 function toggleProjectDetails(projectId) {
@@ -305,6 +287,73 @@ function toggleProjectDetails(projectId) {
     }
 }
 
+// Функция для открытия модального окна со статьей
+function openArticleModal(projectId) {
+    console.log('Открываем модальное окно для:', projectId);
+    
+    const projectDetails = document.getElementById(projectId);
+    if (!projectDetails) {
+        console.error('Элемент с ID', projectId, 'не найден');
+        return;
+    }
+    
+    // Получаем содержимое статьи
+    const articleContent = projectDetails.querySelector('.project-details-content');
+    if (!articleContent) {
+        console.error('Содержимое статьи не найдено');
+        return;
+    }
+    
+    // Копируем содержимое в модальное окно
+    const modalContent = document.getElementById('modalContent');
+    modalContent.innerHTML = articleContent.innerHTML;
+    
+    // Показываем модальное окно
+    const modal = document.getElementById('articleModal');
+    modal.classList.add('active');
+    
+    // Блокируем прокрутку страницы
+    document.body.style.overflow = 'hidden';
+    
+    console.log('Модальное окно открыто');
+}
 
+// Функция для закрытия модального окна
+function closeArticleModal() {
+    console.log('Закрываем модальное окно');
+    
+    const modal = document.getElementById('articleModal');
+    modal.classList.remove('active');
+    
+    // Разблокируем прокрутку страницы
+    document.body.style.overflow = '';
+    
+    // Очищаем содержимое
+    const modalContent = document.getElementById('modalContent');
+    modalContent.innerHTML = '';
+    
+    console.log('Модальное окно закрыто');
+}
 
-
+// Закрытие модального окна по клику на затемненную область
+document.addEventListener('DOMContentLoaded', function() {
+    const modal = document.getElementById('articleModal');
+    if (modal) {
+        const modalOverlay = modal.querySelector('.modal-overlay');
+        
+        modalOverlay.addEventListener('click', function(e) {
+            if (e.target === modalOverlay) {
+                closeArticleModal();
+            }
+        });
+        
+        // Закрытие по нажатию клавиши Escape
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                if (modal.classList.contains('active')) {
+                    closeArticleModal();
+                }
+            }
+        });
+    }
+});

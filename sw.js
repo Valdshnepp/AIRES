@@ -222,3 +222,4 @@ self.addEventListener('error', (event) => {
 self.addEventListener('unhandledrejection', (event) => {
     console.error('Service Worker: Необработанное отклонение промиса:', event.reason);
 });
+

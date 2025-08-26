@@ -42,30 +42,20 @@
 
             
 
-            <section class="promo">
+        <!-- Черный блок-подложка под хеддер -->
+        <div class="black-background-block"></div>
+        
+        <section class="promo">
             <button class="close-video-btn" onclick="closeVideo()">×</button>
             <video class="promo-video desktop-video" autoplay muted loop playsinline preload="auto">
-                <source src="https://storage.yandexcloud.net/aires-media/video/robotfone.mp4?v=2" type="video/mp4">
+                <source src="MP4/pcblue.mp4" type="video/mp4">
             </video>
             <video class="promo-video mobile-video" autoplay muted loop playsinline preload="auto">
-                <source src="MP4/blue.mp4" type="video/mp4">
+                <source src="MP4/mobileblue.mp4" type="video/mp4">
+                <source src="WebM/mobileblue.webm" type="video/webm">
+                <source src="low-bitrate/mobileblue.mp4" type="video/mp4">
             </video>
-            <div class="promo-overlay">
-                <div class="promo-text-animated">
-                    <div class="word-line">
-                        <span class="word" data-word="Открой">Открой</span>
-                    </div>
-                    <div class="word-line">
-                        <span class="word" data-word="дверь">дверь</span>
-                    </div>
-                    <div class="word-line">
-                        <span class="word" data-word="в мир">в мир</span>
-                    </div>
-                    <div class="word-line">
-                        <span class="word" data-word="будущего">будущего</span>
-                    </div>
-                </div>
-            </div>
+            <!-- Текст убран - он уже есть в видео -->
         </section>
 
     <section id="home" class="hero no-video section-transition">
@@ -199,7 +189,7 @@
                 </div>
                 <div class="article-description">
                     <p class="article-video-subtitle">Умная система автоматической сортировки и калибровки овощей по точным параметрам качества с использованием компьютерного зрения и машинного обучения.</p>
-                    <button class="read-more-btn" onclick="toggleProjectDetails('project-1')">Читать полностью</button>
+                    <button class="read-more-btn" onclick="openArticleModal('project-1')">Читать полностью</button>
                 </div>
                 
                 <!-- Разворачивающийся блок для проекта 1 -->
@@ -258,7 +248,7 @@
                 </div>
                 <div class="article-description">
                     <p class="article-video-subtitle">Алгоритм машинного обучения для анализа сейсмических аномалий и оценки состояния аварийных зданий до, во время и после землетрясений и других экстремальных воздействий.</p>
-                    <button class="read-more-btn" onclick="toggleProjectDetails('project-2')">Читать полностью</button>
+                    <button class="read-more-btn" onclick="openArticleModal('project-2')">Читать полностью</button>
                 </div>
                 
                 <!-- Разворачивающийся блок для проекта 2 -->
@@ -317,7 +307,7 @@
                 </div>
                 <div class="article-description">
                     <p class="article-video-subtitle">Алгоритм глубокого обучения для выявления онкологических заболеваний на основе анализа медицинских изображений — рентгеновских снимков и гистологических срезов.</p>
-                    <button class="read-more-btn" onclick="toggleProjectDetails('project-3')">Читать полностью</button>
+                    <button class="read-more-btn" onclick="openArticleModal('project-3')">Читать полностью</button>
                 </div>
                 
                 <!-- Разворачивающийся блок для проекта 3 -->
@@ -380,7 +370,7 @@
                 </div>
                 <div class="article-description">
                     <p class="article-video-subtitle">Исследовательский проект по изучению эволюции тетраэдральной конфигурации из четырёх спутников, движущихся по кеплеровым орбитам для выявления гравитационных аномалий и следов новой физики.</p>
-                    <button class="read-more-btn" onclick="toggleProjectDetails('project-4')">Читать полностью</button>
+                    <button class="read-more-btn" onclick="openArticleModal('project-4')">Читать полностью</button>
                 </div>
                 
                 <!-- Разворачивающийся блок для проекта 4 -->
@@ -433,7 +423,7 @@
                 </div>
                 <div class="article-description">
                     <p class="article-video-subtitle">Проект по разработке сетевых моделей для предсказания погодных условий на основе климатических данных с применением интеллектуального анализа данных.</p>
-                    <button class="read-more-btn" onclick="toggleProjectDetails('project-5')">Читать полностью</button>
+                    <button class="read-more-btn" onclick="openArticleModal('project-5')">Читать полностью</button>
                 </div>
                 
                 <!-- Разворачивающийся блок для проекта 5 -->
@@ -496,7 +486,7 @@
                 </div>
                 <div class="article-description">
                     <p class="article-video-subtitle">Децентрализованная платформа верификации и аудита смарт-контрактов на основе ИИ.</p>
-                    <button class="read-more-btn" onclick="toggleProjectDetails('project-6')">Читать полностью</button>
+                    <button class="read-more-btn" onclick="openArticleModal('project-6')">Читать полностью</button>
                 </div>
                 
                 <!-- Разворачивающийся блок для проекта 6 -->
@@ -559,7 +549,7 @@
                 </div>
                 <div class="article-description">
                     <p class="article-video-subtitle">Продвинутая нейросетевая модель для детекции и отслеживания объектов в реальном времени с высокой точностью и скоростью обработки.</p>
-                    <button class="read-more-btn" onclick="toggleProjectDetails('project-7')">Читать полностью</button>
+                    <button class="read-more-btn" onclick="openArticleModal('project-7')">Читать полностью</button>
                 </div>
                 
                 <!-- Разворачивающийся блок для проекта 7 -->
@@ -617,7 +607,7 @@
                 </div>
                 <div class="article-description">
                     <p class="article-video-subtitle">Автоматизированная система сварки с точным контролем траектории, параметров дуги и качеством шва для промышленного применения.</p>
-                    <button class="read-more-btn" onclick="toggleProjectDetails('project-8')">Читать полностью</button>
+                    <button class="read-more-btn" onclick="openArticleModal('project-8')">Читать полностью</button>
                 </div>
                 
                 <!-- Разворачивающийся блок для проекта 8 -->
@@ -751,6 +741,19 @@
             </div>
         </div>
     </footer>
+
+    <!-- Модальное окно для статей -->
+    <div id="articleModal" class="article-modal">
+        <div class="modal-overlay"></div>
+        <div class="modal-content">
+            <button class="modal-close-btn" onclick="closeArticleModal()">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="modal-body">
+                <div id="modalContent"></div>
+            </div>
+        </div>
+    </div>
 
     <script src="script.js"></script>
     <script src="video-optimizer.js"></script>
