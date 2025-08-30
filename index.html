@@ -42,7 +42,6 @@
 
             
 
-        <!-- Черный блок-подложка под хеддер -->
         <div class="black-background-block"></div>
         
         <section class="promo">
@@ -55,7 +54,6 @@
                 <source src="WebM/mobileblue.webm" type="video/webm">
                 <source src="low-bitrate/mobileblue.mp4" type="video/mp4">
             </video>
-            <!-- Текст убран - он уже есть в видео -->
         </section>
 
     <section id="home" class="hero no-video section-transition">
@@ -693,9 +691,7 @@
                     <div class="form-group">
                         <textarea id="message" name="message" placeholder="Ваше сообщение" rows="5" required></textarea>
                     </div>
-                    <!-- honeypot против ботов (скрыто стилями) -->
                     <input type="text" name="company" style="position:absolute;left:-9999px;opacity:0" tabindex="-1" autocomplete="off">
-                    <!-- Скрытое поле для времени ({{time}} в EmailJS шаблоне) -->
                     <input type="hidden" name="time" id="timeField">
                     <button type="submit" class="btn btn-primary" id="sendBtn">Отправить сообщение</button>
                     <p id="formStatus" style="margin-top:8px;"></p>
@@ -750,7 +746,6 @@
         </div>
     </footer>
 
-    <!-- Модальное окно для статей -->
     <div id="articleModal" class="article-modal">
         <div class="modal-overlay"></div>
         <div class="modal-content">
@@ -765,31 +760,11 @@
 
     <script src="script.js"></script>
     <script src="video-optimizer.js"></script>
-    <!-- EmailJS SDK -->
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <script>
-    // ВСТАВЬ свой Public Key из EmailJS (Account → Public Key)
     emailjs.init('0TKA7rxBON4u6sDg6');
     </script>
     
-    <!-- Скрипт отправки через EmailJS -->
-    <!-- 
-    ВАЖНО: Замените ID на ваши реальные из EmailJS Dashboard:
-    - service_xxxxxxx → ваш Service ID из Email Services
-    - template_xxxxxxx → ваш Template ID из Email Templates
-    
-    Как найти:
-    1. Зайдите в EmailJS Dashboard
-    2. Email Services → скопируйте Service ID
-    3. Email Templates → скопируйте Template ID
-    
-    Поля формы соответствуют шаблону EmailJS:
-    - {{name}} → name="name"
-    - {{email}} → name="email" 
-    - {{title}} → name="title"
-    - {{message}} → name="message"
-    - {{time}} → name="time" (автоматически заполняется)
-    -->
     <script>
       (function () {
         const form = document.getElementById('contactForm');
