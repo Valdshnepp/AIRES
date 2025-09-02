@@ -1499,7 +1499,7 @@ p {
     }
 }
 
-/* Стили для замены видео на фото на мобильных устройствах */
+/* Стили для замены видео на видео из low bitrate на мобильных устройствах */
 @media (max-width: 768px) {
     .article-video {
         display: none !important;
@@ -1511,6 +1511,10 @@ p {
         height: 100% !important;
         object-fit: cover !important;
         object-position: center center !important;
+        position: absolute !important;
+        top: 0 !important;
+        left: 0 !important;
+        z-index: 1 !important;
     }
 }
 
