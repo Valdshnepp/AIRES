@@ -2,7 +2,7 @@
 let videoActive = true;
 
 function closeVideo() {
-    const promo = document.querySelector('.promo');
+    // const promo = document.querySelector('.promo');
     const body = document.body;
     const header = document.querySelector('.header');
     
@@ -241,7 +241,7 @@ window.addEventListener('load', () => {
     }, 500);
     
     // Улучшаем загрузку видео на мобильных устройствах
-    improveMobileVideoLoading();
+    // improveMobileVideoLoading();
 });
 
 // Удалены функции мобильной «оптимизации» видео — используем нативное поведение браузера

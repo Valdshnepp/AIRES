@@ -193,13 +193,33 @@ if ('connection' in navigator) {
     });
 }
 
-// Обработка видимости страницы для оптимизации воспроизведения
+// // Обработка видимости страницы для оптимизации воспроизведения
+// document.addEventListener('visibilitychange', () => {
+//     if (document.hidden) {
+//         // Останавливаем все видео при скрытии страницы
+//         document.querySelectorAll('.lazy-video').forEach(video => {
+//             if (!video.paused) {
+//                 video.pause();
+//             }
+//         });
+//     }
+// });
+
 document.addEventListener('visibilitychange', () => {
     if (document.hidden) {
-        // Останавливаем все видео при скрытии страницы
+        // Pause all videos when page is hidden
         document.querySelectorAll('.lazy-video').forEach(video => {
             if (!video.paused) {
                 video.pause();
+            }
+        });
+    } else {
+        // Resume playing all videos when page becomes visible again
+        document.querySelectorAll('.lazy-video').forEach(video => {
+            // You may want to only play videos that were previously playing.
+            // But a simple approach is to just play all auto/loop videos:
+            if (video.paused && video.autoplay) {
+                video.play().catch(() => { /* handle autoplay restrictions if needed */ });
             }
         });
     }
