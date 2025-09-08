@@ -9,6 +9,7 @@ class VideoOptimizer {
     }
 
     init() {
+        console.log(`init started`);
         this.detectNetworkSpeed();
         this.setupIntersectionObserver();
         this.setupServiceWorker();
@@ -60,22 +61,63 @@ class VideoOptimizer {
         }
     }
 
-    optimizeExistingVideos() {
-        const videoElements = document.querySelectorAll('.lazy-video');
-        console.log(`Найдено ${videoElements.length} видео элементов`);
-        console.log(`Устройство: ${this.isMobile ? 'мобильное' : 'десктоп'}`);
+    // optimizeExistingVideos() {
+    //     const videoElements = document.querySelectorAll('.lazy-video');
+    //     console.log(`Найдено ${videoElements.length} видео элементов`);
+    //     console.log(`Устройство: ${this.isMobile ? 'мобильное' : 'десктоп'}`);
         
+    //     videoElements.forEach((video, index) => {
+    //         this.videos.push(video);
+    //         this.intersectionObserver.observe(video);
+            
+    //         // Для первого видео (обложка сайта) на мобильных загружаем MP4/blue.mp4
+    //         // Это заменяет черный фон с постером на реальное видео в хорошем качестве
+    //         if (this.isMobile && index === 0) {
+    //             console.log(`Обрабатываем первое видео (индекс ${index}) для мобильного устройства`);
+    //             this.loadBlueVideo(video);
+    //         }
+    //     });
+    // }
+    optimizeExistingVideos(){
+        console.log('1111111111111111111');
+        const videoElements = document.querySelectorAll('.lazy-video');
+        const articlePhotos = document.querySelectorAll('.article-photo');
+        const articleVideos = document.querySelectorAll('.article-video');
+        console.log('2222222222222222');
+
         videoElements.forEach((video, index) => {
             this.videos.push(video);
             this.intersectionObserver.observe(video);
-            
-            // Для первого видео (обложка сайта) на мобильных загружаем MP4/blue.mp4
-            // Это заменяет черный фон с постером на реальное видео в хорошем качестве
+            console.log('333333333333333');
             if (this.isMobile && index === 0) {
-                console.log(`Обрабатываем первое видео (индекс ${index}) для мобильного устройства`);
                 this.loadBlueVideo(video);
             }
-        });
+            console.log('HERERERERERER');
+            // NEW: mobile/desktop distinction for video activation
+            if (this.isMobile) {
+                console.log('MOBILEMOBILEMOBILEMOBILEMOBILEMOBILE');
+                const photo = articlePhotos[index];
+                if (photo) {
+                    const source = photo.querySelector('source');
+                    if (source && video.dataset.src) {
+                        source.src = 'lowbitrate/' + video.dataset.src + '.mp4'; // adjust path if needed
+                        photo.load();
+                        photo.play();
+                    }
+                }
+            } else {
+                console.log('PCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPC');
+                const vid = articleVideos[index];
+                if (vid) {
+                    const source = vid.querySelector('source');
+                    if (source && video.dataset.src) {
+                        source.src = 'MP4/' + video.dataset.src + '.mp4'; // adjust path if needed
+                        vid.load();
+                        vid.play();
+                    }
+                }
+            }
+        }); 
     }
 
     loadBlueVideo(video) {
@@ -111,7 +153,7 @@ class VideoOptimizer {
         this.updateVideoSources(video, videoQuality);
         
         // Загружаем видео
-        video.load();
+        // video.load();
         video.dataset.loaded = 'true';
         
         // Начинаем воспроизведение только если видео видимо
@@ -164,11 +206,11 @@ class VideoOptimizer {
 
 
     // Метод для принудительной загрузки всех видео (для тестирования)
-    loadAllVideos() {
-        this.videos.forEach(video => {
-            this.loadVideo(video);
-        });
-    }
+    // loadAllVideos() {
+    //     this.videos.forEach(video => {
+    //         this.loadVideo(video);
+    //     });
+    // }
 
     // Метод для очистки памяти
     cleanup() {
