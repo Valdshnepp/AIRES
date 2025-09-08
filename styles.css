@@ -388,9 +388,11 @@ p {
 
 .about-content {
     display: grid;
-    grid-template-columns: 2fr 1fr;
+    grid-template-columns: 1fr;
     gap: 4rem;
     align-items: start;
+    max-width: 100%;
+    width: 100%;
 }
 
 .about-text h3 {
@@ -401,6 +403,8 @@ p {
 .about-text p {
     margin-bottom: 1.5rem;
     line-height: 1.7;
+    text-align: justify;
+    font-size: 1.3rem;
 }
 
 /* Improve readability of the about description */
@@ -892,6 +896,17 @@ p {
 .contact-item p {
     color: #b0b0b0;
     margin: 0;
+}
+
+.contact-link {
+    color: #00d4ff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.contact-link:hover {
+    color: #ffffff;
+    text-decoration: underline;
 }
 
 .contact-form {
