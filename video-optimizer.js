@@ -91,7 +91,7 @@ class VideoOptimizer {
             // }
             // NEW: mobile/desktop distinction for video activation
             if (this.isMobile) {
-                const photo = articlePhotos[index];
+                const photo = articlePhotos[index-1];
                 if (photo) {
                     const source = photo.querySelector('source');
                     if (source && video.dataset.src) {
@@ -101,7 +101,7 @@ class VideoOptimizer {
                     }
                 }
             } else {
-                const vid = articleVideos[index];
+                const vid = articleVideos[index-1];
                 if (vid) {
                     const source = vid.querySelector('source');
                     if (source && video.dataset.src) {

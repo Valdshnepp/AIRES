@@ -41,17 +41,27 @@
     </header>
         <div class="black-background-block"></div>
         
+
         <section class="promo">
-            <!-- <button class="close-video-btn" onclick="closeVideo()">×</button> -->
+            <button class="close-video-btn" onclick="closeVideo()">×</button>
+            <video class="promo-video desktop-video" autoplay muted loop playsinline preload="auto">
+                <source src="MP4/pcblue.mp4" type="video/mp4">
+            </video>
+            <video class="promo-video mobile-video" autoplay muted loop playsinline preload="auto">
+                <source src="MP4/mobileblue.mp4" type="video/mp4">
+                <source src="WebM/mobileblue.webm" type="video/webm">
+                <source src="low bitrate/mobileblue.mp4" type="video/mp4">
+            </video>
+        </section>
+
+        <!-- <section class="promo">
             <video class="promo-video desktop-video article-video lazy-video"  muted loop playsinline data-src="blue">
                 <source  type="video/mp4">
             </video>
             <video class="promo-video mobile-video article-photo"  muted loop playsinline data-src="mobileblue">
                 <source  type="video/mp4">
-                <!-- <source src="WebM/mobileblue.webm" type="video/webm">
-                <source src="low bitrate/mobileblue.mp4" type="video/mp4"> -->
             </video>
-        </section>
+        </section> -->
 
     <section id="home" class="hero no-video section-transition">
         <div class="hero-background">
