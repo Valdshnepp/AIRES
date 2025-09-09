@@ -39,11 +39,9 @@
         </div>
         <div class="nav-overlay" id="navOverlay"></div>
     </header>
-
-            
-
         <div class="black-background-block"></div>
         
+
         <section class="promo">
             <button class="close-video-btn" onclick="closeVideo()">×</button>
             <video class="promo-video desktop-video" autoplay muted loop playsinline preload="auto">
@@ -55,6 +53,15 @@
                 <source src="low bitrate/mobileblue.mp4" type="video/mp4">
             </video>
         </section>
+
+        <!-- <section class="promo">
+            <video class="promo-video desktop-video article-video lazy-video"  muted loop playsinline data-src="blue">
+                <source  type="video/mp4">
+            </video>
+            <video class="promo-video mobile-video article-photo"  muted loop playsinline data-src="mobileblue">
+                <source  type="video/mp4">
+            </video>
+        </section> -->
 
     <section id="home" class="hero no-video section-transition">
         <div class="hero-background">
@@ -176,13 +183,13 @@
             <!-- Video 1: Vegetables -->
             <div class="article-video-section">
                 <div class="video-container">
-                    <video class="article-video lazy-video" autoplay muted loop playsinline preload="metadata" data-src="pomidor">
+                    <video class="article-video lazy-video" muted loop playsinline data-src="pomidor">
                         <!-- <source src="MP4/pomidor.mp4" type="video/mp4" data-src-webm="WebM/pomidor.webm" data-src-low="low-bitrate/pomidor.mp4">
-                        <source src="WebM/pomidor.webm" type="video/webm">  -->
-                        <source src="low bitrate/pomidor.mp4" type="video/mp4">
+                        <source src="WebM/pomidor.webm" type="video/webm"> -->
+                        <source type="video/mp4">
                     </video>
-                    <video class="article-photo" autoplay muted loop playsinline preload="metadata">
-                        <source src="low bitrate/pomidor.mp4" type="video/mp4">
+                    <video class="article-photo lazy-video"  muted loop playsinline data-src="pomidor">
+                        <source type="video/mp4">
                     </video>
                 </div>
                 <div class="article-description">
@@ -236,13 +243,11 @@
             <!-- Video 2: Seismic -->
             <div class="article-video-section">
                 <div class="video-container">
-                    <video class="article-video lazy-video" autoplay muted loop playsinline preload="metadata" data-src="dom">
-                        <!--<source src="MP4/dom.mp4" type="video/mp4" data-src-webm="WebM/dom.webm" data-src-low="low-bitrate/dom.mp4">
-                        <source src="WebM/dom.webm" type="video/webm"> -->
-                        <source src="low bitrate/dom.mp4" type="video/mp4">
+                    <video class="article-video lazy-video" muted loop playsinline data-src="dom">
+                        <source type="video/mp4">
                     </video>
-                    <video class="article-photo" autoplay muted loop playsinline preload="metadata">
-                        <source src="low bitrate/dom.mp4" type="video/mp4">
+                    <video class="article-photo" muted loop playsinline data-src="dom">
+                        <source type="video/mp4">
                     </video>
                 </div>
                 <div class="article-description">
@@ -296,13 +301,13 @@
             <!-- Video 3: Oncology -->
             <div class="article-video-section">
                 <div class="video-container">
-                    <video class="article-video lazy-video" autoplay muted loop playsinline preload="metadata" data-src="rak">
-                        <!--<source src="MP4/rak.mp4" type="video/mp4" data-src-webm="WebM/rak.webm" data-src-low="low-bitrate/rak.mp4">
+                    <video class="article-video lazy-video" muted loop playsinline data-src="rak">
+                        <!-- <source src="MP4/rak.mp4" type="video/mp4" data-src-webm="WebM/rak.webm" data-src-low="low-bitrate/rak.mp4">
                         <source src="WebM/rak.webm" type="video/webm"> -->
-                        <source src="low bitrate/rak.mp4" type="video/mp4">
+                        <source type="video/mp4">
                     </video>
-                    <video class="article-photo" autoplay muted loop playsinline preload="metadata">
-                        <source src="low bitrate/rak.mp4" type="video/mp4">
+                    <video class="article-photo" muted loop playsinline data-src="rak">
+                        <source type="video/mp4">
                     </video>
                 </div>
                 <div class="article-description">
@@ -360,13 +365,13 @@
             <!-- Video 4: Tetrahedron -->
             <div class="article-video-section">
                 <div class="video-container">
-                    <video class="article-video lazy-video" autoplay muted loop playsinline preload="metadata" data-src="space">
-                        <!--<source src="MP4/space.mp4" type="video/mp4" data-src-webm="WebM/space.webm" data-src-low="low-bitrate/space.mp4">
+                    <video class="article-video lazy-video" muted loop playsinline data-src="space">
+                        <!-- <source src="MP4/space.mp4" type="video/mp4" data-src-webm="WebM/space.webm" data-src-low="low-bitrate/space.mp4">
                         <source src="WebM/space.webm" type="video/webm"> -->
-                        <source src="low bitrate/space.mp4" type="video/mp4">
+                        <source type="video/mp4">
                     </video>
-                    <video class="article-photo" autoplay muted loop playsinline preload="metadata">
-                        <source src="low bitrate/space.mp4" type="video/mp4">
+                    <video class="article-photo" muted loop playsinline data-src="space">
+                        <source type="video/mp4">
                     </video>
                 </div>
                 <div class="article-description">
@@ -414,13 +419,13 @@
             <!-- Video 5: Weather -->
             <div class="article-video-section">
                 <div class="video-container">
-                    <video class="article-video lazy-video" autoplay muted loop playsinline preload="metadata" data-src="pogoda">
-                        <!--<source src="MP4/pogoda.mp4" type="video/mp4" data-src-webm="WebM/pogoda.webm" data-src-low="low-bitrate/pogoda.mp4">
+                    <video class="article-video lazy-video"  muted loop playsinline data-src="pogoda">
+                        <!-- <source src="MP4/pogoda.mp4" type="video/mp4" data-src-webm="WebM/pogoda.webm" data-src-low="low-bitrate/pogoda.mp4">
                         <source src="WebM/pogoda.webm" type="video/webm"> -->
-                        <source src="low bitrate/pogoda.mp4" type="video/mp4">
+                        <source  type="video/mp4">
                     </video>
-                    <video class="article-photo" autoplay muted loop playsinline preload="metadata">
-                        <source src="low bitrate/pogoda.mp4" type="video/mp4">
+                    <video class="article-photo"  muted loop playsinline data-src="pogoda">
+                        <source type="video/mp4">
                     </video>
                 </div>
                 <div class="article-description">
@@ -478,13 +483,13 @@
             <!-- Video 6: Cryptocurrency -->
             <div class="article-video-section">
                 <div class="video-container">
-                    <video class="article-video lazy-video" autoplay muted loop playsinline preload="metadata" data-src="cripta">
-                        <!--<source src="MP4/cripta.mp4" type="video/mp4" data-src-webm="WebM/cripta.webm" data-src-low="low-bitrate/cripta.mp4">
+                    <video class="article-video lazy-video" muted loop playsinline data-src="cripta">
+                        <!-- <source src="MP4/cripta.mp4" type="video/mp4" data-src-webm="WebM/cripta.webm" data-src-low="low-bitrate/cripta.mp4">
                         <source src="WebM/cripta.webm" type="video/webm"> -->
-                        <source src="low bitrate/cripta.mp4" type="video/mp4">
+                        <source type="video/mp4">
                     </video>
-                    <video class="article-photo" autoplay muted loop playsinline preload="metadata">
-                        <source src="low bitrate/cripta.mp4" type="video/mp4">
+                    <video class="article-photo"  muted loop playsinline data-src="cripta">
+                        <source  type="video/mp4">
                     </video>
                 </div>
                 <div class="article-description">
@@ -542,13 +547,13 @@
             <!-- Video 7: Drone -->
             <div class="article-video-section">
                 <div class="video-container">
-                    <video class="article-video lazy-video" autoplay muted loop playsinline preload="metadata" data-src="mouse">
-                        <!--<source src="MP4/mouse.mp4" type="video/mp4" data-src-webm="WebM/mouse.webm" data-src-low="low-bitrate/mouse.mp4">
+                    <video class="article-video lazy-video"  muted loop playsinline data-src="mouse">
+                        <!-- <source src="MP4/mouse.mp4" type="video/mp4" data-src-webm="WebM/mouse.webm" data-src-low="low-bitrate/mouse.mp4">
                         <source src="WebM/mouse.webm" type="video/webm"> -->
-                        <source src="low bitrate/mouse.mp4" type="video/mp4">
+                        <source type="video/mp4">
                     </video>
-                    <video class="article-photo" autoplay muted loop playsinline preload="metadata">
-                        <source src="low bitrate/mouse.mp4" type="video/mp4">
+                    <video class="article-photo"  muted loop playsinline >
+                        <source type="video/mp4">
                     </video>
                 </div>
                 <div class="article-description">
@@ -601,13 +606,13 @@
             <!-- Video 8: Robot Welder -->
             <div class="article-video-section">
                 <div class="video-container">
-                    <video class="article-video lazy-video" autoplay muted loop playsinline preload="metadata" data-src="svarka">
-                        <!--<source src="MP4/svarka.mp4" type="video/mp4" data-src-webm="WebM/svarka.webm" data-src-low="low-bitrate/svarka.mp4">
+                    <video class="article-video lazy-video"  muted loop playsinline data-src="svarka">
+                        <!-- <source src="MP4/svarka.mp4" type="video/mp4" data-src-webm="WebM/svarka.webm" data-src-low="low-bitrate/svarka.mp4">
                         <source src="WebM/svarka.webm" type="video/webm"> -->
-                        <source src="low bitrate/svarka.mp4" type="video/mp4">
+                        <source type="video/mp4">
                     </video>
-                    <video class="article-photo" autoplay muted loop playsinline preload="metadata">
-                        <source src="low bitrate/svarka.mp4" type="video/mp4">
+                    <video class="article-photo"  muted loop playsinline >
+                        <source type="video/mp4">
                     </video>
                 </div>
                 <div class="article-description">

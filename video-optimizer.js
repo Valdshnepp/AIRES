@@ -9,6 +9,7 @@ class VideoOptimizer {
     }
 
     init() {
+        console.log(`init started`);
         this.detectNetworkSpeed();
         this.setupIntersectionObserver();
         this.setupServiceWorker();
@@ -60,43 +61,78 @@ class VideoOptimizer {
         }
     }
 
-    optimizeExistingVideos() {
-        const videoElements = document.querySelectorAll('.lazy-video');
-        console.log(`Найдено ${videoElements.length} видео элементов`);
-        console.log(`Устройство: ${this.isMobile ? 'мобильное' : 'десктоп'}`);
+    // optimizeExistingVideos() {
+    //     const videoElements = document.querySelectorAll('.lazy-video');
+    //     console.log(`Найдено ${videoElements.length} видео элементов`);
+    //     console.log(`Устройство: ${this.isMobile ? 'мобильное' : 'десктоп'}`);
         
+    //     videoElements.forEach((video, index) => {
+    //         this.videos.push(video);
+    //         this.intersectionObserver.observe(video);
+            
+    //         // Для первого видео (обложка сайта) на мобильных загружаем MP4/blue.mp4
+    //         // Это заменяет черный фон с постером на реальное видео в хорошем качестве
+    //         if (this.isMobile && index === 0) {
+    //             console.log(`Обрабатываем первое видео (индекс ${index}) для мобильного устройства`);
+    //             this.loadBlueVideo(video);
+    //         }
+    //     });
+    // }
+    optimizeExistingVideos(){
+        const videoElements = document.querySelectorAll('.lazy-video');
+        const articlePhotos = document.querySelectorAll('.article-photo');
+        const articleVideos = document.querySelectorAll('.article-video');
+
         videoElements.forEach((video, index) => {
             this.videos.push(video);
             this.intersectionObserver.observe(video);
-            
-            // Для первого видео (обложка сайта) на мобильных загружаем MP4/blue.mp4
-            // Это заменяет черный фон с постером на реальное видео в хорошем качестве
-            if (this.isMobile && index === 0) {
-                console.log(`Обрабатываем первое видео (индекс ${index}) для мобильного устройства`);
-                this.loadBlueVideo(video);
+            // if (this.isMobile && index === 0) {
+            //     this.loadBlueVideo(video);
+            // }
+            // NEW: mobile/desktop distinction for video activation
+            if (this.isMobile) {
+                const photo = articlePhotos[index-1];
+                if (photo) {
+                    const source = photo.querySelector('source');
+                    if (source && video.dataset.src) {
+                        source.src = 'lowbitrate/' + video.dataset.src + '.mp4'; // adjust path if needed
+                        photo.load();
+                        photo.play();
+                    }
+                }
+            } else {
+                const vid = articleVideos[index-1];
+                if (vid) {
+                    const source = vid.querySelector('source');
+                    if (source && video.dataset.src) {
+                        source.src = 'MP4/' + video.dataset.src + '.mp4'; // adjust path if needed
+                        vid.load();
+                        vid.play();
+                    }
+                }
             }
-        });
+        }); 
     }
 
-    loadBlueVideo(video) {
-        // Для мобильных устройств загружаем MP4/blue.mp4 (обложка сайта в хорошем качестве)
-        console.log('Загружаем blue.mp4 для мобильного устройства');
+    // loadBlueVideo(video) {
+    //     // Для мобильных устройств загружаем MP4/blue.mp4 (обложка сайта в хорошем качестве)
+    //     console.log('Загружаем blue.mp4 для мобильного устройства');
         
-        const blueSource = video.querySelector('source[type="video/mp4"]');
-        if (blueSource) {
-            console.log('Источник найден, обновляем на MP4/blue.mp4');
-            blueSource.src = 'MP4/blue.mp4';
-            video.load();
-            video.dataset.loaded = 'true';
+    //     const blueSource = video.querySelector('source[type="video/mp4"]');
+    //     if (blueSource) {
+    //         console.log('Источник найден, обновляем на MP4/blue.mp4');
+    //         blueSource.src = 'MP4/blue.mp4';
+    //         video.load();
+    //         video.dataset.loaded = 'true';
             
-            // Начинаем воспроизведение
-            video.play().catch(e => {
-                console.log('Автовоспроизведение MP4/blue.mp4 заблокировано:', e);
-            });
-        } else {
-            console.log('Источник MP4 не найден');
-        }
-    }
+    //         // Начинаем воспроизведение
+    //         video.play().catch(e => {
+    //             console.log('Автовоспроизведение MP4/blue.mp4 заблокировано:', e);
+    //         });
+    //     } else {
+    //         console.log('Источник MP4 не найден');
+    //     }
+    // }
 
     loadVideo(video) {
         if (video.dataset.loaded === 'true') return;
@@ -111,7 +147,7 @@ class VideoOptimizer {
         this.updateVideoSources(video, videoQuality);
         
         // Загружаем видео
-        video.load();
+        // video.load();
         video.dataset.loaded = 'true';
         
         // Начинаем воспроизведение только если видео видимо
@@ -164,19 +200,19 @@ class VideoOptimizer {
 
 
     // Метод для принудительной загрузки всех видео (для тестирования)
-    loadAllVideos() {
-        this.videos.forEach(video => {
-            this.loadVideo(video);
-        });
-    }
+    // loadAllVideos() {
+    //     this.videos.forEach(video => {
+    //         this.loadVideo(video);
+    //     });
+    // }
 
     // Метод для очистки памяти
-    cleanup() {
-        if (this.intersectionObserver) {
-            this.intersectionObserver.disconnect();
-        }
-        this.videos = [];
-    }
+    // cleanup() {
+    //     if (this.intersectionObserver) {
+    //         this.intersectionObserver.disconnect();
+    //     }
+    //     this.videos = [];
+    // }
 }
 
 // Инициализация оптимизатора видео
@@ -218,7 +254,7 @@ document.addEventListener('visibilitychange', () => {
         document.querySelectorAll('.lazy-video').forEach(video => {
             // You may want to only play videos that were previously playing.
             // But a simple approach is to just play all auto/loop videos:
-            if (video.paused && video.autoplay) {
+            if (video.paused) {
                 video.play().catch(() => { /* handle autoplay restrictions if needed */ });
             }
         });
