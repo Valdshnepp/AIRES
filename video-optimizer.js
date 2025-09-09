@@ -79,23 +79,18 @@ class VideoOptimizer {
     //     });
     // }
     optimizeExistingVideos(){
-        console.log('1111111111111111111');
         const videoElements = document.querySelectorAll('.lazy-video');
         const articlePhotos = document.querySelectorAll('.article-photo');
         const articleVideos = document.querySelectorAll('.article-video');
-        console.log('2222222222222222');
 
         videoElements.forEach((video, index) => {
             this.videos.push(video);
             this.intersectionObserver.observe(video);
-            console.log('333333333333333');
-            if (this.isMobile && index === 0) {
-                this.loadBlueVideo(video);
-            }
-            console.log('HERERERERERER');
+            // if (this.isMobile && index === 0) {
+            //     this.loadBlueVideo(video);
+            // }
             // NEW: mobile/desktop distinction for video activation
             if (this.isMobile) {
-                console.log('MOBILEMOBILEMOBILEMOBILEMOBILEMOBILE');
                 const photo = articlePhotos[index];
                 if (photo) {
                     const source = photo.querySelector('source');
@@ -106,7 +101,6 @@ class VideoOptimizer {
                     }
                 }
             } else {
-                console.log('PCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPC');
                 const vid = articleVideos[index];
                 if (vid) {
                     const source = vid.querySelector('source');
@@ -120,25 +114,25 @@ class VideoOptimizer {
         }); 
     }
 
-    loadBlueVideo(video) {
-        // Для мобильных устройств загружаем MP4/blue.mp4 (обложка сайта в хорошем качестве)
-        console.log('Загружаем blue.mp4 для мобильного устройства');
+    // loadBlueVideo(video) {
+    //     // Для мобильных устройств загружаем MP4/blue.mp4 (обложка сайта в хорошем качестве)
+    //     console.log('Загружаем blue.mp4 для мобильного устройства');
         
-        const blueSource = video.querySelector('source[type="video/mp4"]');
-        if (blueSource) {
-            console.log('Источник найден, обновляем на MP4/blue.mp4');
-            blueSource.src = 'MP4/blue.mp4';
-            video.load();
-            video.dataset.loaded = 'true';
+    //     const blueSource = video.querySelector('source[type="video/mp4"]');
+    //     if (blueSource) {
+    //         console.log('Источник найден, обновляем на MP4/blue.mp4');
+    //         blueSource.src = 'MP4/blue.mp4';
+    //         video.load();
+    //         video.dataset.loaded = 'true';
             
-            // Начинаем воспроизведение
-            video.play().catch(e => {
-                console.log('Автовоспроизведение MP4/blue.mp4 заблокировано:', e);
-            });
-        } else {
-            console.log('Источник MP4 не найден');
-        }
-    }
+    //         // Начинаем воспроизведение
+    //         video.play().catch(e => {
+    //             console.log('Автовоспроизведение MP4/blue.mp4 заблокировано:', e);
+    //         });
+    //     } else {
+    //         console.log('Источник MP4 не найден');
+    //     }
+    // }
 
     loadVideo(video) {
         if (video.dataset.loaded === 'true') return;
@@ -213,12 +207,12 @@ class VideoOptimizer {
     // }
 
     // Метод для очистки памяти
-    cleanup() {
-        if (this.intersectionObserver) {
-            this.intersectionObserver.disconnect();
-        }
-        this.videos = [];
-    }
+    // cleanup() {
+    //     if (this.intersectionObserver) {
+    //         this.intersectionObserver.disconnect();
+    //     }
+    //     this.videos = [];
+    // }
 }
 
 // Инициализация оптимизатора видео
@@ -260,7 +254,7 @@ document.addEventListener('visibilitychange', () => {
         document.querySelectorAll('.lazy-video').forEach(video => {
             // You may want to only play videos that were previously playing.
             // But a simple approach is to just play all auto/loop videos:
-            if (video.paused && video.autoplay) {
+            if (video.paused) {
                 video.play().catch(() => { /* handle autoplay restrictions if needed */ });
             }
         });

@@ -39,20 +39,17 @@
         </div>
         <div class="nav-overlay" id="navOverlay"></div>
     </header>
-
-            
-
         <div class="black-background-block"></div>
         
         <section class="promo">
-            <button class="close-video-btn" onclick="closeVideo()">×</button>
-            <video class="promo-video desktop-video" autoplay muted loop playsinline preload="auto">
-                <source src="MP4/pcblue.mp4" type="video/mp4">
+            <!-- <button class="close-video-btn" onclick="closeVideo()">×</button> -->
+            <video class="promo-video desktop-video article-video lazy-video"  muted loop playsinline data-src="blue">
+                <source  type="video/mp4">
             </video>
-            <video class="promo-video mobile-video" autoplay muted loop playsinline preload="auto">
-                <source src="MP4/mobileblue.mp4" type="video/mp4">
-                <source src="WebM/mobileblue.webm" type="video/webm">
-                <source src="low-bitrate/mobileblue.mp4" type="video/mp4">
+            <video class="promo-video mobile-video article-photo"  muted loop playsinline data-src="mobileblue">
+                <source  type="video/mp4">
+                <!-- <source src="WebM/mobileblue.webm" type="video/webm">
+                <source src="low bitrate/mobileblue.mp4" type="video/mp4"> -->
             </video>
         </section>
 
@@ -160,7 +157,7 @@
                 </div>
                 <div class="project-card fade-in-up">
                     <div class="project-number">8</div>
-                    <p>Автоматизации сварочного процесса путём разработки и внедрения робота-сварщика</p>
+                    <p>Автоматизация сварочного процесса путём разработки и внедрения робота-сварщика</p>
                 </div>
             </div>
         </div>
@@ -181,7 +178,7 @@
                         <source src="WebM/pomidor.webm" type="video/webm"> -->
                         <source type="video/mp4">
                     </video>
-                    <video class="article-photo lazy-video"  muted loop playsinline >
+                    <video class="article-photo lazy-video"  muted loop playsinline data-src="pomidor">
                         <source type="video/mp4">
                     </video>
                     <div class="video-title-overlay">
@@ -241,7 +238,7 @@
                     <video class="article-video lazy-video" muted loop playsinline data-src="dom">
                         <source type="video/mp4">
                     </video>
-                    <video class="article-photo" muted loop playsinline >
+                    <video class="article-photo" muted loop playsinline data-src="dom">
                         <source type="video/mp4">
                     </video>
                     <div class="video-title-overlay">
@@ -298,13 +295,13 @@
             <!-- Video 3: Oncology -->
             <div class="article-video-section">
                 <div class="video-container">
-                    <video class="article-video lazy-video" autoplay muted loop playsinline preload="metadata" data-src="rak">
+                    <video class="article-video lazy-video" muted loop playsinline data-src="rak">
                         <!-- <source src="MP4/rak.mp4" type="video/mp4" data-src-webm="WebM/rak.webm" data-src-low="low-bitrate/rak.mp4">
                         <source src="WebM/rak.webm" type="video/webm"> -->
-                        <source src="lowbitrate/rak.mp4" type="video/mp4">
+                        <source type="video/mp4">
                     </video>
-                    <video class="article-photo" autoplay muted loop playsinline preload="metadata">
-                        <source src="lowbitrate/rak.mp4" type="video/mp4">
+                    <video class="article-photo" muted loop playsinline data-src="rak">
+                        <source type="video/mp4">
                     </video>
                     <div class="video-title-overlay">
                         <h3 class="article-video-title">Выявление онкологических заболеваний</h3>
@@ -364,13 +361,13 @@
             <!-- Video 4: Tetrahedron -->
             <div class="article-video-section">
                 <div class="video-container">
-                    <video class="article-video lazy-video" autoplay muted loop playsinline preload="metadata" data-src="space">
+                    <video class="article-video lazy-video" muted loop playsinline data-src="space">
                         <!-- <source src="MP4/space.mp4" type="video/mp4" data-src-webm="WebM/space.webm" data-src-low="low-bitrate/space.mp4">
                         <source src="WebM/space.webm" type="video/webm"> -->
-                        <source src="lowbitrate/space.mp4" type="video/mp4">
+                        <source type="video/mp4">
                     </video>
-                    <video class="article-photo" autoplay muted loop playsinline preload="metadata">
-                        <source src="lowbitrate/space.mp4" type="video/mp4">
+                    <video class="article-photo" muted loop playsinline data-src="space">
+                        <source type="video/mp4">
                     </video>
                     <div class="video-title-overlay">
                         <h3 class="article-video-title">Исследование тетраэдральной конфигурации спутников</h3>
@@ -420,13 +417,13 @@
             <!-- Video 5: Weather -->
             <div class="article-video-section">
                 <div class="video-container">
-                    <video class="article-video lazy-video" autoplay muted loop playsinline preload="metadata" data-src="pogoda">
+                    <video class="article-video lazy-video"  muted loop playsinline data-src="pogoda">
                         <!-- <source src="MP4/pogoda.mp4" type="video/mp4" data-src-webm="WebM/pogoda.webm" data-src-low="low-bitrate/pogoda.mp4">
                         <source src="WebM/pogoda.webm" type="video/webm"> -->
-                        <source src="lowbitrate/pogoda.mp4" type="video/mp4">
+                        <source  type="video/mp4">
                     </video>
-                    <video class="article-photo" autoplay muted loop playsinline preload="metadata">
-                        <source src="lowbitrate/pogoda.mp4" type="video/mp4">
+                    <video class="article-photo"  muted loop playsinline data-src="pogoda">
+                        <source type="video/mp4">
                     </video>
                     <div class="video-title-overlay">
                         <h3 class="article-video-title">Предсказание погодных условий</h3>
@@ -486,13 +483,13 @@
             <!-- Video 6: Cryptocurrency -->
             <div class="article-video-section">
                 <div class="video-container">
-                    <video class="article-video lazy-video" autoplay muted loop playsinline preload="metadata" data-src="cripta">
+                    <video class="article-video lazy-video" muted loop playsinline data-src="cripta">
                         <!-- <source src="MP4/cripta.mp4" type="video/mp4" data-src-webm="WebM/cripta.webm" data-src-low="low-bitrate/cripta.mp4">
                         <source src="WebM/cripta.webm" type="video/webm"> -->
-                        <source src="lowbitrate/cripta.mp4" type="video/mp4">
+                        <source type="video/mp4">
                     </video>
-                    <video class="article-photo" autoplay muted loop playsinline preload="metadata">
-                        <source src="lowbitrate/cripta.mp4" type="video/mp4">
+                    <video class="article-photo"  muted loop playsinline data-src="cripta">
+                        <source  type="video/mp4">
                     </video>
                     <div class="video-title-overlay">
                         <h3 class="article-video-title">Аудит смарт-контрактов</h3>
@@ -552,13 +549,13 @@
             <!-- Video 7: Drone -->
             <div class="article-video-section">
                 <div class="video-container">
-                    <video class="article-video lazy-video" autoplay muted loop playsinline preload="metadata" data-src="mouse">
+                    <video class="article-video lazy-video"  muted loop playsinline data-src="mouse">
                         <!-- <source src="MP4/mouse.mp4" type="video/mp4" data-src-webm="WebM/mouse.webm" data-src-low="low-bitrate/mouse.mp4">
                         <source src="WebM/mouse.webm" type="video/webm"> -->
-                        <source src="lowbitrate/mouse.mp4" type="video/mp4">
+                        <source type="video/mp4">
                     </video>
-                    <video class="article-photo" autoplay muted loop playsinline preload="metadata">
-                        <source src="lowbitrate/mouse.mp4" type="video/mp4">
+                    <video class="article-photo"  muted loop playsinline >
+                        <source type="video/mp4">
                     </video>
                     <div class="video-title-overlay">
                         <h3 class="article-video-title">Нейросетевая модель для детекции объектов</h3>
@@ -613,13 +610,13 @@
             <!-- Video 8: Robot Welder -->
             <div class="article-video-section">
                 <div class="video-container">
-                    <video class="article-video lazy-video" autoplay muted loop playsinline preload="metadata" data-src="svarka">
+                    <video class="article-video lazy-video"  muted loop playsinline data-src="svarka">
                         <!-- <source src="MP4/svarka.mp4" type="video/mp4" data-src-webm="WebM/svarka.webm" data-src-low="low-bitrate/svarka.mp4">
                         <source src="WebM/svarka.webm" type="video/webm"> -->
-                        <source src="lowbitrate/svarka.mp4" type="video/mp4">
+                        <source type="video/mp4">
                     </video>
-                    <video class="article-photo" autoplay muted loop playsinline preload="metadata">
-                        <source src="lowbitrate/svarka.mp4" type="video/mp4">
+                    <video class="article-photo"  muted loop playsinline >
+                        <source type="video/mp4">
                     </video>
                     <div class="video-title-overlay">
                         <h3 class="article-video-title">Робот-сварщик</h3>
@@ -690,6 +687,13 @@
                             <p>Россия, Новосибирск</p>
                         </div>
                     </div>
+                    <div class="contact-item fade-in-up">
+                        <i class="fab fa-telegram"></i>
+                        <div>
+                            <h4>Telegram</h4>
+                            <p><a href="https://t.me/aires_team" target="_blank" class="contact-link">@aires_team</a></p>
+                        </div>
+                    </div>
                 </div>
                 <form class="contact-form fade-in-up" id="contactForm">
                     <div class="form-group">
@@ -752,8 +756,8 @@
                 <div class="footer-bottom-content">
                     <p>&copy; 2025 AIRES. Все права защищены.</p>
                     <div class="footer-bottom-links">
-                        <a href="privacy-policy.html">Политика конфиденциальности</a>
-                        <a href="terms-of-use.html">Условия использования</a>
+                        <a href="privacy-policy.html"><i class="fas fa-shield-alt"></i> Политика конфиденциальности</a>
+                        <a href="terms-of-use.html"><i class="fas fa-file-contract"></i> Условия использования</a>
                     </div>
                 </div>
             </div>
