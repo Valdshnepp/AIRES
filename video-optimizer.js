@@ -105,7 +105,7 @@ class VideoOptimizer {
                 if (vid) {
                     const source = vid.querySelector('source');
                     if (source && video.dataset.src) {
-                        source.src = 'lowbitrate2/' + video.dataset.src + '.mp4'; // adjust path if needed
+                        source.src = 'MP4/' + video.dataset.src + '.mp4'; // adjust path if needed
                         vid.load();
                         vid.play();
                     }
