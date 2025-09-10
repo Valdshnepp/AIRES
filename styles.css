@@ -733,16 +733,18 @@ p {
 
 /* Разворачивающиеся блоки проектов - упрощенные */
 .project-details {
+    display: none; /* Полностью скрываем блоки проектов */
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.4s ease;
     background: transparent;
     border-radius: 20px;
-    margin: 1rem 0;
+    margin: 0; /* Убираем отступы */
     border: none;
 }
 
 .project-details.expanded {
+    display: block; /* Показываем при разворачивании */
     max-height: 80vh;
     overflow-y: auto;
 }
@@ -897,19 +899,30 @@ p {
 /* Адаптивные стили для очень маленьких экранов */
 @media (max-width: 480px) {
     .article-description {
-        padding: 1.8rem 1rem 1rem;
+        padding: 1.5rem 1rem;
     }
     
     .article-description::before {
-        background: linear-gradient(
-            to top,
-            rgba(0,0,0,1) 0%,
-            rgba(0,0,0,0.85) 60%,
-            rgba(0,0,0,0.45) 88%,
-            rgba(0,0,0,0) 100%
-        );
-        border-bottom-left-radius: 15px;
-        border-bottom-right-radius: 15px;
+        display: none; /* Убираем старый градиент */
+    }
+    
+    .article-video-title {
+        font-size: 1.2rem;
+        margin-bottom: 0.8rem;
+    }
+    
+    .article-video-subtitle {
+        font-size: 0.85rem;
+        margin-bottom: 1.2rem;
+    }
+    
+    .read-more-btn {
+        padding: 10px 20px;
+        font-size: 0.85rem;
+    }
+    
+    .video-container {
+        height: 45vh;
     }
     
     .project-details-content h4 {
@@ -1560,6 +1573,30 @@ p {
     .promo-video {
         object-position: center 30% !important; /* смещаем видео ниже для видимости верхнего края */
     }
+    
+    /* Оптимизация для планшетов - больше видео, меньше текста */
+    .video-container {
+        height: 65vh; /* Еще больше видео для планшетов */
+    }
+    
+    .article-description {
+        padding: 1rem 1.5rem; /* Еще меньше отступов */
+    }
+    
+    .article-video-title {
+        font-size: 1.1rem;
+        margin-bottom: 0.5rem;
+    }
+    
+    .article-video-subtitle {
+        font-size: 0.75rem;
+        margin-bottom: 0.8rem;
+    }
+    
+    .read-more-btn {
+        padding: 6px 16px;
+        font-size: 0.75rem;
+    }
 }
 
 @media (max-width: 480px) {
@@ -1830,6 +1867,29 @@ p {
 }
 
 @media (max-width: 360px) {
+    .article-description {
+        padding: 1.2rem 0.8rem;
+    }
+    
+    .article-video-title {
+        font-size: 1.1rem;
+        margin-bottom: 0.6rem;
+    }
+    
+    .article-video-subtitle {
+        font-size: 0.8rem;
+        margin-bottom: 1rem;
+    }
+    
+    .read-more-btn {
+        padding: 8px 16px;
+        font-size: 0.8rem;
+    }
+    
+    .video-container {
+        height: 40vh;
+    }
+    
     .modal-body {
         padding: 35px 10px 20px;
         max-height: calc(98vh - 55px);
@@ -2740,6 +2800,75 @@ html {
     .article-video-section video {
         object-fit: contain;
         object-position: center top;
+    }
+    
+    /* Новый мобильный дизайн для блока "Наши исследования" */
+    .article-video-section {
+        margin-bottom: 3rem;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        background: #1a1a1a;
+    }
+    
+    .video-container {
+        height: 60vh; /* Увеличиваем высоту видео для планшетов */
+        border-radius: 20px 20px 0 0;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .article-description {
+        position: relative;
+        background: linear-gradient(135deg, #00d4ff 0%, #0099cc 100%);
+        padding: 1.2rem 1.5rem; /* Уменьшаем вертикальные отступы */
+        border-radius: 0 0 20px 20px;
+        margin-top: 0;
+        text-align: center;
+    }
+    
+    .article-description::before {
+        display: none; /* Убираем старый градиент */
+    }
+    
+    .article-video-title {
+        font-size: 1.2rem; /* Уменьшаем размер заголовка */
+        font-weight: 700;
+        margin-bottom: 0.6rem; /* Уменьшаем отступ */
+        color: #ffffff;
+        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        line-height: 1.2;
+    }
+    
+    .article-video-subtitle {
+        font-size: 0.8rem; /* Уменьшаем размер описания */
+        margin-bottom: 1rem; /* Уменьшаем отступ */
+        color: rgba(255, 255, 255, 0.9);
+        line-height: 1.3;
+        display: block; /* Показываем описание на мобильных */
+    }
+    
+    .read-more-btn {
+        background: rgba(255, 255, 255, 0.2);
+        color: #ffffff;
+        border: 2px solid rgba(255, 255, 255, 0.3);
+        padding: 8px 20px; /* Уменьшаем размер кнопки */
+        border-radius: 20px;
+        font-size: 0.8rem; /* Уменьшаем размер шрифта */
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        margin-top: 0;
+        text-transform: uppercase;
+        letter-spacing: 0.3px;
+        backdrop-filter: blur(10px);
+    }
+    
+    .read-more-btn:hover {
+        background: rgba(255, 255, 255, 0.3);
+        border-color: rgba(255, 255, 255, 0.5);
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
     }
 }
 
