@@ -899,30 +899,63 @@ p {
 /* Адаптивные стили для очень маленьких экранов */
 @media (max-width: 480px) {
     .article-description {
-        padding: 1.5rem 1rem;
+        padding: 1rem 1.2rem 1.2rem;
+        margin-top: -18px; /* Небольшой заход на градиент */
+        background: transparent;
     }
     
     .article-description::before {
-        display: none; /* Убираем старый градиент */
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        pointer-events: none;
+        background: linear-gradient(
+            to top,
+            rgba(0,0,0,1) 0%,
+            rgba(0,0,0,0.8) 30%,
+            rgba(0,0,0,0.4) 70%,
+            rgba(0,0,0,0) 100%
+        );
+        border-radius: 0 0 20px 20px;
     }
     
     .article-video-title {
-        font-size: 1.2rem;
-        margin-bottom: 0.8rem;
+        font-size: 1rem;
+        margin-bottom: 0.5rem;
     }
     
     .article-video-subtitle {
-        font-size: 0.85rem;
-        margin-bottom: 1.2rem;
+        font-size: 0.7rem;
+        margin-bottom: 0.7rem;
+        color: rgba(255, 255, 255, 0.8);
+        display: block;
+        text-align: center; /* Выравнивание по центру */
     }
     
     .read-more-btn {
-        padding: 10px 20px;
-        font-size: 0.85rem;
+        padding: 6px 14px;
+        font-size: 0.75rem;
+        margin: 0 auto; /* Центрируем кнопку */
+        display: block; /* Делаем блочным элементом для центрирования */
+        color: #ffffff; /* Белый текст кнопки */
     }
     
     .video-container {
-        height: 45vh;
+        height: 55vh;
+    }
+    
+    /* Градиент для средних мобильных экранов */
+    .video-container::after {
+        height: 50px;
+        background: linear-gradient(
+            to bottom,
+            transparent 0%,
+            rgba(0, 0, 0, 0.1) 20%,
+            rgba(0, 0, 0, 0.3) 50%,
+            rgba(0, 0, 0, 0.6) 80%,
+            rgba(0, 0, 0, 0.9) 100%
+        );
     }
     
     .project-details-content h4 {
@@ -1868,26 +1901,63 @@ p {
 
 @media (max-width: 360px) {
     .article-description {
-        padding: 1.2rem 0.8rem;
+        padding: 0.8rem 1rem 1rem;
+        margin-top: -15px; /* Небольшой заход на градиент */
+        background: transparent;
+    }
+    
+    .article-description::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        pointer-events: none;
+        background: linear-gradient(
+            to top,
+            rgba(0,0,0,1) 0%,
+            rgba(0,0,0,0.8) 30%,
+            rgba(0,0,0,0.4) 70%,
+            rgba(0,0,0,0) 100%
+        );
+        border-radius: 0 0 20px 20px;
     }
     
     .article-video-title {
-        font-size: 1.1rem;
-        margin-bottom: 0.6rem;
+        font-size: 1rem;
+        margin-bottom: 0.4rem;
     }
     
     .article-video-subtitle {
-        font-size: 0.8rem;
-        margin-bottom: 1rem;
+        font-size: 0.65rem;
+        margin-bottom: 0.6rem;
+        color: rgba(255, 255, 255, 0.8);
+        display: block;
+        text-align: center; /* Выравнивание по центру */
     }
     
     .read-more-btn {
-        padding: 8px 16px;
-        font-size: 0.8rem;
+        padding: 5px 12px;
+        font-size: 0.7rem;
+        margin: 0 auto; /* Центрируем кнопку */
+        display: block; /* Делаем блочным элементом для центрирования */
+        color: #ffffff; /* Белый текст кнопки */
     }
     
     .video-container {
-        height: 40vh;
+        height: 50vh;
+    }
+    
+    /* Градиент для маленьких экранов */
+    .video-container::after {
+        height: 45px;
+        background: linear-gradient(
+            to bottom,
+            transparent 0%,
+            rgba(0, 0, 0, 0.1) 20%,
+            rgba(0, 0, 0, 0.3) 50%,
+            rgba(0, 0, 0, 0.6) 80%,
+            rgba(0, 0, 0, 0.9) 100%
+        );
     }
     
     .modal-body {
@@ -2802,73 +2872,106 @@ html {
         object-position: center top;
     }
     
-    /* Новый мобильный дизайн для блока "Наши исследования" */
+    /* Новый мобильный дизайн для блока "Наши исследования" согласно эскизу */
     .article-video-section {
-        margin-bottom: 3rem;
+        margin-bottom: 2rem;
         border-radius: 20px;
         overflow: hidden;
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-        background: #1a1a1a;
+        background: #000;
+        position: relative;
     }
     
     .video-container {
-        height: 60vh; /* Увеличиваем высоту видео для планшетов */
+        height: 60vh;
         border-radius: 20px 20px 0 0;
         position: relative;
         overflow: hidden;
     }
     
+    /* Градиент между видео и черной подложкой */
+    .video-container::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 60px; /* Увеличиваем высоту градиента */
+        background: linear-gradient(
+            to bottom,
+            transparent 0%,
+            rgba(0, 0, 0, 0.1) 20%,
+            rgba(0, 0, 0, 0.3) 50%,
+            rgba(0, 0, 0, 0.6) 80%,
+            rgba(0, 0, 0, 0.9) 100%
+        );
+        z-index: 2;
+    }
+    
+    /* Черная подложка под видео */
     .article-description {
         position: relative;
-        background: linear-gradient(135deg, #00d4ff 0%, #0099cc 100%);
-        padding: 1.2rem 1.5rem; /* Уменьшаем вертикальные отступы */
+        background: transparent; /* Убираем сплошной фон */
+        padding: 1.2rem 1.5rem 1.5rem;
         border-radius: 0 0 20px 20px;
-        margin-top: 0;
-        text-align: center;
+        margin-top: -20px; /* Небольшой заход на градиент */
+        z-index: 3;
+        text-align: left;
     }
     
     .article-description::before {
-        display: none; /* Убираем старый градиент */
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        pointer-events: none;
+        background: linear-gradient(
+            to top,
+            rgba(0,0,0,1) 0%,
+            rgba(0,0,0,0.8) 30%,
+            rgba(0,0,0,0.4) 70%,
+            rgba(0,0,0,0) 100%
+        );
+        border-radius: 0 0 20px 20px;
     }
     
     .article-video-title {
-        font-size: 1.2rem; /* Уменьшаем размер заголовка */
+        font-size: 1.1rem;
         font-weight: 700;
-        margin-bottom: 0.6rem; /* Уменьшаем отступ */
+        margin-bottom: 0.5rem;
         color: #ffffff;
-        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
         line-height: 1.2;
     }
     
     .article-video-subtitle {
-        font-size: 0.8rem; /* Уменьшаем размер описания */
-        margin-bottom: 1rem; /* Уменьшаем отступ */
-        color: rgba(255, 255, 255, 0.9);
+        font-size: 0.75rem;
+        margin-bottom: 0.8rem;
+        color: rgba(255, 255, 255, 0.8);
         line-height: 1.3;
-        display: block; /* Показываем описание на мобильных */
+        display: block;
+        text-align: center; /* Выравнивание по центру */
     }
     
     .read-more-btn {
-        background: rgba(255, 255, 255, 0.2);
-        color: #ffffff;
-        border: 2px solid rgba(255, 255, 255, 0.3);
-        padding: 8px 20px; /* Уменьшаем размер кнопки */
-        border-radius: 20px;
-        font-size: 0.8rem; /* Уменьшаем размер шрифта */
+        background: #00d4ff;
+        color: #ffffff; /* Белый текст кнопки */
+        border: none;
+        padding: 6px 16px;
+        border-radius: 15px;
+        font-size: 0.75rem;
         font-weight: 600;
         cursor: pointer;
         transition: all 0.3s ease;
-        margin-top: 0;
+        margin: 0 auto; /* Центрируем кнопку */
         text-transform: uppercase;
         letter-spacing: 0.3px;
-        backdrop-filter: blur(10px);
+        display: block; /* Делаем блочным элементом для центрирования */
     }
     
     .read-more-btn:hover {
-        background: rgba(255, 255, 255, 0.3);
-        border-color: rgba(255, 255, 255, 0.5);
-        transform: translateY(-2px);
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        background: #0099cc;
+        transform: translateY(-1px);
+        box-shadow: 0 3px 10px rgba(0, 212, 255, 0.3);
     }
 }
 
