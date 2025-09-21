@@ -43,9 +43,9 @@ function preloadProjectVideos() {
         video.style.background = '#000';
         
         // Simple preload without complex optimizations
-        if (video.readyState === 0) {
-            video.load();
-        }
+        // if (video.readyState === 0) {
+        //     video.load();
+        // }
     });
 }
 

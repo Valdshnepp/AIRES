@@ -536,6 +536,39 @@ p {
     position: relative;
 }
 
+/* News Section */
+.news {
+    padding: 5rem 0;
+    background: #0a0a0a;
+    min-height: auto;
+    overflow: visible;
+    position: relative;
+}
+
+/* News cover image styles */
+.news-cover-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 15px;
+    display: block;
+}
+
+/* News video container - убираем черную подложку */
+.news .video-container {
+    background: transparent;
+}
+
+/* News content images */
+.news-content-image {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin: 1rem 0;
+    display: block;
+}
+
 .article .container {
     width: 100%;
     max-width: 1200px;
@@ -619,6 +652,7 @@ p {
     border-bottom-right-radius: 20px;
     /* мелкая оптимизация от «полос» в Safari */
     -webkit-transform: translateZ(0);
+    transform: translateZ(0);
     will-change: opacity, transform;
 }
 
@@ -677,7 +711,7 @@ p {
 
 
 .article-video-title {
-    font-size: 2.5rem;
+    font-size: 1.875rem;
     font-weight: 700;
     margin-bottom: 1.5rem;
     color: #ffffff;
@@ -699,16 +733,18 @@ p {
 
 /* Разворачивающиеся блоки проектов - упрощенные */
 .project-details {
+    display: none; /* Полностью скрываем блоки проектов */
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.4s ease;
     background: transparent;
     border-radius: 20px;
-    margin: 1rem 0;
+    margin: 0; /* Убираем отступы */
     border: none;
 }
 
 .project-details.expanded {
+    display: block; /* Показываем при разворачивании */
     max-height: 80vh;
     overflow-y: auto;
 }
@@ -812,8 +848,8 @@ p {
     
     /* Упрощенные стили для видео на мобильных */
     .article-video, .promo-video {
-        object-fit: cover;
-        object-position: center;
+        object-fit: contain;
+        object-position: center top;
         max-width: 100vw;
         max-height: none;
     }
@@ -863,19 +899,63 @@ p {
 /* Адаптивные стили для очень маленьких экранов */
 @media (max-width: 480px) {
     .article-description {
-        padding: 1.8rem 1rem 1rem;
+        padding: 1rem 1.2rem 1.2rem;
+        margin-top: -18px; /* Небольшой заход на градиент */
+        background: transparent;
     }
     
     .article-description::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        pointer-events: none;
         background: linear-gradient(
             to top,
             rgba(0,0,0,1) 0%,
-            rgba(0,0,0,0.85) 60%,
-            rgba(0,0,0,0.45) 88%,
+            rgba(0,0,0,0.8) 30%,
+            rgba(0,0,0,0.4) 70%,
             rgba(0,0,0,0) 100%
         );
-        border-bottom-left-radius: 15px;
-        border-bottom-right-radius: 15px;
+        border-radius: 0 0 20px 20px;
+    }
+    
+    .article-video-title {
+        font-size: 1rem;
+        margin-bottom: 0.5rem;
+    }
+    
+    .article-video-subtitle {
+        font-size: 0.7rem;
+        margin-bottom: 0.7rem;
+        color: rgba(255, 255, 255, 0.8);
+        display: block;
+        text-align: center; /* Выравнивание по центру */
+    }
+    
+    .read-more-btn {
+        padding: 6px 14px;
+        font-size: 0.75rem;
+        margin: 0 auto; /* Центрируем кнопку */
+        display: block; /* Делаем блочным элементом для центрирования */
+        color: #ffffff; /* Белый текст кнопки */
+    }
+    
+    .video-container {
+        height: 55vh;
+    }
+    
+    /* Градиент для средних мобильных экранов */
+    .video-container::after {
+        height: 50px;
+        background: linear-gradient(
+            to bottom,
+            transparent 0%,
+            rgba(0, 0, 0, 0.1) 20%,
+            rgba(0, 0, 0, 0.3) 50%,
+            rgba(0, 0, 0, 0.6) 80%,
+            rgba(0, 0, 0, 0.9) 100%
+        );
     }
     
     .project-details-content h4 {
@@ -1179,12 +1259,21 @@ p {
         text-align: center;
     }
     
+    .hero-description {
+        text-align: left;
+    }
+    
     .hero-title {
         font-size: 2.5rem;
     }
     
     .about-content {
         grid-template-columns: 1fr;
+    }
+    
+    /* Изменяем выравнивание текста в разделе "О нас" на мобильных устройствах */
+    .about-text p {
+        text-align: left;
     }
     
     .contact-content {
@@ -1231,6 +1320,32 @@ p {
     
     .article .container {
         padding: 0 15px;
+    }
+    
+    /* Responsive adjustments for news */
+    .news {
+        padding: 3rem 0;
+        overflow: visible;
+    }
+    
+    .news .container {
+        padding: 0 15px;
+    }
+    
+    /* News images responsive */
+    .news-cover-image {
+        border-radius: 10px;
+        object-fit: cover;
+    }
+    
+    /* News video container на мобильных - убираем черную подложку */
+    .news .video-container {
+        background: transparent;
+    }
+    
+    .news-content-image {
+        border-radius: 8px;
+        margin: 0.8rem 0;
     }
     
     .article-video-section {
@@ -1490,6 +1605,30 @@ p {
     
     .promo-video {
         object-position: center 30% !important; /* смещаем видео ниже для видимости верхнего края */
+    }
+    
+    /* Оптимизация для планшетов - больше видео, меньше текста */
+    .video-container {
+        height: 65vh; /* Еще больше видео для планшетов */
+    }
+    
+    .article-description {
+        padding: 1rem 1.5rem; /* Еще меньше отступов */
+    }
+    
+    .article-video-title {
+        font-size: 1.1rem;
+        margin-bottom: 0.5rem;
+    }
+    
+    .article-video-subtitle {
+        font-size: 0.75rem;
+        margin-bottom: 0.8rem;
+    }
+    
+    .read-more-btn {
+        padding: 6px 16px;
+        font-size: 0.75rem;
     }
 }
 
@@ -1761,6 +1900,66 @@ p {
 }
 
 @media (max-width: 360px) {
+    .article-description {
+        padding: 0.8rem 1rem 1rem;
+        margin-top: -15px; /* Небольшой заход на градиент */
+        background: transparent;
+    }
+    
+    .article-description::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        pointer-events: none;
+        background: linear-gradient(
+            to top,
+            rgba(0,0,0,1) 0%,
+            rgba(0,0,0,0.8) 30%,
+            rgba(0,0,0,0.4) 70%,
+            rgba(0,0,0,0) 100%
+        );
+        border-radius: 0 0 20px 20px;
+    }
+    
+    .article-video-title {
+        font-size: 1rem;
+        margin-bottom: 0.4rem;
+    }
+    
+    .article-video-subtitle {
+        font-size: 0.65rem;
+        margin-bottom: 0.6rem;
+        color: rgba(255, 255, 255, 0.8);
+        display: block;
+        text-align: center; /* Выравнивание по центру */
+    }
+    
+    .read-more-btn {
+        padding: 5px 12px;
+        font-size: 0.7rem;
+        margin: 0 auto; /* Центрируем кнопку */
+        display: block; /* Делаем блочным элементом для центрирования */
+        color: #ffffff; /* Белый текст кнопки */
+    }
+    
+    .video-container {
+        height: 50vh;
+    }
+    
+    /* Градиент для маленьких экранов */
+    .video-container::after {
+        height: 45px;
+        background: linear-gradient(
+            to bottom,
+            transparent 0%,
+            rgba(0, 0, 0, 0.1) 20%,
+            rgba(0, 0, 0, 0.3) 50%,
+            rgba(0, 0, 0, 0.6) 80%,
+            rgba(0, 0, 0, 0.9) 100%
+        );
+    }
+    
     .modal-body {
         padding: 35px 10px 20px;
         max-height: calc(98vh - 55px);
@@ -2620,7 +2819,7 @@ html {
         border-bottom-right-radius: 15px;
     }
     .article-video-title {
-        font-size: 1.8rem;
+        font-size: 1.35rem;
         text-shadow: 
             0 0 12px rgba(0, 0, 0, 0.9),
             0 0 25px rgba(0, 0, 0, 0.7),
@@ -2631,6 +2830,7 @@ html {
     .article-video-subtitle {
         font-size: 0.95rem;
         max-width: 95%;
+        display: none; /* Скрываем краткие описания на мобильных устройствах */
     }
     
     /* Улучшенные стили для мобильных устройств */
@@ -2652,7 +2852,7 @@ html {
 } */
 
 /* Simplified video styles */
-/* .article-video-section video {
+.article-video-section video {
     display: block;
     visibility: visible;
     opacity: 1;
@@ -2663,17 +2863,131 @@ html {
     max-height: 100%;
     object-fit: contain;
     background: #000;
-} */
+}
+
+/* Мобильные устройства - используем contain для полного отображения по ширине */
+@media (max-width: 768px) {
+    .article-video-section video {
+        object-fit: contain;
+        object-position: center top;
+    }
+    
+    /* Новый мобильный дизайн для блока "Наши исследования" согласно эскизу */
+    .article-video-section {
+        margin-bottom: 2rem;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        background: #000;
+        position: relative;
+    }
+    
+    .video-container {
+        height: 60vh;
+        border-radius: 20px 20px 0 0;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    /* Градиент между видео и черной подложкой */
+    .video-container::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 60px; /* Увеличиваем высоту градиента */
+        background: linear-gradient(
+            to bottom,
+            transparent 0%,
+            rgba(0, 0, 0, 0.1) 20%,
+            rgba(0, 0, 0, 0.3) 50%,
+            rgba(0, 0, 0, 0.6) 80%,
+            rgba(0, 0, 0, 0.9) 100%
+        );
+        z-index: 2;
+    }
+    
+    /* Черная подложка под видео */
+    .article-description {
+        position: relative;
+        background: transparent; /* Убираем сплошной фон */
+        padding: 1.2rem 1.5rem 1.5rem;
+        border-radius: 0 0 20px 20px;
+        margin-top: -20px; /* Небольшой заход на градиент */
+        z-index: 3;
+        text-align: left;
+    }
+    
+    .article-description::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        pointer-events: none;
+        background: linear-gradient(
+            to top,
+            rgba(0,0,0,1) 0%,
+            rgba(0,0,0,0.8) 30%,
+            rgba(0,0,0,0.4) 70%,
+            rgba(0,0,0,0) 100%
+        );
+        border-radius: 0 0 20px 20px;
+    }
+    
+    .article-video-title {
+        font-size: 1.1rem;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+        color: #ffffff;
+        line-height: 1.2;
+    }
+    
+    .article-video-subtitle {
+        font-size: 0.75rem;
+        margin-bottom: 0.8rem;
+        color: rgba(255, 255, 255, 0.8);
+        line-height: 1.3;
+        display: block;
+        text-align: center; /* Выравнивание по центру */
+    }
+    
+    .read-more-btn {
+        background: #00d4ff;
+        color: #ffffff; /* Белый текст кнопки */
+        border: none;
+        padding: 6px 16px;
+        border-radius: 15px;
+        font-size: 0.75rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        margin: 0 auto; /* Центрируем кнопку */
+        text-transform: uppercase;
+        letter-spacing: 0.3px;
+        display: block; /* Делаем блочным элементом для центрирования */
+    }
+    
+    .read-more-btn:hover {
+        background: #0099cc;
+        transform: translateY(-1px);
+        box-shadow: 0 3px 10px rgba(0, 212, 255, 0.3);
+    }
+}
 
 /* Prevent black background during video loading */
 video {
     background: #000;
 }
 
+/* Специальные стили для mouse-video больше не нужны - все видео используют одинаковое поведение */
+
 /* Ensure video containers have background */
 .video-container {
     background: transparent;
 }
+
+/* Принудительные стили для mouse-video больше не нужны - все видео используют одинаковое поведение */
 
 /* Дополнительные оптимизации производительности */
 @media (max-width: 768px) {
