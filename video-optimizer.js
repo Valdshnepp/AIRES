@@ -71,33 +71,41 @@ class VideoOptimizer {
         const articlePhotos = document.querySelectorAll('.article-photo');
         const articleVideos = document.querySelectorAll('.article-video');
 
-        videoElements.forEach((video, index) => {
+        const loadNextVideo = (queue, index) => {
+            if (index >= queue.length) return;
+            const video = queue[index];
             this.videos.push(video);
-            this.intersectionObserver.observe(video);
-
+            let sourceElem, targetElem;
 
             if (this.isMobile) {
-                const photo = articlePhotos[index-1];
-                if (photo) {
-                    const source = photo.querySelector('source');
-                    if (source && video.dataset.src) {
-                        source.src = 'lowbitrate/' + video.dataset.src + '.mp4'; // adjust path if needed
-                        photo.load();
-                        photo.play();
+                targetElem = articlePhotos[index-1];
+                if (targetElem) {
+                    sourceElem = targetElem.querySelector('source');
+                    if (sourceElem && video.dataset.src) {
+                        sourceElem.src = 'lowbitrate/' + video.dataset.src + '.mp4';
+                        targetElem.load();
+                        targetElem.play();
+                        targetElem.onloadeddata = () => loadNextVideo(queue, index + 1);
+                        return;
                     }
                 }
             } else {
-                const vid = articleVideos[index-1];
-                if (vid) {
-                    const source = vid.querySelector('source');
-                    if (source && video.dataset.src) {
-                        source.src = 'MP4/' + video.dataset.src + '.mp4'; // adjust path if needed
-                        vid.load();
-                        vid.play();
+                targetElem = articleVideos[index-1];
+                if (targetElem) {
+                    sourceElem = targetElem.querySelector('source');
+                    if (sourceElem && video.dataset.src) {
+                        sourceElem.src = 'MP4/' + video.dataset.src + '.mp4';
+                        targetElem.load();
+                        targetElem.play();
+                        targetElem.onloadeddata = () => loadNextVideo(queue, index + 1);
+                        return;
                     }
                 }
             }
-        }); 
+            // If nothing was loaded, try next
+            loadNextVideo(queue, index + 1);
+        };
+        loadNextVideo(Array.from(videoElements), 0); 
     }
 
     // loadVideo(video) {
