@@ -384,7 +384,7 @@ p {
 
 
 /* Отступ перед секциями для предотвращения "прилипания" */
-.research, .projects, .article, .contact { margin-top: 2rem; }
+.research, .projects, .article, .contact { margin-top: 0rem; }
 
 .about-content {
     display: grid;
@@ -529,7 +529,7 @@ p {
 
 /* Article Section */
 .article {
-    padding: 5rem 0;
+    padding: 0rem 0;
     background: #0a0a0a;
     min-height: auto;
     overflow: visible;
@@ -538,7 +538,7 @@ p {
 
 /* News Section */
 .news {
-    padding: 5rem 0;
+    padding: 0rem 0;
     background: #0a0a0a;
     min-height: auto;
     overflow: visible;
@@ -573,7 +573,7 @@ p {
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 0 0px;
 }
 
 /* Разделитель между статьями */
@@ -597,15 +597,46 @@ p {
 /* Старые стили для секций статей удалены */
 
 /* Article video section - simplified for better performance */
-.article-video-section {
+/* .article-video-section {
     position: relative;
-    height: auto;
-    min-height: auto;
+    height: 200px;
+    min-height: 70dvh;
     overflow: visible;
     display: flex;
     flex-direction: column;
     margin-bottom: 2rem;
     width: 100%;
+} */
+
+.article-video-section {
+    position: relative;
+    /* Remove any fixed height/min-height: */
+    /* height: 200px; */
+    /* min-height: 70dvh; */
+    overflow: visible;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 2rem;
+    width: 100%;
+    /* By default, height is auto and will grow to fit content (the video) */
+    align-items: flex-start; /* Optionally ensure no stretching */
+    flex: 0 0 100%;
+    max-width: 100%;
+    /* height: auto; */
+    box-sizing: border-box;
+}
+
+.article-video-section > video {
+    display: block;
+    width: 100%;     /* Or set a max-width as needed */
+    height: auto;    /* Preserve aspect ratio & let actual video height dictate sizing */
+    max-width: 100%;
+    max-height: 100%;
+}
+
+/* Ensure description below video does not overlap */
+.article-video-section .article-description {
+    margin-top: 1rem; /* Space between video and text if required */
 }
 
 .video-container {
@@ -829,22 +860,8 @@ p {
     scrollbar-color: rgba(0, 212, 255, 0.6) rgba(0, 0, 0, 0.3);
 }
 
-
-
-
-
-/* Упрощенные стили для видео в проектах */
-/* .article-video-section video {
-    display: block;
-    visibility: visible;
-    opacity: 1;
-} */
-
 /* Оптимизация видео для мобильных устройств */
 @media (max-width: 768px) {
-
-    
-
     
     /* Упрощенные стили для видео на мобильных */
     .article-video, .promo-video {
@@ -1308,10 +1325,6 @@ p {
         justify-content: center;
     }
     
-
-    
-
-
     /* Responsive adjustments for article */
     .article {
         padding: 3rem 0;
@@ -1519,7 +1532,7 @@ p {
 }
 
 /* Use modern viewport units when supported to avoid mobile browser UI jump */
-@supports (height: 100dvh) {
+/* @supports (height: 100dvh) {
     .promo,
     .article-video-section,
     .promo.minimized { height: 100dvh; min-height: 100dvh; }
@@ -1528,7 +1541,7 @@ p {
     .promo,
     .article-video-section,
     .promo.minimized { height: 100svh; min-height: 100svh; }
-}
+} */
 
 /* Мобильная версия с современными viewport units */
 @media (max-width: 768px) {
@@ -3222,14 +3235,7 @@ section,
   will-change: transform;
 }
 
-.article-video-section {
-  flex: 0 0 100%;
-  max-width: 100%;
-  /* height: auto; */
-  box-sizing: border-box;
-}
-
-.carousel-arrow {
+/* .carousel-arrow {
   position: absolute;
   top: 50%;
   z-index: 2;
@@ -3253,4 +3259,43 @@ section,
 .carousel-arrow:disabled {
   opacity: 0.3;
   cursor: not-allowed;
+} */
+
+.carousel-arrow {
+  position: absolute;
+  top: 50%;
+  z-index: 2;
+  width: 44px;
+  height: 44px;
+  background: rgba(255,255,255,0.35);
+  backdrop-filter: blur(5px);
+  border: none;
+  border-radius: 50%;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.13);
+  cursor: pointer;
+  outline: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: translateY(-50%);
+  transition: background 0.25s, box-shadow 0.25s;
+  /* Remove font styling */
+  font-size: 0;
+  padding: 0;
+}
+
+.carousel-arrow.left {
+  left: 8px;
+  background-image: url("data:image/svg+xml;utf8,<svg fill='black' xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24'><path d='M15.41 16.58L10.83 12l4.58-4.59L14 6l-6 6 6 6z'/></svg>");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 48%;
+}
+
+.carousel-arrow.right {
+  right: 8px;
+  background-image: url("data:image/svg+xml;utf8,<svg fill='black' xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24'><path d='M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6z'/></svg>");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 48%;
 }

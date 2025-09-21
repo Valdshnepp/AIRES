@@ -68,9 +68,21 @@ self.addEventListener('fetch', (event) => {
         return;
     }
     
-    // Обрабатываем статические ресурсы
+    // Обрабатываем статические ресурсы (stale-while-revalidate)
     if (isStaticResource(request)) {
-        event.respondWith(handleStaticResource(request));
+        event.respondWith(
+            caches.open('static-resources').then(cache =>
+                cache.match(request).then(cachedResponse => {
+                    const fetchPromise = fetch(request).then(networkResponse => {
+                        if (networkResponse && networkResponse.status === 200) {
+                            cache.put(request, networkResponse.clone());
+                        }
+                        return networkResponse;
+                    }).catch(() => cachedResponse);
+                    return cachedResponse || fetchPromise;
+                })
+            )
+        );
         return;
     }
     
@@ -91,41 +103,6 @@ function isStaticResource(request) {
     return STATIC_RESOURCES.some(resource => url.pathname.includes(resource));
 }
 
-// Обработка запросов видео
-// async function handleVideoRequest(request) {
-    // const cache = await caches.open(VIDEO_CACHE_NAME);
-    
-    // try {
-        // Сначала проверяем кэш
-        // const cachedResponse = await cache.match(request);
-        // if (cachedResponse) {
-            // console.log('Service Worker: Видео загружено из кэша:', request.url);
-            // return cachedResponse;
-        // }
-        
-        // Если в кэше нет, загружаем из сети
-        // const networkResponse = await fetch(request);
-        
-        // Кэшируем видео только если загрузка успешна
-        // if (networkResponse.ok) {
-            // Клонируем ответ, так как он может быть использован только один раз
-            // const responseToCache = networkResponse.clone();
-            // cache.put(request, responseToCache);
-            // console.log('Service Worker: Видео загружено из сети и закэшировано:', request.url);
-        // }
-        
-        // return networkResponse;
-        
-    // } catch (error) {
-        // console.log('Service Worker: Ошибка загрузки видео:', error);
-        
-        // Возвращаем fallback или ошибку
-        // return new Response('Ошибка загрузки видео', {
-            // status: 500,
-            // statusText: 'Internal Server Error'
-        // });
-    // }
-//}
 
 async function handleVideoRequest(request) {
     const cache = await caches.open('videos');
