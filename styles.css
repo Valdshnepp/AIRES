@@ -372,7 +372,7 @@ p {
 
 /* About Section */
 .about {
-    padding: 6rem 0;
+    padding: 2rem 0;
     background: #1a1a1a;
 }
 
@@ -422,7 +422,7 @@ p {
 
 /* Research Section */
 .research {
-    padding: 6rem 0;
+    padding: 2rem 0;
     background: #0a0a0a;
 }
 
@@ -620,8 +620,8 @@ p {
     width: 100%;
     /* By default, height is auto and will grow to fit content (the video) */
     align-items: flex-start; /* Optionally ensure no stretching */
-    flex: 0 0 100%;
-    max-width: 100%;
+    flex: 0 0 92%;
+    margin-right: 3%;
     /* height: auto; */
     box-sizing: border-box;
 }
@@ -734,12 +734,6 @@ p {
 }
 
 /* Упрощенные стили для оверлея - удалены, так как заголовки перенесены в блок описания */
-
-
-
-
-
-
 
 .article-video-title {
     font-size: 1.875rem;
@@ -938,12 +932,12 @@ p {
     }
     
     .article-video-title {
-        font-size: 1rem;
+        font-size: 2rem;
         margin-bottom: 0.5rem;
     }
     
     .article-video-subtitle {
-        font-size: 0.7rem;
+        font-size: 1.3rem;
         margin-bottom: 0.7rem;
         color: rgba(255, 255, 255, 0.8);
         display: block;
@@ -992,7 +986,7 @@ p {
 
 /* Contact Section */
 .contact {
-    padding: 6rem 0;
+    padding: 2rem 0;
     background: #1a1a1a;
 }
 
@@ -1327,7 +1321,7 @@ p {
     
     /* Responsive adjustments for article */
     .article {
-        padding: 3rem 0;
+        padding: 0rem 0;
         overflow: visible;
     }
     
@@ -1337,7 +1331,7 @@ p {
     
     /* Responsive adjustments for news */
     .news {
-        padding: 3rem 0;
+        padding: 0rem 0;
         overflow: visible;
     }
     
@@ -1630,12 +1624,12 @@ p {
     }
     
     .article-video-title {
-        font-size: 1.1rem;
+        font-size: 2rem;
         margin-bottom: 0.5rem;
     }
     
     .article-video-subtitle {
-        font-size: 0.75rem;
+        font-size: 1.3rem;
         margin-bottom: 0.8rem;
     }
     
@@ -1936,12 +1930,12 @@ p {
     }
     
     .article-video-title {
-        font-size: 1rem;
+        font-size: 2rem;
         margin-bottom: 0.4rem;
     }
     
     .article-video-subtitle {
-        font-size: 0.65rem;
+        font-size: 1.3rem;
         margin-bottom: 0.6rem;
         color: rgba(255, 255, 255, 0.8);
         display: block;
@@ -2832,7 +2826,7 @@ html {
         border-bottom-right-radius: 15px;
     }
     .article-video-title {
-        font-size: 1.35rem;
+        font-size: 2rem;
         text-shadow: 
             0 0 12px rgba(0, 0, 0, 0.9),
             0 0 25px rgba(0, 0, 0, 0.7),
@@ -2841,7 +2835,7 @@ html {
         padding: 0.3rem 0.6rem;
     }
     .article-video-subtitle {
-        font-size: 0.95rem;
+        font-size: 1.3rem;
         max-width: 95%;
         display: none; /* Скрываем краткие описания на мобильных устройствах */
     }
@@ -2949,7 +2943,7 @@ html {
     }
     
     .article-video-title {
-        font-size: 1.1rem;
+        font-size: 1.5rem;
         font-weight: 700;
         margin-bottom: 0.5rem;
         color: #ffffff;
@@ -2957,7 +2951,7 @@ html {
     }
     
     .article-video-subtitle {
-        font-size: 0.75rem;
+        font-size: 1.1rem;
         margin-bottom: 0.8rem;
         color: rgba(255, 255, 255, 0.8);
         line-height: 1.3;
