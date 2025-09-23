@@ -1736,7 +1736,9 @@ p {
     
     /* Оптимизация для планшетов - больше видео, меньше текста */
     /* .video-container {
+    /* .video-container {
         height: 65vh; /* Еще больше видео для планшетов */
+    } */
     } */
     
     .article-description {
@@ -1787,6 +1789,7 @@ p {
     .mobile-video {
         display: block !important;
         object-fit: contain !important;
+        object-fit: contain !important;
         width: 100% !important;
     }
 }
@@ -1796,7 +1799,13 @@ p {
     .mobile-video {
         display: block !important;
         object-fit: contain !important;
+        object-fit: contain !important;
         width: 100% !important;
+    }
+}
+@media (min-width: 769px) {
+    .article-photo {
+        display: none !important;
     }
 }
 @media (min-width: 769px) {
@@ -1816,6 +1825,8 @@ p {
 
 
 
+
+
 @media (max-width: 1440px) {
     
     .article-photo {
@@ -1825,11 +1836,15 @@ p {
     }
 
     .article-video{
+        display: block !important;
+        width: 100% !important;
+        object-fit: contain !important;
+    }
+
+    .article-video{
         display: none !important;
     }
 }
-
-
 
 /* Стили для модального окна */
 .article-modal {
@@ -2059,7 +2074,9 @@ p {
     }
     
     /* .video-container {
+    /* .video-container {
         height: 50vh;
+    } */
     } */
     
     /* Градиент для маленьких экранов */
