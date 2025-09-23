@@ -1735,9 +1735,9 @@ p {
     }
     
     /* Оптимизация для планшетов - больше видео, меньше текста */
-    .video-container {
+    /* .video-container {
         height: 65vh; /* Еще больше видео для планшетов */
-    }
+    } */
     
     .article-description {
         padding: 1rem 1.5rem; /* Еще меньше отступов */
@@ -1786,18 +1786,8 @@ p {
 @media (max-width: 1024px) and (min-width: 481px) {
     .mobile-video {
         display: block !important;
-        visibility: visible !important;
-        opacity: 1 !important;
-        object-fit: cover !important;
-        object-position: center center !important;
+        object-fit: contain !important;
         width: 100% !important;
-        height: 100% !important;
-        min-width: 100% !important;
-        min-height: 100% !important;
-        position: absolute !important;
-        top: 0 !important;
-        left: 0 !important;
-        z-index: 1 !important;
     }
 }
 
@@ -1805,21 +1795,15 @@ p {
 @media (max-width: 360px) {
     .mobile-video {
         display: block !important;
-        visibility: visible !important;
-        opacity: 1 !important;
-        object-fit: cover !important;
-        object-position: center center !important;
+        object-fit: contain !important;
         width: 100% !important;
-        height: 100% !important;
-        min-width: 100% !important;
-        min-height: 100% !important;
-        position: absolute !important;
-        top: 0 !important;
-        left: 0 !important;
-        z-index: 1 !important;
     }
 }
-
+@media (min-width: 769px) {
+    .article-photo {
+        display: none !important;
+    }
+}
 /* Стили для замены видео на видео из low bitrate на мобильных устройствах */
 @media (max-width: 1024px) {
     
@@ -1827,20 +1811,25 @@ p {
         display: block !important;
         width: 100% !important;
         object-fit: contain !important;
-        object-position: center center !important;
-        position: absolute !important;
-        top: 0 !important;
-        left: 0 !important;
-        z-index: 1 !important;
-        background: transparent !important;
     }
 }
 
-@media (min-width: 769px) {
+
+
+@media (max-width: 1440px) {
+    
     .article-photo {
+        display: block !important;
+        width: 100% !important;
+        object-fit: contain !important;
+    }
+
+    .article-video{
         display: none !important;
     }
 }
+
+
 
 /* Стили для модального окна */
 .article-modal {
@@ -2069,9 +2058,9 @@ p {
         color: #ffffff; /* Белый текст кнопки */
     }
     
-    .video-container {
+    /* .video-container {
         height: 50vh;
-    }
+    } */
     
     /* Градиент для маленьких экранов */
     .video-container::after {
