@@ -82,7 +82,7 @@ class VideoOptimizer {
                 if (targetElem) {
                     sourceElem = targetElem.querySelector('source');
                     if (sourceElem && video.dataset.src) {
-                        sourceElem.src = 'lowbitrate/' + video.dataset.src + '.mp4';
+                        sourceElem.src = 'lowbitrate/' + video.dataset.src +'3'+ '.mp4';
                         targetElem.load();
                         targetElem.play();
                         targetElem.onloadeddata = () => loadNextVideo(queue, index + 1);
