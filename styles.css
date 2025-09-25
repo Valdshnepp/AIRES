@@ -13,6 +13,8 @@ body {
     overflow-x: hidden;
     opacity: 0;
     animation: fadeIn 1s ease-in-out forwards;
+    width: 100%;
+    max-width: 100vw;
 }
 
 @keyframes fadeIn {
@@ -532,8 +534,10 @@ p {
     padding: 0rem 0;
     background: #0a0a0a;
     min-height: auto;
-    overflow: visible;
+    overflow: hidden;
     position: relative;
+    width: 100%;
+    max-width: 100%;
 }
 
 /* News Section */
@@ -573,7 +577,7 @@ p {
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 0px;
+    padding: 0 20px;
 }
 
 /* Разделитель между статьями */
@@ -722,7 +726,7 @@ p {
     overflow: visible;
     display: flex;
     flex-direction: column;
-    margin-bottom: 2rem;
+    margin-bottom: 0rem;
     width: 100%;
     /* By default, height is auto and will grow to fit content (the video) */
     align-items: flex-start; /* Optionally ensure no stretching */
@@ -977,9 +981,9 @@ p {
 /* Оптимизация видео для мобильных устройств */
 @media (max-width: 1024px) {    
     /* мобильная настройка: чуть выше и толще подложка */
-    .article-description {
+    /* .article-description {
         padding: 2.2rem 1.5rem 1.3rem;
-    }
+    } */
     
     .article-description::before {
         background: linear-gradient(
@@ -1010,15 +1014,6 @@ p {
     }
 }
 
-
-
-/* Старые мобильные стили удалены */
-
-/* Кнопки "Читать полностью" удалены */
-
-/* Полные статьи удалены - теперь используются только видео с описаниями */
-
-/* Адаптивные стили для очень маленьких экранов */
 @media (max-width: 480px) {
     .article-description {
         padding: 1rem 1.2rem 1.2rem;
@@ -1619,7 +1614,6 @@ p {
 
 /* Стили для планшетов */
 @media (max-width: 1024px) and (min-width: 769px) {
-    
     .article-description {
         padding: 1rem 1.5rem;
     }
@@ -1640,28 +1634,9 @@ p {
     }
 }
 
-/* Стили для средних мобильных экранов */
-@media (max-width: 1024px) and (min-width: 481px) {
-    .mobile-video {
-        display: block !important;
-        object-fit: contain !important;
-        object-fit: contain !important;
-        width: 100% !important;
-    }
-}
-
-@media (max-width: 360px) {
-    .mobile-video {
-        display: block !important;
-        object-fit: contain !important;
-        object-fit: contain !important;
-        width: 100% !important;
-    }
-}
-
 /* ####################\/\/\/######################## */
-/* Range: 0-319px - Very small screens */
-@media (max-width: 319px) {
+/* Range: 0-320px - Very small screens */
+@media (max-width: 425px) {
     .article-video {
         display: block !important;
         width: 100% !important;
@@ -1673,17 +1648,64 @@ p {
         width: 100%;
         object-fit: contain;
     }
+
+    .article-video-title {
+        font-size: 1rem;
+        margin-bottom: 0.4rem;
+        padding: 0.4rem 0rem;
+    }
+
+    .article-video-subtitle {
+        font-size: 0.9rem;
+        margin-bottom: 0.6rem;
+        color: rgba(255, 255, 255, 0.8);
+        display: block;
+        text-align: center; /* Выравнивание по центру */
+    }
+    
+    /* Responsive content for small screens */
+    .article-video-subtitle[data-mobile] {
+        font-size: 0;
+        line-height: 0;
+        visibility: hidden;
+    }
+    
+    .article-video-subtitle[data-mobile]::before {
+        content: attr(data-mobile);
+        font-size: 0.8rem;
+        line-height: 1.4;
+        color: rgba(255, 255, 255, 0.8);
+        display: block;
+        text-align: center;
+        margin-bottom: 0.6rem;
+        visibility: visible;
+    }
 }
 
-@media (min-width: 769px) {    
+@media (min-width: 1025px) {    
     .article-video-subtitle {
         font-size: 0.9rem;
         margin-bottom: 0.5rem;
     }
+    
+    /* Show desktop content, hide mobile content */
+    .article-video-subtitle[data-mobile] {
+        font-size: 0.9rem;
+        line-height: 1.4;
+        color: rgba(255, 255, 255, 0.8);
+        display: block;
+        text-align: center;
+        margin-bottom: 0.5rem;
+        visibility: visible;
+    }
+    
+    .article-video-subtitle[data-mobile]::before {
+        display: none;
+    }
 }
 
 /* Range: 320-767px - Mobile and small tablets */
-@media (min-width: 320px) and (max-width: 767px) {
+@media (min-width: 426px) and (max-width: 1024px) {
     .article-video {
         display: block !important;
         width: 100% !important;
@@ -1706,13 +1728,19 @@ p {
     }
     
     .article-video-subtitle {
-        font-size: 1rem;
+        font-size: 1.1rem;
         margin-bottom: 0.7rem;
+    }
+
+    .article-description {
+        padding: 2.2rem 1.5rem 1.3rem;
+        text-align: center;
+        width: 100%;
     }
 }
 
 /* Range: 768px+ - Tablets and desktop */
-@media (min-width: 768px) {
+@media (min-width: 1025px) {
     .article-video {
         display: block !important;
         width: 100% !important;
@@ -1730,12 +1758,12 @@ p {
     }
     
     .article-video-title {
-        font-size: 1.875rem;
+        font-size: 2.3rem;
         margin-bottom: 1.5rem;
     }
     
     .article-video-subtitle {
-        font-size: 1.1rem;
+        font-size: 1.2rem;
         margin-bottom: 0.8rem;
     }
 }
@@ -1948,18 +1976,18 @@ p {
         border-radius: 0 0 20px 20px;
     }
     
-    .article-video-title {
+    /* .article-video-title {
         font-size: 2rem;
         margin-bottom: 0.4rem;
-    }
+    } */
     
-    .article-video-subtitle {
+    /* .article-video-subtitle {
         font-size: 1.3rem;
         margin-bottom: 0.6rem;
         color: rgba(255, 255, 255, 0.8);
         display: block;
-        text-align: center; /* Выравнивание по центру */
-    }
+        text-align: center;
+    } */
     
     .read-more-btn {
         padding: 5px 12px;
@@ -1968,10 +1996,6 @@ p {
         display: block; /* Делаем блочным элементом для центрирования */
         color: #ffffff; /* Белый текст кнопки */
     }
-    
-    /* .video-container {
-        height: 50vh;
-    } */
     
     /* Градиент для маленьких экранов */
     .video-container::after {
@@ -2776,8 +2800,6 @@ html {
     transform: translateX(0);
 }
 
-
-
 /* Smooth video overlay transitions */
 .promo-overlay, .article-video-overlay {
     transition: all 1.5s cubic-bezier(0.4, 0, 0.2, 1);
@@ -2906,15 +2928,6 @@ body.mobile-optimized .fade-in-up {
     transition: opacity var(--transition-duration) ease, transform var(--transition-duration) ease;
 }
 
-/* Simplified visibility rules for video sections */
-/* .article-video-section.visible {
-    animation: none;
-    transition: none;
-    opacity: 1;
-    transform: none;
-    visibility: visible;
-} */
-
 /* Анимации для мобильного меню */
 @keyframes slideInRight {
     from {
@@ -2949,9 +2962,6 @@ body.mobile-optimized .fade-in-up {
     }
 }
 
-/* Убраны спец-правила «оптимизации» видео на мобильных — используем базовые стили ниже */
-
-/* Удалены агрессивные правила скрытия рекламы, чтобы не ломать разметку */
 
 /* Simplified safety overrides */
 .header {
@@ -3037,38 +3047,18 @@ section,
 
 .article-horizontal-carousel {
   position: relative;
-  width: 100%; /* or the width of your card */
+  width: 100%;
   margin: 0 auto;
   overflow: hidden;
   box-sizing: border-box;
   user-select: none;
   touch-action: pan-y pinch-zoom; /* Allow vertical scrolling and pinch zoom, handle horizontal swipes */
-  cursor: grab;
+  cursor: default; /* Changed from grab since mouse drag is disabled */
+  max-width: 100%;
 }
 
-.article-horizontal-carousel:active {
-  cursor: grabbing;
-}
+/* Removed :active cursor since mouse drag is disabled */
 
-/* Add subtle visual hint for swipe functionality */
-/* .article-horizontal-carousel::before {
-  content: '';
-  position: absolute;
-  top: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 40px;
-  height: 4px;
-  background: rgba(0, 212, 255, 0.3);
-  border-radius: 2px;
-  z-index: 10;
-  opacity: 0.6;
-  transition: opacity 0.3s ease;
-}
-
-.article-horizontal-carousel:hover::before {
-  opacity: 1;
-} */
 
 /* Hide swipe hint on mobile devices */
 @media (max-width: 768px) {
@@ -3077,12 +3067,53 @@ section,
   }
 }
 
+/* Fix for black line issue on small screens */
+@media (max-width: 480px) {
+  .article-horizontal-carousel {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    max-width: 100vw;
+  }
+  
+  .carousel-track {
+    width: 100%;
+    max-width: 100%;
+  }
+  
+  .article-video-section {
+    flex: 0 0 92%;
+    margin-right: 3%;
+    min-width: 0;
+  }
+}
+
+/* Additional overflow prevention for all screen sizes */
+.article-horizontal-carousel {
+  position: relative;
+  width: 100%;
+  margin: 0 auto;
+  overflow: hidden;
+  box-sizing: border-box;
+  user-select: none;
+  touch-action: pan-y pinch-zoom;
+  cursor: default; /* Changed from grab since mouse drag is disabled */
+  max-width: 100%;
+  /* Ensure no horizontal overflow */
+  contain: layout;
+}
+
 .carousel-track {
   display: flex;
   transition: transform 0.4s cubic-bezier(0.4,0,0.2,1);
   will-change: transform;
-  touch-action: pan-y pinch-zoom; /* Allow vertical scrolling and pinch zoom */
+  touch-action: pan-y pinch-zoom;
+  width: 100%;
+  max-width: 100%;
+  /* Prevent any overflow */
+  contain: layout;
 }
+
 
 .carousel-track.dragging {
   transition: none; /* Disable transition during drag for smooth following */
@@ -3120,11 +3151,11 @@ section,
   }
 }
 
-@media (max-width: 768px) {
+/* @media (max-width: 768px) {
   .carousel-arrow {
     display: none !important;
   }
-}
+} */
 
 .carousel-arrow.left {
   left: 0px;
