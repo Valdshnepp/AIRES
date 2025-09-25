@@ -28,7 +28,7 @@
                     <li><a href="#research" class="nav-link">Направления</a></li>
                     <li><a href="#projects" class="nav-link">Проекты</a></li>
                     <li><a href="#article" class="nav-link">Наши исследования</a></li>
-                    <!-- <li><a href="#news" class="nav-link">Новости</a></li> -->
+                    <li><a href="#news" class="nav-link">Новости</a></li>
                     <li><a href="#contact" class="nav-link">Контакты</a></li>
                 </ul>
             </nav>
@@ -41,27 +41,12 @@
         <div class="nav-overlay" id="navOverlay"></div>
     </header>
         <div class="black-background-block"></div>
-        
 
         <section class="promo">
-            <video class="promo-video desktop-video" autoplay muted loop playsinline preload="auto">
-                <source src="MP4/pcblue.mp4" type="video/mp4">
-            </video>
-            <video class="promo-video mobile-video" autoplay muted loop playsinline preload="auto">
-                <source src="MP4/blue.mp4" type="video/mp4">
-                <source src="WebM/blue.webm" type="video/webm">
-                <source src="low bitrate/blue.mp4" type="video/mp4">
+            <video class="promo-video lazy-video" muted loop playsinline data-src="blue">
+                <source type="video/mp4">
             </video>
         </section>
-
-        <!-- <section class="promo">
-            <video class="promo-video desktop-video article-video lazy-video"  muted loop playsinline data-src="blue">
-                <source  type="video/mp4">
-            </video>
-            <video class="promo-video mobile-video article-photo"  muted loop playsinline data-src="mobileblue">
-                <source  type="video/mp4">
-            </video>
-        </section> -->
 
     <section id="home" class="hero no-video section-transition">
         <div class="hero-background">
@@ -73,7 +58,6 @@
             <div class="hero-content">
                 <h1 class="hero-title fade-in-up">AIRES</h1>
                 <p class="hero-subtitle fade-in-up">Инновационная научная команда</p>
-                <!-- <p class="hero-description fade-in-up">Специализируемся в решении задач с применением современных информационных технологий и искусственного интеллекта</p> -->
                 <div class="hero-buttons fade-in-up">
                     <a href="#about" class="btn btn-primary">Узнать больше</a>
                     <a href="#contact" class="btn btn-secondary">Связаться с нами</a>
@@ -133,54 +117,11 @@
         </div>
     </section>
 
-    <!-- <section id="projects" class="projects section-transition">
-        <div class="container">
-            <h2 class="section-title fade-in-up">Завершённые проекты</h2>
-            <div class="projects-grid">
-                <div class="project-card fade-in-up">
-                    <div class="project-number">1</div>
-                    <p>Робот-манипулятор для сортировки овощей по заданным критериям</p>
-                </div>
-                <div class="project-card fade-in-up">
-                    <div class="project-number">2</div>
-                    <p>Разработка модели машинного обучения для анализа состояния аварийных зданий до, во время и после землетрясений</p>
-                </div>
-                <div class="project-card fade-in-up">
-                    <div class="project-number">3</div>
-                    <p>Проект в области здравоохранения: нейросетевой алгоритм по выявлению онкологических заболеваний</p>
-                </div>
-                <div class="project-card fade-in-up">
-                    <div class="project-number">4</div>
-                    <p>Исследование эволюции тетраэдральной формации спутников для выявления гравитационных аномалий и следов новой физики</p>
-                </div>
-                <div class="project-card fade-in-up">
-                    <div class="project-number">5</div>
-                    <p>Сетевая модель предсказания погодных условий в климатических исследованиях</p>
-                </div>
-                <div class="project-card fade-in-up">
-                    <div class="project-number">6</div>
-                    <p>Платформа для аудита смарт-контрактов на основе ИИ</p>
-                </div>
-                <div class="project-card fade-in-up">
-                    <div class="project-number">7</div>
-                    <p>Нейросетевая модель детекции и ведения объектов в реальном времени</p>
-                </div>
-                <div class="project-card fade-in-up">
-                    <div class="project-number">8</div>
-                    <p>Автоматизация сварочного процесса путём разработки и внедрения робота-сварщика</p>
-                </div>
-            </div>
-        </div>
-    </section> -->
-
     <section id="article" class="article section-transition">
         <div class="container">
             <h2 class="section-title fade-in-up">Завершённые проекты</h2>
-            
             <!-- Разделитель после заголовка -->
             <div class="article-separator"></div>
-            
-            
             <div class="article-horizontal-carousel" style="position:relative;">
                 <button class="carousel-arrow left">&#9664;</button>
                 <button class="carousel-arrow right">&#9654;</button>
@@ -189,11 +130,6 @@
                         <div class="article-video-section">
                             <div class="video-container">
                                 <video class="article-video lazy-video" muted loop playsinline data-src="pomidor">
-                                    <!-- <source src="MP4/pomidor.mp4" type="video/mp4" data-src-webm="WebM/pomidor.webm" data-src-low="low-bitrate/pomidor.mp4">
-                                    <source src="WebM/pomidor.webm" type="video/webm"> -->
-                                    <source type="video/mp4">
-                                </video>
-                                <video class="article-photo lazy-video"  muted loop playsinline data-src="pomidor">
                                     <source type="video/mp4">
                                 </video>
                             </div>
@@ -248,9 +184,9 @@
                                 <video class="article-video lazy-video" muted loop playsinline data-src="dom">
                                     <source type="video/mp4">
                                 </video>
-                                <video class="article-photo" muted loop playsinline data-src="dom">
+                                <!-- <video class="article-photo" muted loop playsinline data-src="dom">
                                     <source type="video/mp4">
-                                </video>
+                                </video> -->
                             </div>
                             <div class="article-description">
                                 <h3 class="article-video-title">Анализ сейсмических аномалий</h3>
@@ -305,9 +241,9 @@
                                     <source src="WebM/rak.webm" type="video/webm"> -->
                                     <source type="video/mp4">
                                 </video>
-                                <video class="article-photo" muted loop playsinline data-src="rak">
+                                <!-- <video class="article-photo" muted loop playsinline data-src="rak">
                                     <source type="video/mp4">
-                                </video>
+                                </video> -->
                             </div>
                             <div class="article-description">
                                 <h3 class="article-video-title">Выявление онкологических заболеваний</h3>
@@ -366,9 +302,9 @@
                                     <source src="WebM/space.webm" type="video/webm"> -->
                                     <source type="video/mp4">
                                 </video>
-                                <video class="article-photo" muted loop playsinline data-src="space">
+                                <!-- <video class="article-photo" muted loop playsinline data-src="space">
                                     <source type="video/mp4">
-                                </video>
+                                </video> -->
                             </div>
                             <div class="article-description">
                                 <h3 class="article-video-title">Исследование тетраэдральной конфигурации спутников</h3>
@@ -417,9 +353,9 @@
                                     <source src="WebM/pogoda.webm" type="video/webm"> -->
                                     <source  type="video/mp4">
                                 </video>
-                                <video class="article-photo"  muted loop playsinline data-src="pogoda">
+                                <!-- <video class="article-photo"  muted loop playsinline data-src="pogoda">
                                     <source type="video/mp4">
-                                </video>
+                                </video> -->
                             </div>
                             <div class="article-description">
                                 <h3 class="article-video-title">Предсказание погодных условий</h3>
@@ -478,9 +414,9 @@
                                     <source src="WebM/cripta.webm" type="video/webm"> -->
                                     <source type="video/mp4">
                                 </video>
-                                <video class="article-photo"  muted loop playsinline data-src="cripta">
+                                <!-- <video class="article-photo"  muted loop playsinline data-src="cripta">
                                     <source  type="video/mp4">
-                                </video>
+                                </video> -->
                             </div>
                             <div class="article-description">
                                 <h3 class="article-video-title">Аудит смарт-контрактов</h3>
@@ -539,9 +475,9 @@
                                     <source src="WebM/mouse.webm" type="video/webm"> -->
                                     <source type="video/mp4">
                                 </video>
-                                <video class="article-photo"  muted loop playsinline >
+                                <!-- <video class="article-photo"  muted loop playsinline >
                                     <source type="video/mp4">
-                                </video>
+                                </video> -->
                             </div>
                             <div class="article-description">
                                 <h3 class="article-video-title">Нейросетевая модель для детекции объектов</h3>
@@ -595,9 +531,9 @@
                                     <source src="WebM/svarka.webm" type="video/webm"> -->
                                     <source type="video/mp4">
                                 </video>
-                                <video class="article-photo"  muted loop playsinline >
+                                <!-- <video class="article-photo"  muted loop playsinline >
                                     <source type="video/mp4">
-                                </video>
+                                </video> -->
                             </div>
                             <div class="article-description">
                                 <h3 class="article-video-title">Робот-сварщик</h3>
@@ -649,9 +585,9 @@
                                 <video class="article-video lazy-video" muted loop playsinline data-src="logistics">
                                     <source type="video/mp4">
                                 </video>
-                                <video class="article-photo" muted loop playsinline data-src="logistics">
+                                <!-- <video class="article-photo" muted loop playsinline data-src="logistics">
                                     <source type="video/mp4">
-                                </video>
+                                </video> -->
                             </div>
                             <div class="article-description">
                                 <h3 class="article-video-title">Система маршрутизации курьеров</h3>
@@ -858,22 +794,234 @@
         const cards = track.querySelectorAll('.article-video-section');
         const leftBtn = carousel.querySelector('.carousel-arrow.left');
         const rightBtn = carousel.querySelector('.carousel-arrow.right');
-        let current = 0;
+        
+        // Clone first and last slides for seamless infinite scroll
+        const firstClone = cards[0].cloneNode(true);
+        const lastClone = cards[cards.length - 1].cloneNode(true);
+        
+        // Add clones to track
+        track.appendChild(firstClone);
+        track.insertBefore(lastClone, cards[0]);
+        
+        let current = 1; // Start at 1 because we added a clone at the beginning
         const total = cards.length;
+        const totalWithClones = total + 2; // Original + 2 clones
+
+        // Swipe functionality variables
+        let startX = 0;
+        let startY = 0;
+        let currentX = 0;
+        let currentY = 0;
+        let isDragging = false;
+        let isHorizontalSwipe = false;
+        let startTime = 0;
+        let velocity = 0;
 
         function updateCarousel() {
-        track.style.transform = `translateX(-${current * 95}%)`;
+            track.style.transform = `translateX(-${current * 95}%)`;
         }
 
-        leftBtn.addEventListener('click', () => {
-        current = (current - 1 + total) % total;
-        updateCarousel();
+        function goToNext() {
+            current++;
+            updateCarousel();
+            
+            // If we're at the last clone (which is the first slide), jump to the real first slide
+            if (current === totalWithClones - 1) {
+                setTimeout(() => {
+                    track.style.transition = 'none';
+                    current = 1;
+                    updateCarousel();
+                    setTimeout(() => {
+                        track.style.transition = 'transform 0.4s cubic-bezier(0.4,0,0.2,1)';
+                    }, 50);
+                }, 400);
+            }
+        }
+
+        function goToPrevious() {
+            current--;
+            updateCarousel();
+            
+            // If we're at the first clone (which is the last slide), jump to the real last slide
+            if (current === 0) {
+                setTimeout(() => {
+                    track.style.transition = 'none';
+                    current = total;
+                    updateCarousel();
+                    setTimeout(() => {
+                        track.style.transition = 'transform 0.4s cubic-bezier(0.4,0,0.2,1)';
+                    }, 50);
+                }, 400);
+            }
+        }
+
+        function updateCarouselWithOffset(offset = 0) {
+            track.style.transform = `translateX(-${current * 95}% + ${offset}px)`;
+        }
+
+
+        // Touch event handlers
+        function handleTouchStart(e) {
+            startX = e.touches[0].clientX;
+            startY = e.touches[0].clientY;
+            startTime = Date.now();
+            isDragging = true;
+            isHorizontalSwipe = false;
+        }
+
+        function handleTouchMove(e) {
+            if (!isDragging) return;
+            
+            currentX = e.touches[0].clientX;
+            currentY = e.touches[0].clientY;
+            
+            const deltaX = currentX - startX;
+            const deltaY = currentY - startY;
+            
+            // Determine gesture direction after minimum movement
+            const minMovement = 10;
+            if (Math.abs(deltaX) > minMovement || Math.abs(deltaY) > minMovement) {
+                if (!isHorizontalSwipe) {
+                    // Determine if this is a horizontal or vertical gesture
+                    if (Math.abs(deltaX) > Math.abs(deltaY)) {
+                        isHorizontalSwipe = true;
+                        track.classList.add('dragging');
+                    } else {
+                        isHorizontalSwipe = false;
+                        // Allow vertical scrolling by not preventing default
+                        return;
+                    }
+                }
+                
+                // Only prevent default and handle carousel if it's a horizontal swipe
+                if (isHorizontalSwipe) {
+                    e.preventDefault();
+                    updateCarouselWithOffset(deltaX);
+                }
+            }
+        }
+
+        function handleTouchEnd(e) {
+            if (!isDragging) return;
+            
+            const deltaX = currentX - startX;
+            const deltaTime = Date.now() - startTime;
+            velocity = deltaX / deltaTime;
+            
+            track.classList.remove('dragging');
+            
+            // Only handle carousel navigation if it was a horizontal swipe
+            if (isHorizontalSwipe) {
+                // Determine if it's a swipe based on distance and velocity
+                const minSwipeDistance = 50;
+                const minSwipeVelocity = 0.3;
+                
+                if (Math.abs(deltaX) > minSwipeDistance || Math.abs(velocity) > minSwipeVelocity) {
+                    if (deltaX > 0) {
+                        // Swipe right - go to previous
+                        goToPrevious();
+                    } else {
+                        // Swipe left - go to next
+                        goToNext();
+                    }
+                } else {
+                    // Snap back to current position
+                    updateCarousel();
+                }
+            }
+            
+            isDragging = false;
+            isHorizontalSwipe = false;
+        }
+
+        // Mouse event handlers for desktop drag support
+        function handleMouseDown(e) {
+            startX = e.clientX;
+            startY = e.clientY;
+            startTime = Date.now();
+            isDragging = true;
+            track.classList.add('dragging');
+            e.preventDefault();
+        }
+
+        function handleMouseMove(e) {
+            if (!isDragging) return;
+            
+            currentX = e.clientX;
+            currentY = e.clientY;
+            
+            const deltaX = currentX - startX;
+            const deltaY = currentY - startY;
+            
+            // Only handle horizontal drags
+            if (Math.abs(deltaX) > Math.abs(deltaY)) {
+                e.preventDefault();
+                updateCarouselWithOffset(deltaX);
+            }
+        }
+
+        function handleMouseUp(e) {
+            if (!isDragging) return;
+            
+            const deltaX = currentX - startX;
+            const deltaTime = Date.now() - startTime;
+            velocity = deltaX / deltaTime;
+            
+            track.classList.remove('dragging');
+            
+            // Determine if it's a drag based on distance and velocity
+            const minDragDistance = 50;
+            const minDragVelocity = 0.3;
+            
+            if (Math.abs(deltaX) > minDragDistance || Math.abs(velocity) > minDragVelocity) {
+                if (deltaX > 0) {
+                    // Drag right - go to previous
+                    goToPrevious();
+                } else {
+                    // Drag left - go to next
+                    goToNext();
+                }
+            } else {
+                // Snap back to current position
+                updateCarousel();
+            }
+            
+            isDragging = false;
+        }
+
+        // Add event listeners
+        leftBtn.addEventListener('click', goToPrevious);
+        rightBtn.addEventListener('click', goToNext);
+
+        // Touch events
+        track.addEventListener('touchstart', handleTouchStart, { passive: false });
+        track.addEventListener('touchmove', handleTouchMove, { passive: false });
+        track.addEventListener('touchend', handleTouchEnd, { passive: false });
+
+        // Mouse events for desktop
+        track.addEventListener('mousedown', handleMouseDown);
+        track.addEventListener('mousemove', handleMouseMove);
+        track.addEventListener('mouseup', handleMouseUp);
+        track.addEventListener('mouseleave', handleMouseUp); // Handle mouse leaving the element
+
+        // Prevent text selection during drag
+        track.addEventListener('selectstart', (e) => e.preventDefault());
+
+        // Add keyboard support for accessibility
+        track.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') {
+                e.preventDefault();
+                goToPrevious();
+            } else if (e.key === 'ArrowRight') {
+                e.preventDefault();
+                goToNext();
+            }
         });
 
-        rightBtn.addEventListener('click', () => {
-        current = (current + 1) % total;
-        updateCarousel();
-        });
+        // Make carousel focusable for keyboard navigation
+        track.setAttribute('tabindex', '0');
+        track.setAttribute('role', 'region');
+        track.setAttribute('aria-label', 'Project carousel');
 
         updateCarousel();
     </script>

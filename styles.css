@@ -975,16 +975,7 @@ p {
 }
 
 /* Оптимизация видео для мобильных устройств */
-@media (max-width: 1024px) {
-    
-    /* Упрощенные стили для видео на мобильных */
-    .article-video, .promo-video {
-        object-fit: contain;
-        /* object-position: center top;
-        max-width: 100vw;
-        max-height: none; */
-    }
-    
+@media (max-width: 1024px) {    
     /* мобильная настройка: чуть выше и толще подложка */
     .article-description {
         padding: 2.2rem 1.5rem 1.3rem;
@@ -1619,130 +1610,18 @@ p {
     }
 }
 
-/* Promo video section */
 .promo {
     position: relative;
     width: 100%;
-    /* height: 100vh;
-    min-height: 100vh;
-    overflow: hidden; */
     background: #000;
     transition: height 1.5s ease;
 }
 
-/* Minimized promo height after scroll/close - DISABLED */
-/* .promo.minimized {
-    height: 100vh; 
-    min-height: 100vh;
-} */
-
-/* Disable all minimized state changes */
-/* .promo.minimized,
-.promo.minimized .promo-video,
-.promo.minimized .mobile-video {
-    height: 100vh !important;
-    min-height: 100vh !important;
-    max-height: none !important;
-} */
-
-/* Use modern viewport units when supported to avoid mobile browser UI jump */
-/* @supports (height: 100dvh) {
-    .promo,
-    .article-video-section,
-    .promo.minimized { height: 100dvh; min-height: 100dvh; }
-}
-@supports (height: 100svh) {
-    .promo,
-    .article-video-section,
-    .promo.minimized { height: 100svh; min-height: 100svh; }
-} */
-
-/* Мобильная версия с современными viewport units */
-/* @media (max-width: 768px) {
-    @supports (height: 50dvh) {
-        .promo { height: 50dvh; min-height: 50dvh; }
-    }
-    @supports (height: 50svh) {
-        .promo { height: 50svh; min-height: 50svh; }
-    }
-} */
-
-.promo-video {
-    /* position: absolute; */
-    /* top: 0; */
-    /* left: 0; */
-    width: 100%;
-    /* height: 100%; */
-    object-fit: contain;
-    /* filter: none;  */
-    /* z-index: 1; */
-    /* object-position: center center; Центрируем для лучшей читаемости текста */
-}
-
-/* Скрываем мобильное видео на десктопе */
-.mobile-video {
-    display: none;
-}
-
-/* Показываем мобильное видео только на мобильных устройствах */
-@media (max-width: 1024px) {
-    .desktop-video {
-        display: none;
-    }
-    .mobile-video {
-        display: block !important;
-        visibility: visible !important;
-        /* opacity: 1 !important; */
-        /* Обеспечиваем полное покрытие экрана без черных полос */
-        object-fit: contain !important;
-        /* object-position: center center !important; */
-        width: 100% !important;
-        /* height: 100% !important; */
-        /* min-width: 100% !important; */
-        /* min-height: 100% !important; */
-        /* position: absolute !important; */
-        /* top: 0 !important; */
-        /* left: 0 !important; */
-        /* z-index: 1 !important; */
-    }
-}
-
-/* Мобильный режим: центрируем и гарантируем покрытие без полос */
-@media (max-width: 1024px) {
-    .promo-video {
-        /* top: 0;
-        left: 0; */
-        width: 100%;
-        /* height: 100%;
-        min-width: 100%;
-        min-height: 100%; */
-        object-fit: contain !important;
-        /* transform: none; */
-        /* z-index: 1; */
-        /* object-position: center center !important;  */
-    }
-}
-
 /* Стили для планшетов */
 @media (max-width: 1024px) and (min-width: 769px) {
-    .promo {
-        height: 80vh !important;
-        min-height: 80vh !important;
-    }
-    
-    .promo-video {
-        object-position: center 30% !important; /* смещаем видео ниже для видимости верхнего края */
-    }
-    
-    /* Оптимизация для планшетов - больше видео, меньше текста */
-    /* .video-container {
-    /* .video-container {
-        height: 65vh; /* Еще больше видео для планшетов */
-    } */
-    } */
     
     .article-description {
-        padding: 1rem 1.5rem; /* Еще меньше отступов */
+        padding: 1rem 1.5rem;
     }
     
     .article-video-title {
@@ -1761,29 +1640,6 @@ p {
     }
 }
 
-@media (max-width: 480px) {
-    .promo-video {
-        object-fit: contain !important;
-        /* object-position: center center !important; */
-    }
-    
-    .mobile-video {
-        display: block !important;
-        visibility: visible !important;
-        /* opacity: 1 !important; */
-        object-fit: contain !important;
-        /* object-position: center center !important; */
-        width: 100% !important;
-        /* height: 100% !important; */
-        /* min-width: 100% !important; */
-        /* min-height: 100% !important; */
-        /* position: absolute !important; */
-        /* top: 0 !important; */
-        /* left: 0 !important; */
-        /* z-index: 1 !important; */
-    }
-}
-
 /* Стили для средних мобильных экранов */
 @media (max-width: 1024px) and (min-width: 481px) {
     .mobile-video {
@@ -1794,7 +1650,6 @@ p {
     }
 }
 
-/* Стили для очень маленьких экранов */
 @media (max-width: 360px) {
     .mobile-video {
         display: block !important;
@@ -1803,48 +1658,89 @@ p {
         width: 100% !important;
     }
 }
-@media (min-width: 769px) {
-    .article-photo {
-        display: none !important;
+
+/* ####################\/\/\/######################## */
+/* Range: 0-319px - Very small screens */
+@media (max-width: 319px) {
+    .article-video {
+        display: block !important;
+        width: 100% !important;
+        object-fit: contain !important;
+    }
+
+    .promo-video {
+        display: block !important;
+        width: 100%;
+        object-fit: contain;
     }
 }
-@media (min-width: 769px) {
-    .article-photo {
-        display: none !important;
+
+@media (min-width: 769px) {    
+    .article-video-subtitle {
+        font-size: 0.9rem;
+        margin-bottom: 0.5rem;
     }
 }
-/* Стили для замены видео на видео из low bitrate на мобильных устройствах */
-@media (max-width: 1024px) {
+
+/* Range: 320-767px - Mobile and small tablets */
+@media (min-width: 320px) and (max-width: 767px) {
+    .article-video {
+        display: block !important;
+        width: 100% !important;
+        object-fit: contain !important;
+    }
+
+    .promo-video {
+        display: block !important;
+        width: 100%;
+        object-fit: contain;
+    }
     
-    .article-photo {
-        display: block !important;
-        width: 100% !important;
-        object-fit: contain !important;
+    .article-video-section {
+        margin-bottom: 1.5rem;
     }
-}
-
-
-
-
-
-@media (max-width: 1440px) {
     
-    .article-photo {
-        display: block !important;
-        width: 100% !important;
-        object-fit: contain !important;
+    .article-video-title {
+        font-size: 1.4rem;
+        margin-bottom: 0.5rem;
     }
-
-    .article-video{
-        display: block !important;
-        width: 100% !important;
-        object-fit: contain !important;
-    }
-
-    .article-video{
-        display: none !important;
+    
+    .article-video-subtitle {
+        font-size: 1rem;
+        margin-bottom: 0.7rem;
     }
 }
+
+/* Range: 768px+ - Tablets and desktop */
+@media (min-width: 768px) {
+    .article-video {
+        display: block !important;
+        width: 100% !important;
+        object-fit: contain !important;
+    }
+
+    .promo-video {
+        display: block !important;
+        width: 100%;
+        object-fit: contain;
+    }
+    
+    .article-video-section {
+        margin-bottom: 2rem;
+    }
+    
+    .article-video-title {
+        font-size: 1.875rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .article-video-subtitle {
+        font-size: 1.1rem;
+        margin-bottom: 0.8rem;
+    }
+}
+
+/* ####################/\/\/\######################## */
 
 /* Стили для модального окна */
 .article-modal {
@@ -2074,9 +1970,7 @@ p {
     }
     
     /* .video-container {
-    /* .video-container {
         height: 50vh;
-    } */
     } */
     
     /* Градиент для маленьких экранов */
@@ -3103,14 +2997,6 @@ section,
         height: 4.5rem; /* 72px - такой же размер как у хеддера на мобильных */
         min-height: 4.5rem;
     }
-    
-    .desktop-only {
-        display: none;
-    }
-    
-    .mobile-only {
-        display: block;
-    }
 }
 
 /* Дополнительные стили для очень маленьких экранов */
@@ -3156,39 +3042,55 @@ section,
   overflow: hidden;
   box-sizing: border-box;
   user-select: none;
+  touch-action: pan-y pinch-zoom; /* Allow vertical scrolling and pinch zoom, handle horizontal swipes */
+  cursor: grab;
+}
+
+.article-horizontal-carousel:active {
+  cursor: grabbing;
+}
+
+/* Add subtle visual hint for swipe functionality */
+/* .article-horizontal-carousel::before {
+  content: '';
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40px;
+  height: 4px;
+  background: rgba(0, 212, 255, 0.3);
+  border-radius: 2px;
+  z-index: 10;
+  opacity: 0.6;
+  transition: opacity 0.3s ease;
+}
+
+.article-horizontal-carousel:hover::before {
+  opacity: 1;
+} */
+
+/* Hide swipe hint on mobile devices */
+@media (max-width: 768px) {
+  .article-horizontal-carousel::before {
+    display: none;
+  }
 }
 
 .carousel-track {
   display: flex;
   transition: transform 0.4s cubic-bezier(0.4,0,0.2,1);
   will-change: transform;
+  touch-action: pan-y pinch-zoom; /* Allow vertical scrolling and pinch zoom */
 }
 
-/* .carousel-arrow {
-  position: absolute;
-  top: 50%;
-  z-index: 2;
-  width: 40px;
-  height: 40px;
-  background: rgba(255,255,255,0.85);
-  border: none;
-  border-radius: 50%;
-  font-size: 2rem;
-  cursor: pointer;
-  outline: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transform: translateY(-50%);
-  transition: background 0.2s;
+.carousel-track.dragging {
+  transition: none; /* Disable transition during drag for smooth following */
 }
-.carousel-arrow.left  { left: 8px; }
-.carousel-arrow.right { right: 8px; }
 
-.carousel-arrow:disabled {
-  opacity: 0.3;
-  cursor: not-allowed;
-} */
+.carousel-track.dragging .article-video-section {
+  pointer-events: none; /* Disable video interactions during drag */
+}
 
 .carousel-arrow {
   position: absolute;
@@ -3208,9 +3110,20 @@ section,
   justify-content: center;
   transform: translateY(-50%);
   transition: background 0.25s, box-shadow 0.25s;
-  /* Remove font styling */
   font-size: 0;
   padding: 0;
+}
+/* Hide arrows on touchscreen devices */
+@media (hover: none) and (pointer: coarse) {
+  .carousel-arrow {
+    display: none !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .carousel-arrow {
+    display: none !important;
+  }
 }
 
 .carousel-arrow.left {

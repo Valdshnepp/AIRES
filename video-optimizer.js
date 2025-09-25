@@ -9,7 +9,6 @@ class VideoOptimizer {
     }
 
     init() {
-        console.log(`init started`);
         this.detectNetworkSpeed();
         this.setupIntersectionObserver();
         this.setupServiceWorker();
@@ -65,48 +64,52 @@ class VideoOptimizer {
                 });
         }
     }
+    optimizeExistingVideos() {
+        console.log(`optimizeExistingVideos started`);
+        const videoElements = Array.from(document.querySelectorAll('.lazy-video'));
+        const articleVideos = Array.from(document.querySelectorAll('.article-video'));
+        const promoVideos = Array.from(document.querySelectorAll('.promo-video'));
 
-    optimizeExistingVideos(){
-        const videoElements = document.querySelectorAll('.lazy-video');
-        const articlePhotos = document.querySelectorAll('.article-photo');
-        const articleVideos = document.querySelectorAll('.article-video');
-
-        const loadNextVideo = (queue, index) => {
-            if (index >= queue.length) return;
-            const video = queue[index];
-            this.videos.push(video);
-            let sourceElem, targetElem;
-
+        const getSourcePath = (video) => {
+            if (!video.dataset.src) return null;
             if (this.isMobile) {
-                targetElem = articlePhotos[index-1];
-                if (targetElem) {
-                    sourceElem = targetElem.querySelector('source');
-                    if (sourceElem && video.dataset.src) {
-                        sourceElem.src = 'lowbitrate/' + video.dataset.src +'3'+ '.mp4';
-                        targetElem.load();
-                        targetElem.play();
-                        targetElem.onloadeddata = () => loadNextVideo(queue, index + 1);
-                        return;
-                    }
-                }
+                return `lowbitrate/${video.dataset.src}3.mp4`;
             } else {
-                targetElem = articleVideos[index-1];
-                if (targetElem) {
-                    sourceElem = targetElem.querySelector('source');
-                    if (sourceElem && video.dataset.src) {
-                        sourceElem.src = 'MP4/' + video.dataset.src + '.mp4';
-                        targetElem.load();
-                        targetElem.play();
-                        targetElem.onloadeddata = () => loadNextVideo(queue, index + 1);
-                        return;
-                    }
-                }
+                return `MP4/${video.dataset.src}.mp4`;
             }
-            // If nothing was loaded, try next
-            loadNextVideo(queue, index + 1);
         };
-        loadNextVideo(Array.from(videoElements), 0); 
+        promoVideos.forEach((promoVideo, idx) => {
+            const video = videoElements[idx];
+            if (!video) return;
+            this.videos.push(video);
+
+            const sourceElem = promoVideo.querySelector('source');
+            const srcPath = getSourcePath(video);
+
+            if (sourceElem && srcPath) {
+                sourceElem.src = srcPath;
+                promoVideo.load();
+                promoVideo.play();
+            }
+        });
+        articleVideos.forEach((articleVideo, idx) => {
+            if (promoVideos.includes(articleVideo)) return;
+
+            const video = videoElements[idx + promoVideos.length] || videoElements[idx];
+            if (!video) return;
+            this.videos.push(video);
+
+            const sourceElem = articleVideo.querySelector('source');
+            const srcPath = getSourcePath(video);
+
+            if (sourceElem && srcPath) {
+                sourceElem.src = srcPath;
+                articleVideo.load();
+                articleVideo.play();
+            }
+        });
     }
+
 
     // loadVideo(video) {
     //     if (video.dataset.loaded === 'true') return;
