@@ -26,7 +26,6 @@
                     <li><a href="#home" class="nav-link">Главная</a></li>
                     <li><a href="#about" class="nav-link">О нас</a></li>
                     <li><a href="#research" class="nav-link">Направления</a></li>
-                    <li><a href="#projects" class="nav-link">Проекты</a></li>
                     <li><a href="#article" class="nav-link">Наши исследования</a></li>
                     <li><a href="#news" class="nav-link">Новости</a></li>
                     <li><a href="#contact" class="nav-link">Контакты</a></li>
@@ -608,19 +607,19 @@
             
             <div class="article-video-section">
                 <div class="video-container">
-                    <img src="photo/technoprom.jpg" alt="Команда AIRES на форуме Технопром-2025" class="news-cover-image">
+                    <img src="photo/technoprom.jpg" alt='Команда AIRES на форуме «Технопром-2025»' class="news-cover-image">
                 </div>
                 <div class="article-description">
-                    <h3 class="article-video-title">Команда AIRES на форуме Технопром-2025</h3>
+                    <h3 class="article-video-title">Команда AIRES на форуме «Технопром-2025»</h3>
                     <button class="read-more-btn" onclick="openArticleModal('news-1')">Читать полностью</button>
                 </div>
                 
                 <div id="news-1" class="project-details">
                     <div class="project-details-content">
-                        <h4>Команда AIRES на форуме Технопром-2025</h4>
+                        <h4>Команда AIRES на форуме «Технопром-2025»</h4>
                         
                         <div class="project-block">
-                            <img src="photo/technopromParty.jpg" alt="Фото с форума Технопром-2025" class="news-content-image">
+                            <img src="photo/technopromParty.jpg" alt='Фото с форума «Технопром-2025»' class="news-content-image">
                         </div>
                         
                         <div class="project-block">
@@ -935,45 +934,31 @@
             
             track.classList.remove('dragging');
             
-            // Determine if it's a drag based on distance and velocity
             const minDragDistance = 50;
             const minDragVelocity = 0.3;
             
             if (Math.abs(deltaX) > minDragDistance || Math.abs(velocity) > minDragVelocity) {
                 if (deltaX > 0) {
-                    // Drag right - go to previous
                     goToPrevious();
                 } else {
-                    // Drag left - go to next
                     goToNext();
                 }
             } else {
-                // Snap back to current position
                 updateCarousel();
             }
             
             isDragging = false;
         }
 
-        // Add event listeners
         leftBtn.addEventListener('click', goToPrevious);
         rightBtn.addEventListener('click', goToNext);
 
-        // Touch events
         track.addEventListener('touchstart', handleTouchStart, { passive: false });
         track.addEventListener('touchmove', handleTouchMove, { passive: false });
         track.addEventListener('touchend', handleTouchEnd, { passive: false });
 
-        // Mouse events disabled - only touch swipes enabled
-        // track.addEventListener('mousedown', handleMouseDown);
-        // track.addEventListener('mousemove', handleMouseMove);
-        // track.addEventListener('mouseup', handleMouseUp);
-        // track.addEventListener('mouseleave', handleMouseUp); // Handle mouse leaving the element
-
-        // Prevent text selection during drag
         track.addEventListener('selectstart', (e) => e.preventDefault());
 
-        // Add keyboard support for accessibility
         track.addEventListener('keydown', (e) => {
             if (e.key === 'ArrowLeft') {
                 e.preventDefault();

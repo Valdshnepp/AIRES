@@ -73,7 +73,7 @@ class VideoOptimizer {
         const getSourcePath = (video) => {
             if (!video.dataset.src) return null;
             if (this.isMobile) {
-                return `lowbitrate/${video.dataset.src}3.mp4`;
+                return `lowbitrate/${video.dataset.src}3_stretched.mp4`;
             } else {
                 return `MP4/${video.dataset.src}.mp4`;
             }
