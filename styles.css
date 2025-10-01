@@ -2836,6 +2836,45 @@ video {
     background: #000;
 }
 
+/* Video loading indicator */
+.video-loading-indicator {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.9rem;
+}
+
+.video-loading-spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid rgba(255, 255, 255, 0.2);
+    border-top: 3px solid #ffffff;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.video-loading-text {
+    text-align: center;
+    font-weight: 500;
+}
+
+/* Hide loading indicator when video is loaded */
+.video-loaded .video-loading-indicator {
+    display: none;
+}
+
 /* Специальные стили для mouse-video больше не нужны - все видео используют одинаковое поведение */
 
 /* Ensure video containers have background */
