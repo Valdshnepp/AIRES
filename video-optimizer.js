@@ -226,7 +226,7 @@ class VideoOptimizer {
             }
 
             // Add a small delay between video loads to prevent overwhelming the connection
-            const delay = this.networkSpeed === 'slow' ? 700 : 200;
+            const delay = this.networkSpeed === 'slow' ? 700 : 10;
             await this.delay(delay);
         }
 
