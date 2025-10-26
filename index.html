@@ -605,33 +605,68 @@
             
             <div class="article-separator"></div>
             
-            <div class="article-video-section">
-                <div class="video-container">
-                    <img src="photo/technoprom.jpg" alt='Команда AIRES на форуме «Технопром-2025»' class="news-cover-image">
-                </div>
-                <div class="article-description">
-                    <h3 class="article-video-title">Команда AIRES на форуме «Технопром-2025»</h3>
-                    <button class="read-more-btn" onclick="openArticleModal('news-1')">Читать полностью</button>
-                </div>
-                
-                <div id="news-1" class="project-details">
-                    <div class="project-details-content">
-                        <h4>Команда AIRES на форуме «Технопром-2025»</h4>
-                        
-                        <div class="project-block">
-                            <img src="photo/technopromParty.jpg" alt='Фото с форума «Технопром-2025»' class="news-content-image">
-                        </div>
-                        
-                        <div class="project-block">
-                            <p>Наша команда приняла участие в международном технологическом форуме «Технопром-2025». В ходе мероприятия мы пообщались и заручились поддержкой коллег из разных регионов России, а также с делегациями из Казахстана, Киргизстана, Нигерии и Судана.</p>
-                            <!-- <img src="photo_news/photo_news1.jpg" alt="Фото с форума Технопром-2025" class="news-content-image"> -->
-                        </div>
-                        
-                        <div class="project-block">
-                            <p>Форум стал отличной возможностью обменяться опытом, обсудить совместные проекты и познакомиться с современными разработками в различных областях науки. Появилось много единомышленников, партнеров, с которыми начали совместную работу со дня выставки.</p>
-                        </div>
+            <div class="article-horizontal-carousel" style="position:relative;">
+                <button class="carousel-arrow left">&#9664;</button>
+                <button class="carousel-arrow right">&#9654;</button>
+                <div class="carousel-track">
 
+                    <!-- News 1: certificate -->
+                    <div class="article-video-section">
+                        <div class="video-container">
+                            <img src="photo/certificate1.jpg" alt='Новое достижение AIRES' class="news-cover-image">
+                        </div>
+                        <div class="article-description">
+                            <h3 class="article-video-title">Новое достижение команды AIRES</h3>
+                            <button class="read-more-btn" onclick="openArticleModal('news-2')">Читать полностью</button>
+                        </div>
+                        
+                        <div id="news-2" class="project-details">
+                            <div class="project-details-content">
+                                <h4>Новое достижение команды AIRES</h4>
+                                
+                                <div class="project-block">
+                                    <p>Александр Бочкарев от имени нашей команды 
+                                        принял участие в международной конференции в международной конференции
+                                        «Город и транспорт: Передовые проекты и потенциал развития», прошедшей 
+                                        в Кыргызско-Российском Славянском университете 18 сентября 2025 года. 
+                                    </p>
+                                </div>
+                                
+                            </div>
+                        </div>
                     </div>
+
+                    <!-- News 2: Technoprom -->
+                    <div class="article-video-section">
+                        <div class="video-container">
+                            <img src="photo/technoprom.jpg" alt='Команда AIRES на форуме «Технопром-2025»' class="news-cover-image">
+                        </div>
+                        <div class="article-description">
+                            <h3 class="article-video-title">Команда AIRES на форуме «Технопром-2025»</h3>
+                            <button class="read-more-btn" onclick="openArticleModal('news-1')">Читать полностью</button>
+                        </div>
+                        
+                        <div id="news-1" class="project-details">
+                            <div class="project-details-content">
+                                <h4>Команда AIRES на форуме «Технопром-2025»</h4>
+                                
+                                <div class="project-block">
+                                    <img src="photo/technopromParty.jpg" alt='Фото с форума «Технопром-2025»' class="news-content-image">
+                                </div>
+                                
+                                <div class="project-block">
+                                    <p>Наша команда приняла участие в международном технологическом форуме «Технопром-2025». В ходе мероприятия мы пообщались и заручились поддержкой коллег из разных регионов России, а также с делегациями из Казахстана, Киргизстана, Нигерии и Судана.</p>
+                                </div>
+                                
+                                <div class="project-block">
+                                    <p>Форум стал отличной возможностью обменяться опытом, обсудить совместные проекты и познакомиться с современными разработками в различных областях науки. Появилось много единомышленников, партнеров, с которыми начали совместную работу со дня выставки.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- News 2: Future news item -->
+                    
                 </div>
             </div>
         </div>
@@ -754,227 +789,234 @@
     emailjs.init('0TKA7rxBON4u6sDg6');
     </script>
     <script>
-        const carousel = document.querySelector('.article-horizontal-carousel');
-        const track = carousel.querySelector('.carousel-track');
-        const cards = track.querySelectorAll('.article-video-section');
-        const leftBtn = carousel.querySelector('.carousel-arrow.left');
-        const rightBtn = carousel.querySelector('.carousel-arrow.right');
-        
-        // Clone first and last slides for seamless infinite scroll
-        const firstClone = cards[0].cloneNode(true);
-        const lastClone = cards[cards.length - 1].cloneNode(true);
-        
-        // Add clones to track
-        track.appendChild(firstClone);
-        track.insertBefore(lastClone, cards[0]);
-        
-        let current = 1; // Start at 1 because we added a clone at the beginning
-        const total = cards.length;
-        const totalWithClones = total + 2; // Original + 2 clones
-
-        // Swipe functionality variables
-        let startX = 0;
-        let startY = 0;
-        let currentX = 0;
-        let currentY = 0;
-        let isDragging = false;
-        let isHorizontalSwipe = false;
-        let startTime = 0;
-        let velocity = 0;
-
-        function updateCarousel() {
-            track.style.transform = `translateX(-${current * 95}%)`;
-        }
-
-        function goToNext() {
-            current++;
-            updateCarousel();
+        // Generic carousel functionality that works for both article and news carousels
+        function initializeCarousel(carouselSelector) {
+            const carousel = document.querySelector(carouselSelector);
+            if (!carousel) return;
             
-            // If we're at the last clone (which is the first slide), jump to the real first slide
-            if (current === totalWithClones - 1) {
-                setTimeout(() => {
-                    track.style.transition = 'none';
-                    current = 1;
-                    updateCarousel();
-                    setTimeout(() => {
-                        track.style.transition = 'transform 0.4s cubic-bezier(0.4,0,0.2,1)';
-                    }, 50);
-                }, 400);
+            const track = carousel.querySelector('.carousel-track');
+            const cards = track.querySelectorAll('.article-video-section');
+            const leftBtn = carousel.querySelector('.carousel-arrow.left');
+            const rightBtn = carousel.querySelector('.carousel-arrow.right');
+            
+            // Clone first and last slides for seamless infinite scroll
+            const firstClone = cards[0].cloneNode(true);
+            const lastClone = cards[cards.length - 1].cloneNode(true);
+            
+            // Add clones to track
+            track.appendChild(firstClone);
+            track.insertBefore(lastClone, cards[0]);
+            
+            let current = 1; // Start at 1 because we added a clone at the beginning
+            const total = cards.length;
+            const totalWithClones = total + 2; // Original + 2 clones
+
+            // Swipe functionality variables
+            let startX = 0;
+            let startY = 0;
+            let currentX = 0;
+            let currentY = 0;
+            let isDragging = false;
+            let isHorizontalSwipe = false;
+            let startTime = 0;
+            let velocity = 0;
+
+            function updateCarousel() {
+                track.style.transform = `translateX(-${current * 95}%)`;
             }
-        }
 
-        function goToPrevious() {
-            current--;
-            updateCarousel();
-            
-            // If we're at the first clone (which is the last slide), jump to the real last slide
-            if (current === 0) {
-                setTimeout(() => {
-                    track.style.transition = 'none';
-                    current = total;
-                    updateCarousel();
+            function goToNext() {
+                current++;
+                updateCarousel();
+                
+                // If we're at the last clone (which is the first slide), jump to the real first slide
+                if (current === totalWithClones - 1) {
                     setTimeout(() => {
-                        track.style.transition = 'transform 0.4s cubic-bezier(0.4,0,0.2,1)';
-                    }, 50);
-                }, 400);
+                        track.style.transition = 'none';
+                        current = 1;
+                        updateCarousel();
+                        setTimeout(() => {
+                            track.style.transition = 'transform 0.4s cubic-bezier(0.4,0,0.2,1)';
+                        }, 50);
+                    }, 400);
+                }
             }
-        }
 
-        function updateCarouselWithOffset(offset = 0) {
-            track.style.transform = `translateX(-${current * 95}% + ${offset}px)`;
-        }
+            function goToPrevious() {
+                current--;
+                updateCarousel();
+                
+                // If we're at the first clone (which is the last slide), jump to the real last slide
+                if (current === 0) {
+                    setTimeout(() => {
+                        track.style.transition = 'none';
+                        current = total;
+                        updateCarousel();
+                        setTimeout(() => {
+                            track.style.transition = 'transform 0.4s cubic-bezier(0.4,0,0.2,1)';
+                        }, 50);
+                    }, 400);
+                }
+            }
 
+            function updateCarouselWithOffset(offset = 0) {
+                track.style.transform = `translateX(-${current * 95}% + ${offset}px)`;
+            }
 
-        // Touch event handlers
-        function handleTouchStart(e) {
-            startX = e.touches[0].clientX;
-            startY = e.touches[0].clientY;
-            startTime = Date.now();
-            isDragging = true;
-            isHorizontalSwipe = false;
-        }
+            // Touch event handlers
+            function handleTouchStart(e) {
+                startX = e.touches[0].clientX;
+                startY = e.touches[0].clientY;
+                startTime = Date.now();
+                isDragging = true;
+                isHorizontalSwipe = false;
+            }
 
-        function handleTouchMove(e) {
-            if (!isDragging) return;
-            
-            currentX = e.touches[0].clientX;
-            currentY = e.touches[0].clientY;
-            
-            const deltaX = currentX - startX;
-            const deltaY = currentY - startY;
-            
-            // Determine gesture direction after minimum movement
-            const minMovement = 10;
-            if (Math.abs(deltaX) > minMovement || Math.abs(deltaY) > minMovement) {
-                if (!isHorizontalSwipe) {
-                    // Determine if this is a horizontal or vertical gesture
-                    if (Math.abs(deltaX) > Math.abs(deltaY)) {
-                        isHorizontalSwipe = true;
-                        track.classList.add('dragging');
+            function handleTouchMove(e) {
+                if (!isDragging) return;
+                
+                currentX = e.touches[0].clientX;
+                currentY = e.touches[0].clientY;
+                
+                const deltaX = currentX - startX;
+                const deltaY = currentY - startY;
+                
+                // Determine gesture direction after minimum movement
+                const minMovement = 10;
+                if (Math.abs(deltaX) > minMovement || Math.abs(deltaY) > minMovement) {
+                    if (!isHorizontalSwipe) {
+                        // Determine if this is a horizontal or vertical gesture
+                        if (Math.abs(deltaX) > Math.abs(deltaY)) {
+                            isHorizontalSwipe = true;
+                            track.classList.add('dragging');
+                        } else {
+                            isHorizontalSwipe = false;
+                            // Allow vertical scrolling by not preventing default
+                            return;
+                        }
+                    }
+                    
+                    // Only prevent default and handle carousel if it's a horizontal swipe
+                    if (isHorizontalSwipe) {
+                        e.preventDefault();
+                        updateCarouselWithOffset(deltaX);
+                    }
+                }
+            }
+
+            function handleTouchEnd(e) {
+                if (!isDragging) return;
+                
+                const deltaX = currentX - startX;
+                const deltaTime = Date.now() - startTime;
+                velocity = deltaX / deltaTime;
+                
+                track.classList.remove('dragging');
+                
+                // Only handle carousel navigation if it was a horizontal swipe
+                if (isHorizontalSwipe) {
+                    // Determine if it's a swipe based on distance and velocity
+                    const minSwipeDistance = 50;
+                    const minSwipeVelocity = 0.3;
+                    
+                    if (Math.abs(deltaX) > minSwipeDistance || Math.abs(velocity) > minSwipeVelocity) {
+                        if (deltaX > 0) {
+                            // Swipe right - go to previous
+                            goToPrevious();
+                        } else {
+                            // Swipe left - go to next
+                            goToNext();
+                        }
                     } else {
-                        isHorizontalSwipe = false;
-                        // Allow vertical scrolling by not preventing default
-                        return;
+                        // Snap back to current position
+                        updateCarousel();
                     }
                 }
                 
-                // Only prevent default and handle carousel if it's a horizontal swipe
-                if (isHorizontalSwipe) {
+                isDragging = false;
+                isHorizontalSwipe = false;
+            }
+
+            // Mouse event handlers for desktop drag support
+            function handleMouseDown(e) {
+                startX = e.clientX;
+                startY = e.clientY;
+                startTime = Date.now();
+                isDragging = true;
+                track.classList.add('dragging');
+                e.preventDefault();
+            }
+
+            function handleMouseMove(e) {
+                if (!isDragging) return;
+                
+                currentX = e.clientX;
+                currentY = e.clientY;
+                
+                const deltaX = currentX - startX;
+                const deltaY = currentY - startY;
+                
+                // Only handle horizontal drags
+                if (Math.abs(deltaX) > Math.abs(deltaY)) {
                     e.preventDefault();
                     updateCarouselWithOffset(deltaX);
                 }
             }
-        }
 
-        function handleTouchEnd(e) {
-            if (!isDragging) return;
-            
-            const deltaX = currentX - startX;
-            const deltaTime = Date.now() - startTime;
-            velocity = deltaX / deltaTime;
-            
-            track.classList.remove('dragging');
-            
-            // Only handle carousel navigation if it was a horizontal swipe
-            if (isHorizontalSwipe) {
-                // Determine if it's a swipe based on distance and velocity
-                const minSwipeDistance = 50;
-                const minSwipeVelocity = 0.3;
+            function handleMouseUp(e) {
+                if (!isDragging) return;
                 
-                if (Math.abs(deltaX) > minSwipeDistance || Math.abs(velocity) > minSwipeVelocity) {
+                const deltaX = currentX - startX;
+                const deltaTime = Date.now() - startTime;
+                velocity = deltaX / deltaTime;
+                
+                track.classList.remove('dragging');
+                
+                const minDragDistance = 50;
+                const minDragVelocity = 0.3;
+                
+                if (Math.abs(deltaX) > minDragDistance || Math.abs(velocity) > minDragVelocity) {
                     if (deltaX > 0) {
-                        // Swipe right - go to previous
                         goToPrevious();
                     } else {
-                        // Swipe left - go to next
                         goToNext();
                     }
                 } else {
-                    // Snap back to current position
                     updateCarousel();
                 }
+                
+                isDragging = false;
             }
-            
-            isDragging = false;
-            isHorizontalSwipe = false;
-        }
 
-        // Mouse event handlers for desktop drag support
-        function handleMouseDown(e) {
-            startX = e.clientX;
-            startY = e.clientY;
-            startTime = Date.now();
-            isDragging = true;
-            track.classList.add('dragging');
-            e.preventDefault();
-        }
+            leftBtn.addEventListener('click', goToPrevious);
+            rightBtn.addEventListener('click', goToNext);
 
-        function handleMouseMove(e) {
-            if (!isDragging) return;
-            
-            currentX = e.clientX;
-            currentY = e.clientY;
-            
-            const deltaX = currentX - startX;
-            const deltaY = currentY - startY;
-            
-            // Only handle horizontal drags
-            if (Math.abs(deltaX) > Math.abs(deltaY)) {
-                e.preventDefault();
-                updateCarouselWithOffset(deltaX);
-            }
-        }
+            track.addEventListener('touchstart', handleTouchStart, { passive: false });
+            track.addEventListener('touchmove', handleTouchMove, { passive: false });
+            track.addEventListener('touchend', handleTouchEnd, { passive: false });
 
-        function handleMouseUp(e) {
-            if (!isDragging) return;
-            
-            const deltaX = currentX - startX;
-            const deltaTime = Date.now() - startTime;
-            velocity = deltaX / deltaTime;
-            
-            track.classList.remove('dragging');
-            
-            const minDragDistance = 50;
-            const minDragVelocity = 0.3;
-            
-            if (Math.abs(deltaX) > minDragDistance || Math.abs(velocity) > minDragVelocity) {
-                if (deltaX > 0) {
+            track.addEventListener('selectstart', (e) => e.preventDefault());
+
+            track.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowLeft') {
+                    e.preventDefault();
                     goToPrevious();
-                } else {
+                } else if (e.key === 'ArrowRight') {
+                    e.preventDefault();
                     goToNext();
                 }
-            } else {
-                updateCarousel();
-            }
-            
-            isDragging = false;
+            });
+
+            // Make carousel focusable for accessibility
+            track.setAttribute('tabindex', '0');
+            track.setAttribute('role', 'region');
+            track.setAttribute('aria-label', 'Carousel - use arrows or swipe to navigate');
+
+            updateCarousel();
         }
 
-        leftBtn.addEventListener('click', goToPrevious);
-        rightBtn.addEventListener('click', goToNext);
-
-        track.addEventListener('touchstart', handleTouchStart, { passive: false });
-        track.addEventListener('touchmove', handleTouchMove, { passive: false });
-        track.addEventListener('touchend', handleTouchEnd, { passive: false });
-
-        track.addEventListener('selectstart', (e) => e.preventDefault());
-
-        track.addEventListener('keydown', (e) => {
-            if (e.key === 'ArrowLeft') {
-                e.preventDefault();
-                goToPrevious();
-            } else if (e.key === 'ArrowRight') {
-                e.preventDefault();
-                goToNext();
-            }
-        });
-
-        // Make carousel focusable for accessibility
-        track.setAttribute('tabindex', '0');
-        track.setAttribute('role', 'region');
-        track.setAttribute('aria-label', 'Project carousel - use arrows or swipe to navigate');
-
-        updateCarousel();
+        initializeCarousel('#article .article-horizontal-carousel');
+        initializeCarousel('#news .article-horizontal-carousel');
     </script>
     <script>
       (function () {

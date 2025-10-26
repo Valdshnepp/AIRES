@@ -545,8 +545,10 @@ p {
     padding: 0rem 0;
     background: #0a0a0a;
     min-height: auto;
-    overflow: visible;
+    overflow: hidden;
     position: relative;
+    width: 100%;
+    max-width: 100%;
 }
 
 /* News cover image styles */
@@ -776,7 +778,7 @@ p {
     position: absolute;
     left: 0;
     right: 0;
-    bottom: 0;
+    bottom: -3px;
     z-index: 3;
     padding: 2rem 2rem 1.5rem;   /* регулируйте толщину подложки */
     background: transparent;     /* фон снимаем — теперь всё рисует ::before */
@@ -2874,6 +2876,50 @@ video {
 .video-loaded .video-loading-indicator {
     display: none;
 }
+
+/* Image replacement for slow connections */
+.video-container img {
+    width: 100%;
+    height: auto;
+    max-height: 100%;
+    object-fit: contain;
+    position: relative;
+    display: block;
+}
+
+/* Ensure image-mode containers behave consistently */
+.video-container.image-mode {
+    height: auto !important;
+    min-height: auto !important;
+    max-height: none !important;
+}
+
+/* Prevent layout breaking in image mode */
+.video-container.image-mode img {
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    object-fit: contain;
+}
+
+/* Hide video elements when images are loaded for slow connections */
+.video-container img + video {
+    display: none !important;
+}
+
+.video-container img ~ .article-video {
+    display: none !important;
+}
+
+/* Image mode styling */
+.video-container.image-mode video {
+    display: none !important;
+}
+
+.video-container.image-mode .article-video {
+    display: none !important;
+}
+
 
 /* Специальные стили для mouse-video больше не нужны - все видео используют одинаковое поведение */
 
